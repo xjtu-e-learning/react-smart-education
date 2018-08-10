@@ -9,6 +9,8 @@
     "flow-bin": "^0.78.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "prettier": "^1.14.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

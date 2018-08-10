@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f77342b7-7c83-45e8-a673-595fa4239cd3" name="Default Changelist" comment="add title bar">
-      <change afterPath="$PROJECT_DIR$/src/components/App.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/facet-list/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/recommendation-list/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/titlebar/index.jsx" afterDir="false" />
+    <list default="true" id="f77342b7-7c83-45e8-a673-595fa4239cd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/app-state.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assemble-list/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/assemble-list/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/assemble-list/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/facet-list/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/facet-list/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/recommendation-list/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/recommendation-list/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/titlebar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/titlebar/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -43,7 +42,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="ico" value="1" />
-          <entry key="js" value="5" />
+          <entry key="js" value="6" />
           <entry key="json" value="2" />
           <entry key="jsx" value="8" />
           <entry key="md" value="1" />
@@ -56,7 +55,7 @@
           <entry key="Image" value="1" />
           <entry key="JSON" value="2" />
           <entry key="JSX Harmony" value="8" />
-          <entry key="JavaScript" value="5" />
+          <entry key="JavaScript" value="6" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -67,7 +66,7 @@
           <entry key="js" value="1008" />
           <entry key="json" value="135" />
           <entry key="jsx" value="960" />
-          <entry key="txt" value="13" />
+          <entry key="txt" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -76,7 +75,7 @@
           <entry key="JSON" value="135" />
           <entry key="JSX Harmony" value="960" />
           <entry key="JavaScript" value="1008" />
-          <entry key="PLAIN_TEXT" value="13" />
+          <entry key="PLAIN_TEXT" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -95,7 +94,7 @@
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="195">
-                  <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+                  <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -104,7 +103,7 @@
             <entry file="file://$PROJECT_DIR$/src/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="120">
-                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -112,10 +111,15 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/store/app-state.js">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/assemble-list/index.jsx">
+            <entry file="file://$PROJECT_DIR$/src/views/assemble-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
+                <state relative-caret-position="-345">
                   <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
                   <folding>
                     <element signature="e#0#44#0" expanded="true" />
@@ -124,8 +128,8 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/facet-list/index.jsx">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/facet-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="105">
                   <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
@@ -176,11 +180,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/titlebar/index.jsx">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/titlebar/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="49">
-                  <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+                <state relative-caret-position="360">
+                  <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#48#0" expanded="true" />
                   </folding>
@@ -188,8 +192,8 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/views/App.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="15">
                   <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
@@ -198,10 +202,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/recommendation-list/index.jsx">
+            <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="450">
-                  <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+                  <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -264,7 +268,6 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="290" />
     <option name="y" value="22" />
     <option name="width" value="1499" />
     <option name="height" value="949" />
@@ -291,40 +294,6 @@
               <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="assemble-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="facet-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="recommendation-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="titlebar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -399,32 +368,39 @@
       <workItem from="1533566419199" duration="4444000" />
       <workItem from="1533571852917" duration="401000" />
       <workItem from="1533780906687" duration="90000" />
-      <workItem from="1533782319657" duration="17002000" />
+      <workItem from="1533782319657" duration="23150000" />
     </task>
+    <task id="LOCAL-00001" summary="划分模块">
+      <created>1533823889203</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1533823889203</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29532000" />
+    <option name="totallyTimeSpent" value="35680000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="290" y="22" width="1499" height="949" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1499" height="949" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22056833" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49816176" visible="true" weight="0.22056833" />
+      <window_info id="Structure" order="1" sideWeight="0.5018382" side_tool="true" visible="true" weight="0.22056833" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32844242" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49838188" visible="true" weight="0.29288214" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49838188" weight="0.29288214" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946064" weight="0.32982087" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946064" weight="0.32905483" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50161815" side_tool="true" weight="0.37246048" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49838188" weight="0.36568847" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49838188" visible="true" weight="0.36522755" />
       <window_info anchor="bottom" id="Flow" order="11" weight="0.3295711" />
       <window_info active="true" anchor="bottom" id="Messages" order="12" sideWeight="0.49946064" visible="true" weight="0.32982087" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -466,7 +442,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add title bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="add title bar" />
+    <MESSAGE value="划分模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="划分模块" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/favicon.ico">
@@ -505,7 +482,7 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -519,27 +496,17 @@
     <entry file="file://$PROJECT_DIR$/src/components/App.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="450">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/assemble-list/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/facet-list/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/views/facet-list/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
@@ -549,32 +516,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
+    <entry file="file://$PROJECT_DIR$/src/views/titlebar/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/recommendation-list/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/views/assemble-list/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="-345">
+          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/titlebar/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/app-state.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
