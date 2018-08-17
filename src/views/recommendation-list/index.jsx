@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List/List';
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider/Divider';
 import Drawer from '@material-ui/core/Drawer/Drawer';
 import { withStyles } from '@material-ui/core/styles';
+
+import RecommendationButton from './recommendation-button';
+import RecommendationContent from './recommendation-content';
 
 const drawerWidth = 240;
 
@@ -34,17 +36,10 @@ class RecommendationList extends Component {
       >
         <div className={this.props.classes.toolbar} />
         <List>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            className={this.props.classes.button}
-          >
-            主题推荐方式
-          </Button>
+          <RecommendationButton />
         </List>
         <Divider className={this.props.classes.divider} />
-        <List />
+        <RecommendationContent />
       </Drawer>
     );
   }

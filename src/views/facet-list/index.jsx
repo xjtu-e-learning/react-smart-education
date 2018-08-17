@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import { inject, observer } from 'mobx-react';
 
 const drawerWidth = 240;
 
@@ -28,6 +29,8 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
+@inject('appState')
+@observer
 class FacetList extends Component {
   render() {
     return (
@@ -40,7 +43,7 @@ class FacetList extends Component {
         <AppBar position="static" color="default">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              线性表
+              {this.props.appState.currentTopic.topicName}
             </Typography>
           </Toolbar>
         </AppBar>

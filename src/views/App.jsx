@@ -5,6 +5,9 @@ import RecommendationList from './recommendation-list';
 import TitleBar from './titlebar';
 import FacetList from './facet-list';
 import AssembleList from './assemble-list';
+import { observer, inject } from 'mobx-react';
+import queryString from 'query-string';
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -18,7 +21,27 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
+@inject('appState')
+@observer
 class App extends Component {
+  componentDidMount() {
+    // 解析课程id
+    if (queryString.parse(this.props.location.search).courseId !== undefined) {
+      this.props.appState.setCourseId(
+        queryString.parse(this.props.location.search).courseId
+      );
+    }
+
+    // 解析学生id
+    if (
+      queryString.parse(this.props.location.search).studentCode !== undefined
+    ) {
+      this.props.appState.setStudentCode(
+        queryString.parse(this.props.location.search).studentCode
+      );
+    }
+  }
+
   render() {
     return (
       <div className={this.props.classes.root}>
@@ -35,4 +58,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(withRouter(App));
