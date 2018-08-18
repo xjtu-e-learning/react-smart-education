@@ -37,14 +37,25 @@ class FacetContent extends React.Component {
     this.state = {};
   }
 
-  handleClickWithFacet = event => {
-    if (event.target.innerText !== undefined) {
-      let facetname = event.target.innerText;
-      this.props.appState.setFacetCollapse(facetname);
-    }
+  handleClickWithFacet = (firstLayerFacetName, event) => {
+    this.props.appState.setFacetCollapse(firstLayerFacetName);
+    this.props.appState.setCurrentFacet(firstLayerFacetName, '');
   };
 
-  handleClick = event => {};
+  handleClick = (firstLayerFacetName, event) => {
+    this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+  };
+
+  handleClickSecondLayer = (
+    firstLayerFacetName,
+    secondLayerFacetName,
+    event
+  ) => {
+    this.props.appState.setCurrentFacet(
+      firstLayerFacetName,
+      secondLayerFacetName
+    );
+  };
 
   render() {
     const { classes } = this.props;
@@ -71,7 +82,10 @@ class FacetContent extends React.Component {
                     <ListItem
                       button
                       key={facet.firstLayerFacetId}
-                      onClick={this.handleClick}
+                      onClick={this.handleClick.bind(
+                        this,
+                        facet.firstLayerFacetName
+                      )}
                     >
                       <div>
                         <Badge status="success" />
@@ -91,7 +105,11 @@ class FacetContent extends React.Component {
                         button
                         className={classes.nested}
                         key={secondFacet.secondLayerFacetId}
-                        onClick={this.handleClick}
+                        onClick={this.handleClickSecondLayer.bind(
+                          this,
+                          facet.firstLayerFacetName,
+                          secondFacet.secondLayerFacetName
+                        )}
                       >
                         <ListItemIcon>
                           <StarBorder />
@@ -107,7 +125,13 @@ class FacetContent extends React.Component {
                   );
                   return (
                     <div key={facet.firstLayerFacetId}>
-                      <ListItem button onClick={this.handleClickWithFacet}>
+                      <ListItem
+                        button
+                        onClick={this.handleClickWithFacet.bind(
+                          this,
+                          facet.firstLayerFacetName
+                        )}
+                      >
                         <div>
                           <Badge status="success" />
                         </div>

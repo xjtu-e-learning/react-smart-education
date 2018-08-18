@@ -135,6 +135,15 @@ class AppState {
     this.currentTopic.topicName = currentTopicName;
   }
 
+  @observable
+  currentFacet = { firstLayer: '', secondLayer: '' };
+
+  @action
+  setCurrentFacet(firstLayer, secondLayer) {
+    this.currentFacet.firstLayer = firstLayer;
+    this.currentFacet.secondLayer = secondLayer;
+  }
+
   @computed
   get currentRecommendationList() {
     if (this.recommendationList.get() === undefined) return undefined;
@@ -201,7 +210,9 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.facetList.get());
+  console.log(
+    appState.currentFacet.firstLayer + appState.currentFacet.secondLayer
+  );
 });
 
 export default appState;
