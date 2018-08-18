@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f77342b7-7c83-45e8-a673-595fa4239cd3" name="Default Changelist" comment="主题推荐方式selects">
-      <change afterPath="$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx" afterDir="false" />
+    <list default="true" id="f77342b7-7c83-45e8-a673-595fa4239cd3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack.config.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/app-state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/app-state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/facet-list/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/facet-list/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/recommendation-list/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/recommendation-list/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/titlebar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/titlebar/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
-    <list id="5a3c6b16-aac0-4031-aea8-2903b35b680a" name="主题推荐方式selects" comment="主题推荐方式selects" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -43,10 +35,10 @@
         <counts>
           <entry key="babelrc" value="2" />
           <entry key="css" value="2" />
-          <entry key="gitignore" value="2" />
+          <entry key="gitignore" value="3" />
           <entry key="html" value="1" />
           <entry key="ico" value="1" />
-          <entry key="js" value="12" />
+          <entry key="js" value="13" />
           <entry key="json" value="2" />
           <entry key="jsx" value="18" />
           <entry key="md" value="1" />
@@ -56,12 +48,12 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="Git file" value="1" />
+          <entry key="Git file" value="2" />
           <entry key="HTML" value="1" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="4" />
           <entry key="JSX Harmony" value="18" />
-          <entry key="JavaScript" value="12" />
+          <entry key="JavaScript" value="13" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SVG" value="1" />
@@ -70,22 +62,22 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="babelrc" value="6" />
-          <entry key="gitignore" value="6" />
+          <entry key="gitignore" value="9" />
           <entry key="html" value="13" />
-          <entry key="js" value="4947" />
+          <entry key="js" value="5192" />
           <entry key="json" value="147" />
-          <entry key="jsx" value="3715" />
-          <entry key="txt" value="58" />
+          <entry key="jsx" value="5954" />
+          <entry key="txt" value="74" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Git file" value="6" />
+          <entry key="Git file" value="9" />
           <entry key="HTML" value="13" />
           <entry key="JSON" value="153" />
-          <entry key="JSX Harmony" value="3715" />
-          <entry key="JavaScript" value="4947" />
-          <entry key="PLAIN_TEXT" value="58" />
+          <entry key="JSX Harmony" value="5954" />
+          <entry key="JavaScript" value="5192" />
+          <entry key="PLAIN_TEXT" value="74" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -131,18 +123,6 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/store/app-state.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="649">
-                  <caret line="183" column="53" selection-start-line="183" selection-start-column="53" selection-end-line="183" selection-end-column="53" />
-                  <folding>
-                    <element signature="e#0#61#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/assemble-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
@@ -158,18 +138,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/facet-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="660">
-                  <caret line="44" column="57" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
-                  <folding>
-                    <element signature="e#0#53#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="98">
+                  <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx">
-              <provider selected="true" editor-type-id="text-editor" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="108" column="15" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
@@ -200,13 +184,25 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+                <state relative-caret-position="180">
+                  <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/store/app-state.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="674">
+                  <caret line="178" column="28" selection-start-line="178" selection-start-column="28" selection-end-line="178" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#0#61#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -228,10 +224,19 @@
             <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="285">
-                  <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="30" />
+                  <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -245,6 +250,7 @@
       <find>&quot;</find>
       <find>babelrc</find>
       <find>babel</find>
+      <find>state</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -273,7 +279,6 @@
         <option value="$PROJECT_DIR$/src/views/recommendation-list/recommendation-button/indexbak.jsx" />
         <option value="$PROJECT_DIR$/src/views/titlebar/index.jsx" />
         <option value="$PROJECT_DIR$/src/views/recommendation-list/recommendation-button/index.jsx" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/views/recommendation-list/index.jsx" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/config/webpack.config.dev.js" />
@@ -281,6 +286,8 @@
         <option value="$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx" />
         <option value="$PROJECT_DIR$/src/views/facet-list/index.jsx" />
         <option value="$PROJECT_DIR$/src/store/app-state.js" />
+        <option value="$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -307,9 +314,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="576" />
-    <option name="y" value="63" />
-    <option name="width" value="1831" />
+    <option name="x" value="71" />
+    <option name="y" value="22" />
+    <option name="width" value="2560" />
     <option name="height" value="1338" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -344,6 +351,12 @@
               <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,7 +370,44 @@
               <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="assemble-list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="facet-list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="facet-list" type="462c0819:PsiDirectoryNode" />
+              <item name="facet-content" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="recommendation-list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="recommendation-list" type="462c0819:PsiDirectoryNode" />
+              <item name="recommendation-content" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-smart-education" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-smart-education" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="titlebar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -370,6 +420,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -423,7 +474,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f77342b7-7c83-45e8-a673-595fa4239cd3" name="Default Changelist" comment="" />
-      <changelist id="5a3c6b16-aac0-4031-aea8-2903b35b680a" name="主题推荐方式selects" comment="" />
+      <changelist id="" name="主题推荐方式selects" comment="" />
       <created>1533379309780</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -436,7 +487,7 @@
       <workItem from="1533566419199" duration="4444000" />
       <workItem from="1533571852917" duration="401000" />
       <workItem from="1533780906687" duration="90000" />
-      <workItem from="1533782319657" duration="70414000" />
+      <workItem from="1533782319657" duration="85718000" />
     </task>
     <task id="LOCAL-00001" summary="划分模块">
       <created>1533823889203</created>
@@ -466,11 +517,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534431627618</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="推荐主题列表随推荐方式切换">
+      <created>1534516515045</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1534516515045</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82944000" />
+    <option name="totallyTimeSpent" value="98248000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -483,21 +541,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1338" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64285713" visible="true" weight="0.128397" />
-      <window_info id="Structure" order="1" sideWeight="0.35714287" side_tool="true" visible="true" weight="0.128397" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6425486" visible="true" weight="0.128397" />
+      <window_info id="Structure" order="1" sideWeight="0.3574514" side_tool="true" visible="true" weight="0.128397" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" weight="0.32985553" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32844242" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49838188" weight="0.25682184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49838188" visible="true" weight="0.25682184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32995495" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.49946064" visible="true" weight="0.2247191" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946064" weight="0.2247191" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50161815" side_tool="true" weight="0.37246048" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49838188" weight="0.36436597" />
       <window_info anchor="bottom" id="Flow" order="11" weight="0.3295711" />
@@ -544,7 +603,8 @@
     <MESSAGE value="划分模块" />
     <MESSAGE value="更新目录结构" />
     <MESSAGE value="主题推荐方式selects" />
-    <option name="LAST_COMMIT_MESSAGE" value="主题推荐方式selects" />
+    <MESSAGE value="推荐主题列表随推荐方式切换" />
+    <option name="LAST_COMMIT_MESSAGE" value="推荐主题列表随推荐方式切换" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/favicon.ico">
@@ -639,16 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/polyfills.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -676,13 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/webpack.config.prod.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -693,7 +736,7 @@
     <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="30" />
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -707,36 +750,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/facet-list/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="57" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
+        <state relative-caret-position="98">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
           <folding>
-            <element signature="e#0#53#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/facet-list/facet-content/index.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="108" column="15" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/app-state.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="183" column="53" selection-start-line="183" selection-start-column="53" selection-end-line="183" selection-end-column="53" />
+        <state relative-caret-position="674">
+          <caret line="178" column="28" selection-start-line="178" selection-start-column="28" selection-end-line="178" selection-end-column="28" />
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/recommendation-list/recommendation-content/index.jsx">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
         </state>
       </provider>
     </entry>

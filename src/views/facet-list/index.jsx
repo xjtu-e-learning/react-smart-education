@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { inject, observer } from 'mobx-react';
+import FacetContent from './facet-content';
 
 const drawerWidth = 240;
 
@@ -48,7 +49,7 @@ class FacetList extends Component {
           </Toolbar>
         </AppBar>
         <Divider className={this.props.classes.divider} />
-        <List />
+        <FacetContent />
       </Drawer>
     );
   }

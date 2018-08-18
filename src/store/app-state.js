@@ -184,12 +184,24 @@ class AppState {
       return result.data[this.currentTopic.topicName];
     }
   });
+
+  @observable
+  facetCollapse = {};
+
+  @action
+  setFacetCollapse(facetname) {
+    if (this.facetCollapse[facetname] === undefined) {
+      this.facetCollapse[facetname] = false;
+    } else {
+      this.facetCollapse[facetname] = !this.facetCollapse[facetname];
+    }
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.facetList.get());
+  // console.log(appState.facetList.get());
 });
 
 export default appState;
