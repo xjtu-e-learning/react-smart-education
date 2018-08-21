@@ -9,6 +9,8 @@ const PATH_recommendationGetByDomainIdAndUserId =
   '/recommendation/getByDomainIdAndUserId';
 const PATH_facetGetFacetsByDomainNameAndTopicNames =
   '/facet/getFacetsByDomainNameAndTopicNames';
+const PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId =
+  '/assemble/getAssemblesByDomainNameAndTopicNamesAndUserId';
 
 class AppState {
   @observable
@@ -194,6 +196,60 @@ class AppState {
     }
   });
 
+  currentTopicAssembleList = asyncComputed(undefined, 0, async () => {
+    if (
+      this.domainName.get() !== undefined &&
+      this.currentTopic.topicName !== '' &&
+      this.studentCode !== -1
+    ) {
+      const response = await axios.post(
+        PATH_BASE +
+          PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId +
+          '?domainName=' +
+          this.domainName.get() +
+          '&topicNames=' +
+          this.currentTopic.topicName +
+          '&userId=' +
+          this.studentCode
+      );
+      const result = await response.data;
+      return result.data[this.currentTopic.topicName];
+    }
+  });
+
+  @computed
+  get currentAssembleList() {
+    let assembleList = [];
+    if (this.currentTopicAssembleList.get() !== undefined) {
+      const currentTopicAssembleList = this.currentTopicAssembleList.get();
+      if (this.currentFacet.firstLayer === '') {
+        return this.currentTopicAssembleList.get();
+      } else {
+        const firstLayer = this.currentFacet.firstLayer;
+        if (this.currentFacet.secondLayer === '') {
+          currentTopicAssembleList.forEach(assemble => {
+            if (assemble.firstLayerFacetName === firstLayer) {
+              assembleList.push(assemble);
+            }
+          });
+          return assembleList;
+        } else {
+          const secondLayer = this.currentFacet.secondLayer;
+          currentTopicAssembleList.forEach(assemble => {
+            if (
+              assemble.firstLayerFacetName === firstLayer &&
+              assemble.secondLayerFacetName === secondLayer
+            ) {
+              assembleList.push(assemble);
+            }
+          });
+          return assembleList;
+        }
+      }
+    }
+    return assembleList;
+  }
+
   @observable
   facetCollapse = {};
 
@@ -210,9 +266,7 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  console.log(
-    appState.currentFacet.firstLayer + appState.currentFacet.secondLayer
-  );
+  console.log(appState.currentAssembleList);
 });
 
 export default appState;

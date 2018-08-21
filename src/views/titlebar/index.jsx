@@ -28,15 +28,17 @@ const styles = theme => ({
 
 class TitleBar extends Component {
   render() {
+    const { classes } = this.props;
+
     return (
-      <AppBar position="absolute" className={this.props.classes.appBar}>
-        <ToolBar className={this.props.classes.toolBar}>
-          <div className={this.props.classes.toolBarTitle}>
+      <AppBar position="absolute" className={classes.appBar}>
+        <ToolBar className={classes.toolBar}>
+          <div className={classes.toolBarTitle}>
             <Typography
               variant="title"
               color="inherit"
               align="center"
-              className={this.props.classes.toolBarTitleContent}
+              className={classes.toolBarTitleContent}
               noWrap
             >
               智慧教育示范应用

@@ -18,16 +18,11 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class RecommendationContent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
   handleClick = event => {
     this.props.appState.setCurrentTopicName(event.target.innerText);
     this.props.appState.setCurrentTopicId(event.target.id);
-    console.log(event.target.id);
+    this.props.appState.setCurrentFacet('', '');
+    // console.log(event.target.id);
   };
 
   render() {
