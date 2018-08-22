@@ -6,7 +6,8 @@ import appState from '../../../store/app-state';
 
 const styles = theme => ({
   breadcrumb: {
-    paddingLeft: 16
+    paddingLeft: 16,
+    flexGrow: 1
   },
   mouse: {
     cursor: 'pointer'

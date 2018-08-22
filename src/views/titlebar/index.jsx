@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Navigation from './navigation/';
+import CourseInfo from './course-info';
 
 const drawerWidth = 240;
 
@@ -45,7 +46,8 @@ class TitleBar extends Component {
               智慧教育示范应用
             </Typography>
           </div>
-          <Navigation />
+          <Navigation/>
+          <CourseInfo/>
         </ToolBar>
       </AppBar>
     );
