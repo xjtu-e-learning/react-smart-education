@@ -146,6 +146,11 @@ class AppState {
     this.currentFacet.secondLayer = secondLayer;
   }
 
+  @action
+  setCurrentSecondFacet(secondLayer) {
+    this.currentFacet.secondLayer = secondLayer;
+  }
+
   @computed
   get currentRecommendationList() {
     if (this.recommendationList.get() === undefined) return undefined;
