@@ -11,7 +11,8 @@ const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
+    paddingBottom: theme.spacing.unit * 2,
+    marginBottom: 16
   },
   mouse: {
     cursor: 'pointer'
@@ -39,18 +40,17 @@ class AssembleContentLess extends React.Component {
       <div>
         <Paper className={classes.root} elevation={2}>
           {this.state.replicate === true ? (
-            <HTMLEllipsis
-              unsafeHTML={assemblecontent}
-              maxLine="5"
-              ellipsisHTML=""
-              basedOn="letters"
-            />
+            <div onClick={this.handleClick} className={classes.mouse}>
+              <HTMLEllipsis
+                unsafeHTML={assemblecontent}
+                maxLine="5"
+                ellipsisHTML="<a>...查看更多</a>"
+                basedOn="letters"
+              />
+            </div>
           ) : (
             <div dangerouslySetInnerHTML={{ __html: assemblecontent }} />
           )}
-          <i className={classes.mouse} onClick={this.handleClick}>
-            展开
-          </i>
         </Paper>
       </div>
     );

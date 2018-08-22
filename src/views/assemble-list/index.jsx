@@ -8,18 +8,13 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    paddingBottom: theme.spacing.unit * 3,
     minWidth: 0, // So the Typography noWrap works
     maxHeight: '100vh',
+    paddingTop: 80,
     overflow: 'auto'
-  },
-  grid: {
-    padding: 16
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary
   },
   toolbar: theme.mixins.toolbar
 });
@@ -29,7 +24,6 @@ class AssembleList extends React.Component {
     const { classes } = this.props;
     return (
       <main className={classes.content}>
-        <div className={classes.toolbar} />
         <Paper>
           <AssembleListTitlebar />
           <AssemblePaper />

@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: 16
   },
   toolbar: {
     minHeight: 48

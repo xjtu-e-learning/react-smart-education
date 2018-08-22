@@ -8,7 +8,12 @@ import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
   grid: {
-    padding: 16
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginTop: 16,
+    paddingBottom: 16,
+    overflow: 'auto',
+    height: 896
   },
   paper: {
     // padding: theme.spacing.unit * 2,
@@ -32,18 +37,17 @@ class AssemblePaper extends React.Component {
     const { classes } = this.props;
     const currentAssembleList = this.props.appState.currentAssembleList;
     return (
-      <Grid className={classes.grid} container spacing={24}>
-        {currentAssembleList.length !== 0
-          ? currentAssembleList.map(assemble => (
-              <Grid item xs={12} key={assemble.assembleId}>
-                <Paper className={classes.paper}>
-                  <AssembleTitle />
-                  <AssembleContentLess assemble={assemble} />
-                </Paper>
-              </Grid>
-            ))
-          : null}
-      </Grid>
+      <Paper className={classes.grid}>
+        {currentAssembleList.length !== 0 &&
+          currentAssembleList.map(assemble => (
+            <Grid item xs={12} key={assemble.assembleId}>
+              <Paper className={classes.paper}>
+                <AssembleTitle />
+                <AssembleContentLess assemble={assemble} />
+              </Paper>
+            </Grid>
+          ))}
+      </Paper>
     );
   }
 }
