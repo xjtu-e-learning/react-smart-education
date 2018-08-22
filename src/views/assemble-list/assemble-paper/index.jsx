@@ -42,7 +42,7 @@ class AssemblePaper extends React.Component {
           currentAssembleList.map(assemble => (
             <Grid item xs={12} key={assemble.assembleId}>
               <Paper className={classes.paper}>
-                <AssembleTitle />
+                <AssembleTitle assemblesource={assemble.sourceName} />
                 <AssembleContentLess assemble={assemble} />
               </Paper>
             </Grid>
