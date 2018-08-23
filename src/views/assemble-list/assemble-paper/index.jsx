@@ -32,8 +32,17 @@ class AssemblePaper extends React.Component {
     const currentAssembleList = this.props.appState.currentAssembleList;
     return (
       <Paper className={classes.grid}>
-        {currentAssembleList.length !== 0 &&
-        currentAssembleList.map(assemble => (
+        {currentAssembleList.text.length !== 0 && this.props.appState.textOrVideo === 0 &&
+        currentAssembleList.text.map(assemble => (
+          <Grid item xs={12} key={assemble.assembleId}>
+            <Paper className={classes.paper}>
+              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleContentLess assemble={assemble}/>
+            </Paper>
+          </Grid>
+        ))}
+        {currentAssembleList.video.length !== 0 && this.props.appState.textOrVideo === 1 &&
+        currentAssembleList.video.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>

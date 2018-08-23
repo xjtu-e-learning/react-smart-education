@@ -9,8 +9,8 @@ const PATH_recommendationGetByDomainIdAndUserId =
   '/recommendation/getByDomainIdAndUserId';
 const PATH_facetGetFacetsByDomainNameAndTopicNames =
   '/facet/getFacetsByDomainNameAndTopicNames';
-const PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId =
-  '/assemble/getAssemblesByDomainNameAndTopicNamesAndUserId';
+const PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserIdSplitByType =
+  '/assemble/getAssemblesByDomainNameAndTopicNamesAndUserIdSplitByType';
 
 class AppState {
   @observable
@@ -209,7 +209,7 @@ class AppState {
     ) {
       const response = await axios.post(
         PATH_BASE +
-        PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId +
+        PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserIdSplitByType +
         '?domainName=' +
         this.domainName.get() +
         '&topicNames=' +
@@ -224,7 +224,7 @@ class AppState {
 
   @computed
   get currentAssembleList() {
-    let assembleList = [];
+    let assembleList = {"text":[],"video":[]};
     if (this.currentTopicAssembleList.get() !== undefined) {
       const currentTopicAssembleList = this.currentTopicAssembleList.get();
       if (this.currentFacet.firstLayer === '') {
@@ -232,20 +232,33 @@ class AppState {
       } else {
         const firstLayer = this.currentFacet.firstLayer;
         if (this.currentFacet.secondLayer === '') {
-          currentTopicAssembleList.forEach(assemble => {
+          currentTopicAssembleList.text.forEach(assemble => {
             if (assemble.firstLayerFacetName === firstLayer) {
-              assembleList.push(assemble);
+              assembleList.text.push(assemble);
+            }
+          });
+          currentTopicAssembleList.video.forEach(assemble => {
+            if (assemble.firstLayerFacetName === firstLayer) {
+              assembleList.video.push(assemble);
             }
           });
           return assembleList;
         } else {
           const secondLayer = this.currentFacet.secondLayer;
-          currentTopicAssembleList.forEach(assemble => {
+          currentTopicAssembleList.text.forEach(assemble => {
             if (
               assemble.firstLayerFacetName === firstLayer &&
               assemble.secondLayerFacetName === secondLayer
             ) {
-              assembleList.push(assemble);
+              assembleList.text.push(assemble);
+            }
+          });
+          currentTopicAssembleList.video.forEach(assemble => {
+            if (
+              assemble.firstLayerFacetName === firstLayer &&
+              assemble.secondLayerFacetName === secondLayer
+            ) {
+              assembleList.video.push(assemble);
             }
           });
           return assembleList;
