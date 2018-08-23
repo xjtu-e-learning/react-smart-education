@@ -209,13 +209,13 @@ class AppState {
     ) {
       const response = await axios.post(
         PATH_BASE +
-          PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId +
-          '?domainName=' +
-          this.domainName.get() +
-          '&topicNames=' +
-          this.currentTopic.topicName +
-          '&userId=' +
-          this.studentCode
+        PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserId +
+        '?domainName=' +
+        this.domainName.get() +
+        '&topicNames=' +
+        this.currentTopic.topicName +
+        '&userId=' +
+        this.studentCode
       );
       const result = await response.data;
       return result.data[this.currentTopic.topicName];
@@ -266,12 +266,15 @@ class AppState {
       this.facetCollapse[facetname] = !this.facetCollapse[facetname];
     }
   }
+
+  @observable
+  textOrVideo = 0;
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentAssembleList);
+  console.log(appState.textOrVideo);
 });
 
 export default appState;

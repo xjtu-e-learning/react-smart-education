@@ -26,14 +26,6 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class AssemblePaper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { replicate: true };
-  }
-
-  setSet = obj => {
-    this.setState(obj);
-  };
 
   render() {
     const { classes } = this.props;

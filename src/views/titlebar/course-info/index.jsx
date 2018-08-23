@@ -43,7 +43,7 @@ class CourseInfo extends React.Component {
     return (
       <div className={classes.right}>
         <span>课程：<label className={classes.blue}>{this.props.appState.domainName.get()}</label></span>
-        <span className={classes.span}>知识主题：<lable className={classes.orange}>{topicNum}</lable></span>
+        <span className={classes.span}>知识主题：<label className={classes.orange}>{topicNum}</label></span>
         <span className={classes.span}><AccountCircleIcon className={classes.icon}/> Yotta同学</span>
       </div>
     );
