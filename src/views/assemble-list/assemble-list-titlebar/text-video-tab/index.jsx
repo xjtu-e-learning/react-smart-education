@@ -9,7 +9,40 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper
-  }
+  },
+  tabsIndicator: {
+    backgroundColor: '#5facfd'
+  },
+  tabRoot: {
+    textTransform: 'initial',
+    minWidth: 72,
+    fontWeight: theme.typography.fontWeightRegular,
+    marginRight: theme.spacing.unit * 4,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(','),
+    '&:hover': {
+      color: '#40a9ff',
+      opacity: 1
+    },
+    '&$tabSelected': {
+      color: '#5facfd',
+      fontWeight: theme.typography.fontWeightMedium
+    },
+    '&:focus': {
+      color: '#5facfd'
+    }
+  },
+  tabSelected: {}
 });
 
 @inject('appState')
@@ -26,11 +59,10 @@ class TextVideoTab extends React.Component {
 
     return (
       <Tabs value={value} onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
+            classes={{ indicator: classes.tabsIndicator }}
       >
-        <Tab label="富文本"/>
-        <Tab label="视频"/>
+        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="富文本"/>
+        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="视频"/>
       </Tabs>
     );
   }
