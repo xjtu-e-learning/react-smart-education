@@ -13,7 +13,9 @@ const styles = theme => ({
     marginTop: 16,
     paddingBottom: 16,
     overflow: 'auto',
-    height: 896
+    // height: 896
+    height: document.body.clientHeight - 184
+    // position: 'absolute'
   },
   paper: {
     // padding: theme.spacing.unit * 2,
@@ -39,14 +41,14 @@ class AssemblePaper extends React.Component {
     return (
       <Paper className={classes.grid}>
         {currentAssembleList.length !== 0 &&
-          currentAssembleList.map(assemble => (
-            <Grid item xs={12} key={assemble.assembleId}>
-              <Paper className={classes.paper}>
-                <AssembleTitle assemblesource={assemble.sourceName} />
-                <AssembleContentLess assemble={assemble} />
-              </Paper>
-            </Grid>
-          ))}
+        currentAssembleList.map(assemble => (
+          <Grid item xs={12} key={assemble.assembleId}>
+            <Paper className={classes.paper}>
+              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleContentLess assemble={assemble}/>
+            </Paper>
+          </Grid>
+        ))}
       </Paper>
     );
   }

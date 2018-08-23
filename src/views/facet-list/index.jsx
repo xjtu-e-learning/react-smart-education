@@ -1,5 +1,4 @@
 import Drawer from '@material-ui/core/Drawer/Drawer';
-import List from '@material-ui/core/List/List';
 import Typography from '@material-ui/core/Typography/Typography';
 import Divider from '@material-ui/core/Divider/Divider';
 import React, { Component } from 'react';
@@ -19,9 +18,7 @@ const styles = theme => ({
     marginTop: 80,
     borderTop: '1px solid rgb(0,0,0,0.12)',
     borderBottom: '1px solid rgb(0,0,0,0.12)',
-    height: 'auto',
-    minHeight: 600,
-    maxHeight: 1000
+    height: document.body.clientHeight - 80
   },
   topicName: {
     lineHeight: '43px',
@@ -48,8 +45,8 @@ class FacetList extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Divider className={this.props.classes.divider} />
-        <FacetContent />
+        <Divider className={this.props.classes.divider}/>
+        <FacetContent/>
       </Drawer>
     );
   }
