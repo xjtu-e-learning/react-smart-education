@@ -19,7 +19,7 @@ const styles = theme => ({
   }
 });
 
-class AssembleContentLess extends React.Component {
+class AssembleContentText extends React.Component {
   constructor(props) {
     super(props);
     this.state = { replicate: true };
@@ -49,7 +49,7 @@ class AssembleContentLess extends React.Component {
               />
             </div>
           ) : (
-            <div dangerouslySetInnerHTML={{ __html: assemblecontent }} />
+            <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
           )}
         </Paper>
       </div>
@@ -57,4 +57,4 @@ class AssembleContentLess extends React.Component {
   }
 }
 
-export default withStyles(styles)(AssembleContentLess);
+export default withStyles(styles)(AssembleContentText);

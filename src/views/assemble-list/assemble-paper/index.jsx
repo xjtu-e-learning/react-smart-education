@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AssembleTitle from './assemble-title';
-import AssembleContentLess from './assemble-content-less';
+import AssembleContentText from './assemble-content-text';
+import AssembleContentVideo from './assemble-content-video';
 import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
@@ -13,7 +14,9 @@ const styles = theme => ({
     marginTop: 16,
     paddingBottom: 16,
     overflow: 'auto',
-    height: 896
+    // height: 896
+    height: document.body.clientHeight - 184
+    // position: 'absolute'
   },
   paper: {
     // padding: theme.spacing.unit * 2,
@@ -24,29 +27,30 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class AssemblePaper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { replicate: true };
-  }
-
-  setSet = obj => {
-    this.setState(obj);
-  };
 
   render() {
     const { classes } = this.props;
     const currentAssembleList = this.props.appState.currentAssembleList;
     return (
       <Paper className={classes.grid}>
-        {currentAssembleList.length !== 0 &&
-          currentAssembleList.map(assemble => (
-            <Grid item xs={12} key={assemble.assembleId}>
-              <Paper className={classes.paper}>
-                <AssembleTitle assemblesource={assemble.sourceName} />
-                <AssembleContentLess assemble={assemble} />
-              </Paper>
-            </Grid>
-          ))}
+        {currentAssembleList.text.length !== 0 && this.props.appState.textOrVideo === 0 &&
+        currentAssembleList.text.map(assemble => (
+          <Grid item xs={12} key={assemble.assembleId}>
+            <Paper className={classes.paper}>
+              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleContentText assemble={assemble}/>
+            </Paper>
+          </Grid>
+        ))}
+        {currentAssembleList.video.length !== 0 && this.props.appState.textOrVideo === 1 &&
+        currentAssembleList.video.map(assemble => (
+          <Grid item xs={12} key={assemble.assembleId}>
+            <Paper className={classes.paper}>
+              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleContentVideo assemble={assemble}/>
+            </Paper>
+          </Grid>
+        ))}
       </Paper>
     );
   }
