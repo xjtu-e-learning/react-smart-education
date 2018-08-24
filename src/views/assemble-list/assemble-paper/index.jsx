@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AssembleTitle from './assemble-title';
-import AssembleContentLess from './assemble-content-less';
+import AssembleContentText from './assemble-content-text';
+import AssembleContentVideo from './assemble-content-video';
 import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
@@ -37,7 +38,7 @@ class AssemblePaper extends React.Component {
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>
-              <AssembleContentLess assemble={assemble}/>
+              <AssembleContentText assemble={assemble}/>
             </Paper>
           </Grid>
         ))}
@@ -46,7 +47,7 @@ class AssemblePaper extends React.Component {
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>
-              <AssembleContentLess assemble={assemble}/>
+              <AssembleContentVideo assemble={assemble}/>
             </Paper>
           </Grid>
         ))}
