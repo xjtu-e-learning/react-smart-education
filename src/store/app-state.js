@@ -224,7 +224,7 @@ class AppState {
 
   @computed
   get currentAssembleList() {
-    let assembleList = {"text":[],"video":[]};
+    let assembleList = { 'text': [], 'video': [] };
     if (this.currentTopicAssembleList.get() !== undefined) {
       const currentTopicAssembleList = this.currentTopicAssembleList.get();
       if (this.currentFacet.firstLayer === '') {
@@ -282,6 +282,14 @@ class AppState {
 
   @observable
   textOrVideo = 0;
+
+  @observable
+  knowledgeForestVisible = false;
+
+  @action
+  setKnowledgeForestVisible(param){
+    this.knowledgeForestVisible = param;
+  }
 }
 
 const appState = new AppState();
