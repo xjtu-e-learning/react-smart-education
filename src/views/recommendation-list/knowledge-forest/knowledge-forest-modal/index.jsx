@@ -9,11 +9,14 @@ const styles = themes => ({});
 @inject('appState') @observer
 class KnowledgeForestModal extends React.Component {
 
+  UNSAFE_componentWillMount() {
+    this.props.appState.updateTopicStateList();
+  }
+
   render() {
     let graph = dataTool.gexf.parse(this.props.appState.graphXml.get());
     let states = this.props.appState.topicStateList;
-    // console.log(graph);
-    console.log(states[0]);
+
     let studied = 0;
     let studying = 0;
     let studysoon = 0;
@@ -45,9 +48,9 @@ class KnowledgeForestModal extends React.Component {
           node.category = 2;
           return;
         } else {
-          states.forEach(function(topic, index) {
-            if (topic['topicName'] === node.id) {
-              node.category = Number(states[index]);
+          states.forEach(function(topic) {
+            if (topic.topicName === node.id) {
+              node.category = Number(topic.state);
             }
           });
         }
@@ -131,7 +134,7 @@ class KnowledgeForestModal extends React.Component {
     }
 
     return (
-      <ReactEcharts option={option}/>
+      <ReactEcharts option={option} style={{ height: '600px', width: '1200px' }}/>
     );
   }
 }

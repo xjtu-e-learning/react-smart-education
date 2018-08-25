@@ -23,7 +23,6 @@ class KnowledgeForesst extends React.Component {
 
   handleOk = () => {
     this.props.appState.setKnowledgeForestVisible(false);
-    this.props.appState.updateTopicStateList();
   };
 
   handleCanel = () => {
@@ -41,6 +40,7 @@ class KnowledgeForesst extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCanel}
           centered
+          width={1300}
         >
           <KnowledgeForestModal/>
         </Modal>

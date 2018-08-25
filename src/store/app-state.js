@@ -1,7 +1,6 @@
 import { observable, computed, action, autorun, flow, runInAction } from 'mobx';
 import axios from 'axios';
 import { asyncComputed } from 'computed-async-mobx';
-import * as mobx from 'mobx';
 
 export const PATH_BASE = 'http://202.117.54.42:8082';
 const PATH_getDomainByCourseId = '/wangyuan/getDomainByCourseId';
@@ -17,7 +16,6 @@ const PATH_dependencyGetDependenciesByDomainNameSaveAsGexf =
 const PATH_topicStateGetByDomainIdAndUserIdGroupTopicId =
   '/topicState/getByDomainIdAndUserIdGroupTopicId';
 
-// mobx.configure({ enforceActions: true });
 
 class AppState {
   @observable
@@ -314,48 +312,30 @@ class AppState {
 
   @observable topicStateList = [];
 
-  // @action
-  // async updateTopicStateList() {
-  //   try {
-  //     const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
-  //       {
-  //         params: {
-  //           domainId: this.DomainId,
-  //           userId: this.studentCode
-  //         }
-  //       });
-  //     runInAction(() => {
-  //       const result = response.data;
-  //       console.log(result.data);
-  //       this.topicStateList = [].concat(result.data);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  updateTopicStateList = flow(function* () {
-    this.topicStateList = [];
+  @action
+  async updateTopicStateList() {
     try {
-      const response = yield axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
+      const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
         {
           params: {
             domainId: this.DomainId,
             userId: this.studentCode
           }
         });
-      const result = response.data;
-      this.topicStateList = [].concat(result.data);
+      runInAction(() => {
+        const result = response.data;
+        this.topicStateList = [].concat(result.data);
+      });
     } catch (error) {
       console.log(error);
     }
-  });
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.topicStateList[0].topicName);
+  // console.log(appState.topicStateList[0].topicName);
 });
 
 export default appState;
