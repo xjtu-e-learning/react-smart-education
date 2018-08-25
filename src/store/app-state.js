@@ -1,4 +1,4 @@
-import { observable, computed, action, autorun } from 'mobx';
+import { observable, computed, action, autorun, flow, runInAction } from 'mobx';
 import axios from 'axios';
 import { asyncComputed } from 'computed-async-mobx';
 
@@ -11,6 +11,11 @@ const PATH_facetGetFacetsByDomainNameAndTopicNames =
   '/facet/getFacetsByDomainNameAndTopicNames';
 const PATH_assembleGetAssemblesByDomainNameAndTopicNamesAndUserIdSplitByType =
   '/assemble/getAssemblesByDomainNameAndTopicNamesAndUserIdSplitByType';
+const PATH_dependencyGetDependenciesByDomainNameSaveAsGexf =
+  '/dependency/getDependenciesByDomainNameSaveAsGexf';
+const PATH_topicStateGetByDomainIdAndUserIdGroupTopicId =
+  '/topicState/getByDomainIdAndUserIdGroupTopicId';
+
 
 class AppState {
   @observable
@@ -224,7 +229,7 @@ class AppState {
 
   @computed
   get currentAssembleList() {
-    let assembleList = {"text":[],"video":[]};
+    let assembleList = { 'text': [], 'video': [] };
     if (this.currentTopicAssembleList.get() !== undefined) {
       const currentTopicAssembleList = this.currentTopicAssembleList.get();
       if (this.currentFacet.firstLayer === '') {
@@ -282,12 +287,55 @@ class AppState {
 
   @observable
   textOrVideo = 0;
+
+  @observable
+  knowledgeForestVisible = false;
+
+  @action
+  setKnowledgeForestVisible(param) {
+    this.knowledgeForestVisible = param;
+  }
+
+  graphXml = asyncComputed(undefined, 0, async () => {
+    if (this.domainName.get() !== undefined) {
+      const response = await axios.post(
+        PATH_BASE + PATH_dependencyGetDependenciesByDomainNameSaveAsGexf + '?domainName=' + this.domainName.get()
+      );
+      const result = await response.data;
+      return result.data;
+    }
+  });
+
+  @computed get DomainId() {
+    return this.domainId.get();
+  }
+
+  @observable topicStateList = [];
+
+  @action
+  async updateTopicStateList() {
+    try {
+      const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
+        {
+          params: {
+            domainId: this.DomainId,
+            userId: this.studentCode
+          }
+        });
+      runInAction(() => {
+        const result = response.data;
+        this.topicStateList = [].concat(result.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.textOrVideo);
+  // console.log(appState.topicStateList[0].topicName);
 });
 
 export default appState;
