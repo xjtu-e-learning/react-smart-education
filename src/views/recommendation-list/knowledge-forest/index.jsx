@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Modal } from 'antd';
 import { inject, observer } from 'mobx-react';
+import KnowledgeForestModal from './knowledge-forest-modal';
 
 const styles = theme => ({
   image: {
@@ -22,6 +23,7 @@ class KnowledgeForesst extends React.Component {
 
   handleOk = () => {
     this.props.appState.setKnowledgeForestVisible(false);
+    this.props.appState.updateTopicStateList();
   };
 
   handleCanel = () => {
@@ -40,7 +42,7 @@ class KnowledgeForesst extends React.Component {
           onCancel={this.handleCanel}
           centered
         >
-          Knowledge Forest
+          <KnowledgeForestModal/>
         </Modal>
       </div>
     );

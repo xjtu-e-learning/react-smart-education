@@ -31,23 +31,23 @@ class RecommendationContent extends React.Component {
       <List component="nav">
         {this.props.appState.currentRecommendationList !== undefined
           ? this.props.appState.currentRecommendationList.map(topic => (
-              <ListItem button key={topic.topicName}>
-                <div>
-                  <Badge status="success" />
-                </div>
+            <ListItem button key={topic.topicName}>
+              <div>
+                <Badge status="success"/>
+              </div>
 
-                <ListItemIcon>
-                  <BookIcon className={classes.topic} />
-                </ListItemIcon>
-                <ListItemText
-                  disableTypography
-                  className={classes.topic}
-                  primary={topic.topicName}
-                  id={topic.topicId}
-                  onClick={this.handleClick}
-                />
-              </ListItem>
-            ))
+              <ListItemIcon>
+                <BookIcon className={classes.topic}/>
+              </ListItemIcon>
+              <ListItemText
+                disableTypography
+                className={classes.topic}
+                primary={topic.topicName}
+                id={topic.topicId}
+                onClick={this.handleClick}
+              />
+            </ListItem>
+          ))
           : null}
       </List>
     );
