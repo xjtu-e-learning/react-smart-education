@@ -16,7 +16,8 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    overflow: 'scroll'
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4
@@ -65,7 +66,7 @@ class FacetContent extends React.Component {
         if (
           facet.secondLayerFacets.length !== 0 &&
           this.props.appState.facetCollapse[facet.firstLayerFacetName] ===
-            undefined
+          undefined
         ) {
           this.props.appState.setFacetCollapse(facet.firstLayerFacetName);
         }
@@ -77,18 +78,63 @@ class FacetContent extends React.Component {
         <List component="nav">
           {this.props.appState.facetList.get() !== undefined
             ? this.props.appState.facetList.get().map(facet => {
-                if (facet.secondLayerFacets.length === 0) {
-                  return (
+              if (facet.secondLayerFacets.length === 0) {
+                return (
+                  <ListItem
+                    button
+                    key={facet.firstLayerFacetId}
+                    onClick={this.handleClick.bind(
+                      this,
+                      facet.firstLayerFacetName
+                    )}
+                  >
+                    <div>
+                      <Badge status="success"/>
+                    </div>
+                    <ListItemText
+                      disableTypography
+                      className={classes.fontsize14}
+                      inset
+                      primary={facet.firstLayerFacetName}
+                    />
+                  </ListItem>
+                );
+              } else {
+                const secondLayer = facet.secondLayerFacets.map(
+                  secondFacet => (
                     <ListItem
                       button
-                      key={facet.firstLayerFacetId}
-                      onClick={this.handleClick.bind(
+                      className={classes.nested}
+                      key={secondFacet.secondLayerFacetId}
+                      onClick={this.handleClickSecondLayer.bind(
+                        this,
+                        facet.firstLayerFacetName,
+                        secondFacet.secondLayerFacetName
+                      )}
+                    >
+                      <ListItemIcon>
+                        <StarBorder/>
+                      </ListItemIcon>
+                      <ListItemText
+                        disableTypography
+                        className={classes.fontsize12}
+                        inset
+                        primary={secondFacet.secondLayerFacetName}
+                      />
+                    </ListItem>
+                  )
+                );
+                return (
+                  <div key={facet.firstLayerFacetId}>
+                    <ListItem
+                      button
+                      onClick={this.handleClickWithFacet.bind(
                         this,
                         facet.firstLayerFacetName
                       )}
                     >
                       <div>
-                        <Badge status="success" />
+                        <Badge status="success"/>
                       </div>
                       <ListItemText
                         disableTypography
@@ -96,76 +142,31 @@ class FacetContent extends React.Component {
                         inset
                         primary={facet.firstLayerFacetName}
                       />
-                    </ListItem>
-                  );
-                } else {
-                  const secondLayer = facet.secondLayerFacets.map(
-                    secondFacet => (
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        key={secondFacet.secondLayerFacetId}
-                        onClick={this.handleClickSecondLayer.bind(
-                          this,
-                          facet.firstLayerFacetName,
-                          secondFacet.secondLayerFacetName
-                        )}
-                      >
-                        <ListItemIcon>
-                          <StarBorder />
-                        </ListItemIcon>
-                        <ListItemText
-                          disableTypography
-                          className={classes.fontsize12}
-                          inset
-                          primary={secondFacet.secondLayerFacetName}
-                        />
-                      </ListItem>
-                    )
-                  );
-                  return (
-                    <div key={facet.firstLayerFacetId}>
-                      <ListItem
-                        button
-                        onClick={this.handleClickWithFacet.bind(
-                          this,
-                          facet.firstLayerFacetName
-                        )}
-                      >
-                        <div>
-                          <Badge status="success" />
-                        </div>
-                        <ListItemText
-                          disableTypography
-                          className={classes.fontsize14}
-                          inset
-                          primary={facet.firstLayerFacetName}
-                        />
-                        {this.props.appState.facetCollapse[
-                          facet.firstLayerFacetName
+                      {this.props.appState.facetCollapse[
+                        facet.firstLayerFacetName
                         ] ? (
-                          <ExpandLess />
-                        ) : (
-                          <ExpandMore />
-                        )}
-                      </ListItem>
-                      <Collapse
-                        in={
-                          !this.props.appState.facetCollapse[
-                            facet.firstLayerFacetName
+                        <ExpandLess/>
+                      ) : (
+                        <ExpandMore/>
+                      )}
+                    </ListItem>
+                    <Collapse
+                      in={
+                        !this.props.appState.facetCollapse[
+                          facet.firstLayerFacetName
                           ]
-                        }
-                        timeout="auto"
-                        unmountOnExit
-                      >
-                        <List component="div" disablePadding>
-                          {secondLayer}
-                        </List>
-                      </Collapse>
-                    </div>
-                  );
-                }
-              })
+                      }
+                      timeout="auto"
+                      unmountOnExit
+                    >
+                      <List component="div" disablePadding>
+                        {secondLayer}
+                      </List>
+                    </Collapse>
+                  </div>
+                );
+              }
+            })
             : null}
         </List>
       </div>

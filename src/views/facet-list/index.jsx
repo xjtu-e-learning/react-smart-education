@@ -18,7 +18,7 @@ const styles = theme => ({
     marginTop: 80,
     borderTop: '1px solid rgb(0,0,0,0.12)',
     borderBottom: '1px solid rgb(0,0,0,0.12)',
-    height: document.body.clientHeight - 80
+    height: document.body.clientHeight - 780
   },
   topicName: {
     lineHeight: '43px',
