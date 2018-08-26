@@ -358,7 +358,7 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentFacetTree.get());
+  // console.log(appState.currentFacetTree.get());
 });
 
 export default appState;
