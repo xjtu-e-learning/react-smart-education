@@ -40,7 +40,7 @@ class KnowledgeForesst extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCanel}
           centered
-          width={1300}
+          width={1200}
         >
           <KnowledgeForestModal/>
         </Modal>

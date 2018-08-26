@@ -134,7 +134,7 @@ class KnowledgeForestModal extends React.Component {
     }
 
     return (
-      <ReactEcharts option={option} style={{ height: '600px', width: '1200px' }}/>
+      <ReactEcharts option={option} style={{ height: '750px', width: '1000px', margin: 'auto' }}/>
     );
   }
 }
