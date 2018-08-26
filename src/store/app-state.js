@@ -15,7 +15,8 @@ const PATH_dependencyGetDependenciesByDomainNameSaveAsGexf =
   '/dependency/getDependenciesByDomainNameSaveAsGexf';
 const PATH_topicStateGetByDomainIdAndUserIdGroupTopicId =
   '/topicState/getByDomainIdAndUserIdGroupTopicId';
-
+const PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment =
+  '/topic/getCompleteTopicByNameAndDomainNameWithHasFragment';
 
 class AppState {
   @observable
@@ -191,7 +192,7 @@ class AppState {
   });
 
   facetList = asyncComputed(undefined, 0, async () => {
-    if (this.currentTopic.topicName !== '' && this.domainName !== undefined) {
+    if (this.currentTopic.topicName !== '' && this.domainName.get() !== undefined) {
       const response = await axios.get(
         PATH_BASE + PATH_facetGetFacetsByDomainNameAndTopicNames,
         {
@@ -203,6 +204,28 @@ class AppState {
       );
       const result = await response.data;
       return result.data[this.currentTopic.topicName];
+    }
+  });
+
+  currentFacetTree = asyncComputed(undefined, 0, async () => {
+    if (this.domainName.get() !== undefined && this.currentTopic.topicName !== '') {
+      console.log(PATH_BASE +
+        PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment +
+        '?domainName=' +
+        this.domainName.get() +
+        '&topicName=' +
+        this.currentTopic.topicName +
+        '&hasFragment=true');
+      const response = await axios.post(
+        PATH_BASE +
+        PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment +
+        '?domainName=' +
+        this.domainName.get() +
+        '&topicName=' +
+        this.currentTopic.topicName +
+        '&hasFragment=true');
+      const result = await response.data;
+      return result.data;
     }
   });
 
@@ -335,7 +358,7 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.topicStateList[0].topicName);
+  console.log(appState.currentFacetTree.get());
 });
 
 export default appState;
