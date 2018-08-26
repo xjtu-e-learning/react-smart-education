@@ -45,10 +45,10 @@ class App extends Component {
   render() {
     return (
       <div className={this.props.classes.root}>
-        <TitleBar />
-        <RecommendationList />
-        <FacetList />
-        <AssembleList />
+        <TitleBar/>
+        <RecommendationList/>
+        <FacetList/>
+        <AssembleList/>
       </div>
     );
   }
