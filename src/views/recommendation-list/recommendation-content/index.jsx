@@ -22,6 +22,7 @@ class RecommendationContent extends React.Component {
     this.props.appState.setCurrentTopicName(event.target.innerText);
     this.props.appState.setCurrentTopicId(event.target.id);
     this.props.appState.setCurrentFacet('', '');
+    this.props.appState.updateFacetTopicStateList();
     // console.log(event.target.id);
   };
 

@@ -17,6 +17,8 @@ const PATH_topicStateGetByDomainIdAndUserIdGroupTopicId =
   '/topicState/getByDomainIdAndUserIdGroupTopicId';
 const PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment =
   '/topic/getCompleteTopicByNameAndDomainNameWithHasFragment';
+const PATH_facetStateGetByDomainIdAndTopicIdAndUserId =
+  '/facetState/getByDomainIdAndTopicIdAndUserId';
 
 class AppState {
   @observable
@@ -210,13 +212,6 @@ class AppState {
 
   currentFacetTree = asyncComputed(undefined, 0, async () => {
     if (this.domainName.get() !== undefined && this.currentTopic.topicName !== '') {
-      console.log(PATH_BASE +
-        PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment +
-        '?domainName=' +
-        this.domainName.get() +
-        '&topicName=' +
-        this.currentTopic.topicName +
-        '&hasFragment=true');
       const response = await axios.post(
         PATH_BASE +
         PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment +
@@ -377,12 +372,39 @@ class AppState {
       }
     }
   }
+
+  @observable facetStateList = [];
+
+  @action
+  async updateFacetTopicStateList() {
+    if (this.domainId !== undefined && this.currentTopic.topicId !== -1 && this.studentCode !== -1) {
+      try {
+        const response = await axios.get(PATH_BASE + PATH_facetStateGetByDomainIdAndTopicIdAndUserId,
+          {
+            params: {
+              domainId: this.DomainId,
+              topicId: this.currentTopic.topicId,
+              userId: this.studentCode
+            }
+          });
+        runInAction(() => {
+          const result = response.data;
+          this.facetStateList = result.data.states.split(',');
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.currentFacetTree.get());
+  // console.log(appState.facetStateList[0]);
+  appState.facetStateList.map(state => {
+    console.log(state);
+  });
 });
 
 export default appState;
