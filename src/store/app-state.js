@@ -401,7 +401,7 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.facetStateList[0]);
+  console.log(appState.currentTopic.topicId);
   appState.facetStateList.map(state => {
     console.log(state);
   });
