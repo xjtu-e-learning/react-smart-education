@@ -36,6 +36,7 @@ class AppState {
       });
       const result = await response.data.data.wiki;
       if (result == null) return undefined;
+      this.updateTopicStateList(result.domainId);
       return result.domainId;
     }
   });
@@ -337,20 +338,43 @@ class AppState {
 
   @action
   async updateTopicStateList() {
-    try {
-      const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
-        {
-          params: {
-            domainId: this.DomainId,
-            userId: this.studentCode
-          }
+    if (this.studentCode !== -1 && this.DomainId !== undefined) {
+      try {
+        const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
+          {
+            params: {
+              domainId: this.DomainId,
+              userId: this.studentCode
+            }
+          });
+        runInAction(() => {
+          const result = response.data;
+          this.topicStateList = [].concat(result.data);
         });
-      runInAction(() => {
-        const result = response.data;
-        this.topicStateList = [].concat(result.data);
-      });
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  @action
+  async updateTopicStateList(domainId) {
+    if (this.studentCode !== -1) {
+      try {
+        const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
+          {
+            params: {
+              domainId: domainId,
+              userId: this.studentCode
+            }
+          });
+        runInAction(() => {
+          const result = response.data;
+          this.topicStateList = [].concat(result.data);
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

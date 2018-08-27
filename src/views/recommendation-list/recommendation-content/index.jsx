@@ -25,15 +25,24 @@ class RecommendationContent extends React.Component {
     // console.log(event.target.id);
   };
 
+  UNSAFE_componentWillMount() {
+    this.props.appState.updateTopicStateList();
+  }
+
   render() {
     const { classes } = this.props;
+    let topicStateDic = {};
+    this.props.appState.topicStateList.map(topic => {
+      topicStateDic[topic.topicName] = topic.state;
+    });
     return (
       <List component="nav">
         {this.props.appState.currentRecommendationList !== undefined
           ? this.props.appState.currentRecommendationList.map(topic => (
             <ListItem button key={topic.topicName}>
               <div>
-                <Badge status="success"/>
+                <Badge
+                  status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
               </div>
 
               <ListItemIcon>
