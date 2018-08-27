@@ -77,7 +77,7 @@ class FacetContent extends React.Component {
       <div className={classes.root}>
         <List component="nav">
           {this.props.appState.facetList.get() !== undefined
-            ? this.props.appState.facetList.get().map(facet => {
+            ? this.props.appState.facetList.get().map((facet, index) => {
               if (facet.secondLayerFacets.length === 0) {
                 return (
                   <ListItem
@@ -89,7 +89,8 @@ class FacetContent extends React.Component {
                     )}
                   >
                     <div>
-                      <Badge status="success"/>
+                      <Badge
+                        status={(this.props.appState.facetStateList[index] === '1' && 'success') || (this.props.appState.facetStateList[index] === '0' && 'default')}/>
                     </div>
                     <ListItemText
                       disableTypography
@@ -134,7 +135,8 @@ class FacetContent extends React.Component {
                       )}
                     >
                       <div>
-                        <Badge status="success"/>
+                        <Badge
+                          status={(this.props.appState.facetStateList[index] === '1' && 'success') || (this.props.appState.facetStateList[index] === '0' && 'default')}/>
                       </div>
                       <ListItemText
                         disableTypography
