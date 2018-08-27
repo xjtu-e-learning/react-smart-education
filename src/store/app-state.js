@@ -223,7 +223,7 @@ class AppState {
         this.domainName.get() +
         '&topicName=' +
         this.currentTopic.topicName +
-        '&hasFragment=true');
+        '&hasFragment=emptyAssembleContent');
       const result = await response.data;
       return result.data;
     }
