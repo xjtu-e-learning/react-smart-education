@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { inject, observer } from 'mobx-react';
+import { post_log_of_mouseclick_recommendation } from '../../../log/post-log-SDK';
 
 const styles = theme => ({
   root: {
@@ -31,13 +32,19 @@ class RecommendationButton extends React.Component {
     name: ''
   };
 
-  handleChange = event => {
+  handleChange = (studentCode, courseId, domainName, event) => {
     this.setState({ name: event.target.value });
     this.props.appState.setCurrentRecommendation(event.target.value);
+    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+      post_log_of_mouseclick_recommendation('学习页面', event.target.value, studentCode, courseId, domainName);
+    }
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, appState } = this.props;
+    let studentCode = appState.studentCode;
+    let courseId = appState.courseId;
+    let domainName = appState.domainName.get();
     const recnames = [
       '最短学习路径',
       '有效学习路径',
@@ -53,7 +60,7 @@ class RecommendationButton extends React.Component {
           </InputLabel>
           <Select
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this, studentCode, courseId, domainName)}
             className={classes.white}
           >
             {recnames.map(recname => (
