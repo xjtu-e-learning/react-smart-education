@@ -11,6 +11,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { inject, observer } from 'mobx-react';
 import { Badge } from 'antd';
+import { post_log_of_mouseclick_facet } from '../../../log/post-log-SDK';
 
 const styles = theme => ({
   root: {
@@ -38,37 +39,54 @@ class FacetContent extends React.Component {
     this.state = {};
   }
 
-  handleClickWithFacet = (firstLayerFacetName, event) => {
-    this.props.appState.setFacetCollapse(firstLayerFacetName);
-    this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+  handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
+    // console.log(event.target.textContent);
+    if (event.target.textContent !== '') {
+      this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+      if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+        post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
+          , firstLayerFacetName, firstLayerFacetId, null, null, studentCode, courseId, domainName);
+      }
+    }
+    else {
+      this.props.appState.setFacetCollapse(firstLayerFacetName);
+    }
   };
 
-  handleClick = (firstLayerFacetName, event) => {
+  handleClick = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
     this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+      post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
+        , firstLayerFacetName, firstLayerFacetId, studentCode, courseId, domainName);
+    }
   };
 
   handleClickSecondLayer = (
-    firstLayerFacetName,
-    secondLayerFacetName,
-    event
+    firstLayerFacetName, topicName, topicId, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, studentCode, courseId, domainName
   ) => {
     this.props.appState.setCurrentFacet(
       firstLayerFacetName,
       secondLayerFacetName
     );
+    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+      post_log_of_mouseclick_facet('学习页面', '点击-2级分面', topicName, topicId
+        , firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, studentCode, courseId, domainName);
+    }
   };
 
   render() {
-    const { classes } = this.props;
-
-    if (this.props.appState.facetList.get() !== undefined) {
-      this.props.appState.facetList.get().map(facet => {
+    const { classes, appState } = this.props;
+    let studentCode = appState.studentCode;
+    let courseId = appState.courseId;
+    let domainName = appState.domainName.get();
+    if (appState.facetList.get() !== undefined) {
+      appState.facetList.get().map(facet => {
         if (
           facet.secondLayerFacets.length !== 0 &&
-          this.props.appState.facetCollapse[facet.firstLayerFacetName] ===
+          appState.facetCollapse[facet.firstLayerFacetName] ===
           undefined
         ) {
-          this.props.appState.setFacetCollapse(facet.firstLayerFacetName);
+          appState.setFacetCollapse(facet.firstLayerFacetName);
         }
       });
     }
@@ -76,21 +94,22 @@ class FacetContent extends React.Component {
     return (
       <div className={classes.root}>
         <List component="nav">
-          {this.props.appState.facetList.get() !== undefined
-            ? this.props.appState.facetList.get().map((facet, index) => {
+          {appState.facetList.get() !== undefined
+            ? appState.facetList.get().map((facet, index) => {
               if (facet.secondLayerFacets.length === 0) {
+                console.log(facet);
                 return (
                   <ListItem
                     button
                     key={facet.firstLayerFacetId}
                     onClick={this.handleClick.bind(
                       this,
-                      facet.firstLayerFacetName
+                      facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
                     )}
                   >
                     <div>
                       <Badge
-                        status={(this.props.appState.facetStateList[index] === '1' && 'success') || (this.props.appState.facetStateList[index] === '0' && 'default')}/>
+                        status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
                     </div>
                     <ListItemText
                       disableTypography
@@ -109,8 +128,7 @@ class FacetContent extends React.Component {
                       key={secondFacet.secondLayerFacetId}
                       onClick={this.handleClickSecondLayer.bind(
                         this,
-                        facet.firstLayerFacetName,
-                        secondFacet.secondLayerFacetName
+                        facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
                       )}
                     >
                       <ListItemIcon>
@@ -131,12 +149,12 @@ class FacetContent extends React.Component {
                       button
                       onClick={this.handleClickWithFacet.bind(
                         this,
-                        facet.firstLayerFacetName
+                        facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
                       )}
                     >
                       <div>
                         <Badge
-                          status={(this.props.appState.facetStateList[index] === '1' && 'success') || (this.props.appState.facetStateList[index] === '0' && 'default')}/>
+                          status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
                       </div>
                       <ListItemText
                         disableTypography
@@ -144,7 +162,7 @@ class FacetContent extends React.Component {
                         inset
                         primary={facet.firstLayerFacetName}
                       />
-                      {this.props.appState.facetCollapse[
+                      {appState.facetCollapse[
                         facet.firstLayerFacetName
                         ] ? (
                         <ExpandLess/>
@@ -154,7 +172,7 @@ class FacetContent extends React.Component {
                     </ListItem>
                     <Collapse
                       in={
-                        !this.props.appState.facetCollapse[
+                        !appState.facetCollapse[
                           facet.firstLayerFacetName
                           ]
                       }

@@ -8,6 +8,7 @@ import AssembleList from './assemble-list';
 import { observer, inject } from 'mobx-react';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
+import { post_log_of_visit } from '../log/post-log-SDK';
 
 const styles = theme => ({
   root: {
@@ -40,6 +41,7 @@ class App extends Component {
         queryString.parse(this.props.location.search).studentCode
       );
     }
+    post_log_of_visit();
   }
 
   render() {

@@ -38,7 +38,7 @@ class AppState {
       });
       const result = await response.data.data.wiki;
       if (result == null) return undefined;
-      this.updateTopicStateList(result.domainId);
+      this.updateTopicStateListWithDomainId(result.domainId);
       return result.domainId;
     }
   });
@@ -353,7 +353,7 @@ class AppState {
   }
 
   @action
-  async updateTopicStateList(domainId) {
+  async updateTopicStateListWithDomainId(domainId) {
     if (this.studentCode !== -1) {
       try {
         const response = await axios.get(PATH_BASE + PATH_topicStateGetByDomainIdAndUserIdGroupTopicId,
@@ -401,10 +401,10 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentTopic.topicId);
-  appState.facetStateList.map(state => {
-    console.log(state);
-  });
+  // console.log(appState.currentTopic.topicId);
+  // appState.facetStateList.map(state => {
+  //   console.log(state);
+  // });
 });
 
 export default appState;

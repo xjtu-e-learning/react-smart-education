@@ -29,20 +29,24 @@ const styles = theme => ({
 class AssemblePaper extends React.Component {
 
   render() {
-    const { classes } = this.props;
-    const currentAssembleList = this.props.appState.currentAssembleList;
+    const { classes, appState } = this.props;
+    const currentAssembleList = appState.currentAssembleList;
+    const studentCode = appState.studentCode;
+    const courseId = appState.courseId;
+    const domainName = appState.domainName.get();
     return (
       <Paper className={classes.grid}>
-        {currentAssembleList.text.length !== 0 && this.props.appState.textOrVideo === 0 &&
+        {currentAssembleList.text.length !== 0 && appState.textOrVideo === 0 &&
         currentAssembleList.text.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>
-              <AssembleContentText assemble={assemble}/>
+              <AssembleContentText assemble={assemble} studentCode={studentCode} courseId={courseId}
+                                   domainName={domainName}/>
             </Paper>
           </Grid>
         ))}
-        {currentAssembleList.video.length !== 0 && this.props.appState.textOrVideo === 1 &&
+        {currentAssembleList.video.length !== 0 && appState.textOrVideo === 1 &&
         currentAssembleList.video.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
