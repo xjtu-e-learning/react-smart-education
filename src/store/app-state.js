@@ -401,10 +401,10 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentTopic.topicId);
-  appState.facetStateList.map(state => {
-    console.log(state);
-  });
+  // console.log(appState.currentTopic.topicId);
+  // appState.facetStateList.map(state => {
+  //   console.log(state);
+  // });
 });
 
 export default appState;
