@@ -22,9 +22,9 @@ class RecommendationContent extends React.Component {
   handleClick = (studentCode, courseId, domainName, topicName, topicId, event) => {
     this.props.appState.setCurrentTopicName(event.target.innerText);
     this.props.appState.setCurrentTopicId(event.target.id);
-    this.props.appState.setCurrentFacet('', '');
+    this.props.appState.setCurrentFacet('', '', -1, -1);
     this.props.appState.updateFacetTopicStateList();
-    console.log(studentCode + ' ' + courseId + ' ' + domainName + ' ' + topicName + ' ' + topicId);
+    // console.log(studentCode + ' ' + courseId + ' ' + domainName + ' ' + topicName + ' ' + topicId);
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined && topicName !== '' && topicId !== -1) {
       post_log_of_mouseover_topic('学习页面', topicName, topicId, studentCode, courseId, domainName);
     }

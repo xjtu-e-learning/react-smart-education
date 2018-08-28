@@ -42,7 +42,7 @@ class FacetContent extends React.Component {
   handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
     // console.log(event.target.textContent);
     if (event.target.textContent !== '') {
-      this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+      this.props.appState.setCurrentFacet(firstLayerFacetName, '', firstLayerFacetId, -1);
       if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
         post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
           , firstLayerFacetName, firstLayerFacetId, null, null, studentCode, courseId, domainName);
@@ -54,10 +54,10 @@ class FacetContent extends React.Component {
   };
 
   handleClick = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
-    this.props.appState.setCurrentFacet(firstLayerFacetName, '');
+    this.props.appState.setCurrentFacet(firstLayerFacetName, '', firstLayerFacetId, -1);
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
       post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
-        , firstLayerFacetName, firstLayerFacetId, studentCode, courseId, domainName);
+        , firstLayerFacetName, firstLayerFacetId, null, null, studentCode, courseId, domainName);
     }
   };
 
@@ -66,7 +66,9 @@ class FacetContent extends React.Component {
   ) => {
     this.props.appState.setCurrentFacet(
       firstLayerFacetName,
-      secondLayerFacetName
+      secondLayerFacetName,
+      firstLayerFacetId,
+      secondLayerFacetId
     );
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
       post_log_of_mouseclick_facet('学习页面', '点击-2级分面', topicName, topicId
@@ -97,7 +99,7 @@ class FacetContent extends React.Component {
           {appState.facetList.get() !== undefined
             ? appState.facetList.get().map((facet, index) => {
               if (facet.secondLayerFacets.length === 0) {
-                console.log(facet);
+                // console.log(facet);
                 return (
                   <ListItem
                     button

@@ -147,17 +147,20 @@ class AppState {
   }
 
   @observable
-  currentFacet = { firstLayer: '', secondLayer: '' };
+  currentFacet = { firstLayer: '', secondLayer: '', firstLayerId: -1, secondLayerId: -1 };
 
   @action
-  setCurrentFacet(firstLayer, secondLayer) {
+  setCurrentFacet(firstLayer, secondLayer, firstLayerId, secondLayerId) {
     this.currentFacet.firstLayer = firstLayer;
     this.currentFacet.secondLayer = secondLayer;
+    this.currentFacet.firstLayerId = firstLayerId;
+    this.currentFacet.secondLayerId = secondLayerId;
   }
 
   @action
-  setCurrentSecondFacet(secondLayer) {
+  setCurrentSecondFacet(secondLayer, secondLayerId) {
     this.currentFacet.secondLayer = secondLayer;
+    this.currentFacet.secondLayerId = secondLayerId;
   }
 
   @computed
