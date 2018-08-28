@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import LinesEllipsis from 'react-lines-ellipsis';
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
+import { post_log_of_mouseclick_assemble } from '../../../../log/post-log-SDK';
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -25,22 +26,27 @@ class AssembleContentText extends React.Component {
     this.state = { replicate: true };
   }
 
-  handleClick = () => {
+  handleClick = (topicName, topicId, firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName) => {
     this.setState({ replicate: !this.state.replicate });
+    post_log_of_mouseclick_assemble('学习页面', topicName, topicId,
+      firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName);
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, assemble, studentCode, courseId, domainName } = this.props;
     const assemblecontent =
-      this.props.assemble !== undefined
-        ? this.props.assemble.assembleContent
+      assemble !== undefined
+        ? assemble.assembleContent
         : '';
 
     return (
       <div>
         <Paper className={classes.root} elevation={2}>
           {this.state.replicate === true ? (
-            <div onClick={this.handleClick} className={classes.mouse}>
+            <div onClick={this.handleClick.bind(this, assemble.topicName, assemble.topicId,
+              assemble.firstLayerFacetName, assemble.firstLayerFacetId, assemble.secondLayerFacetName, assemble.secondLayerFacetId, assemble.assembleId,
+              studentCode, courseId, domainName
+            )} className={classes.mouse}>
               <HTMLEllipsis
                 unsafeHTML={assemblecontent}
                 maxLine="5"
