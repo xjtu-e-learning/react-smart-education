@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Modal } from 'antd';
 import { inject, observer } from 'mobx-react';
 import KnowledgeForestModal from './knowledge-forest-modal';
+import { post_log_of_mouseclick_Global_Graph } from '../../../log/post-log-SDK';
 
 const styles = theme => ({
   image: {
@@ -17,8 +18,11 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class KnowledgeForesst extends React.Component {
-  showModal = () => {
+  showModal = (studentCode, courseId, domainName) => {
     this.props.appState.setKnowledgeForestVisible(true);
+    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+      post_log_of_mouseclick_Global_Graph('学习页面', studentCode, courseId, domainName);
+    }
   };
 
   handleOk = () => {
@@ -31,9 +35,14 @@ class KnowledgeForesst extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { appState } = this.props;
+    let studentCode = appState.studentCode;
+    let courseId = appState.courseId;
+    let domainName = appState.domainName.get();
     return (
       <div>
-        <img src='./forest_256.png' className={classes.image} onClick={this.showModal}></img>
+        <img src='./forest_256.png' className={classes.image}
+             onClick={this.showModal.bind(this, studentCode, courseId, domainName)}/>
         <Modal
           title='知识森林'
           visible={this.props.appState.knowledgeForestVisible}
