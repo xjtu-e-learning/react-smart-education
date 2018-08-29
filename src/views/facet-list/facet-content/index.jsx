@@ -134,7 +134,7 @@ class FacetContent extends React.Component {
                       )}
                     >
                       <ListItemIcon>
-                        <StarBorder/>
+                        <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
                       </ListItemIcon>
                       <ListItemText
                         disableTypography
