@@ -436,7 +436,7 @@ class AppState {
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.facetsList.get());
+  // console.log(appState.facetsList.get());
 });
 
 export default appState;

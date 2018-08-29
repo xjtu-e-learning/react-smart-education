@@ -7,12 +7,31 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import BookIcon from '@material-ui/icons/Book';
 import { inject, observer } from 'mobx-react';
-import { Badge } from 'antd';
+import { Badge, Popover } from 'antd';
 import { post_log_of_mouseover_topic } from '../../../log/post-log-SDK';
+import appState from '../../../store/app-state';
+import Collapse from '@material-ui/core/Collapse';
+import StarBorder from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
   topic: {
     color: 'white'
+  },
+  fontsize12: {
+    fontSize: '12px',
+    paddingRight: 0
+  },
+  fontsize14: {
+    fontSize: '14px',
+    paddingRight: 0
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+    paddingRight: 0
+  },
+  padding16: {
+    paddingLeft: 16,
+    paddingRight: 16
   }
 });
 
@@ -50,24 +69,59 @@ class RecommendationContent extends React.Component {
           ? appState.currentRecommendationList.map(topic => {
             let topicId = topic.topicId;
             let topicName = topic.topicName;
-            return (
-              <ListItem button key={topic.topicName}>
+            let facet = appState.facetsList.get() !== undefined && appState.facetsList.get()[topicName];
+            facet = Array.from(facet);
+            const content = (facet !== undefined) &&
+              (
                 <div>
-                  <Badge
-                    status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
+                  <List style={{ width: 200 }}>
+                    {facet.map(firstLayer =>
+                      <div key={firstLayer.firstLayerFacetId}>
+                        <ListItem key={firstLayer.firstLayerFacetId} className={classes.padding16}>
+                          <ListItemText disableTypography
+                                        className={classes.fontsize14}
+                                        primary={firstLayer.firstLayerFacetName}/>
+                        </ListItem>
+                        {firstLayer.secondLayerFacets.length !== 0 &&
+                        (
+                          <Collapse in={true} timeout="auto" unmountOnExit>
+                            {firstLayer.secondLayerFacets.map(secondLayer =>
+                              <ListItem key={secondLayer.secondLayerFacetId} className={classes.nested}>
+                                <ListItemIcon>
+                                  <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
+                                </ListItemIcon>
+                                <ListItemText disableTypography className={classes.fontsize12}
+                                              primary={secondLayer.secondLayerFacetName}/>
+                              </ListItem>
+                            )}
+                          </Collapse>
+                        )
+                        }
+                      </div>
+                    )}
+                  </List>
                 </div>
+              );
+            return (
+              <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
+                <ListItem button>
+                  <div>
+                    <Badge
+                      status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
+                  </div>
 
-                <ListItemIcon>
-                  <BookIcon className={classes.topic}/>
-                </ListItemIcon>
-                <ListItemText
-                  disableTypography
-                  className={classes.topic}
-                  primary={topic.topicName}
-                  id={topic.topicId}
-                  onClick={this.handleClick.bind(this, studentCode, courseId, domainName, topicName, topicId)}
-                />
-              </ListItem>
+                  <ListItemIcon>
+                    <BookIcon className={classes.topic}/>
+                  </ListItemIcon>
+                  <ListItemText
+                    disableTypography
+                    className={classes.topic}
+                    primary={topic.topicName}
+                    id={topic.topicId}
+                    onClick={this.handleClick.bind(this, studentCode, courseId, domainName, topicName, topicId)}
+                  />
+                </ListItem>
+              </Popover>
             );
           })
           : null}
