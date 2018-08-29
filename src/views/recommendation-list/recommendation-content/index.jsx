@@ -46,8 +46,8 @@ class RecommendationContent extends React.Component {
     let domainName = appState.domainName.get();
     return (
       <List component="nav">
-        {this.props.appState.currentRecommendationList !== undefined
-          ? this.props.appState.currentRecommendationList.map(topic => {
+        {appState.currentRecommendationList !== undefined
+          ? appState.currentRecommendationList.map(topic => {
             let topicId = topic.topicId;
             let topicName = topic.topicName;
             return (

@@ -1,4 +1,4 @@
-import { observable, computed, action, autorun, flow, runInAction } from 'mobx';
+import { observable, computed, action, autorun, runInAction } from 'mobx';
 import axios from 'axios';
 import { asyncComputed } from 'computed-async-mobx';
 
@@ -399,15 +399,44 @@ class AppState {
       }
     }
   }
+
+  facetsList = asyncComputed(undefined, 0, async () => {
+    let domainName = this.domainName.get();
+    let recommendationList = this.recommendationList.get();
+    let topics = [];
+    if (recommendationList !== undefined) {
+      recommendationList.map(recarray => {
+        recarray.map(topic => {
+          for (let i = 0; i < topics.length; i++) {
+            if (topics[i] === topic.topicName) {
+              return;
+            }
+          }
+          topics.push(topic.topicName);
+        });
+      });
+      let topicNames = '';
+      topics.map(topic => {
+        topicNames += topic + ',';
+      });
+      const response = await axios.get(
+        PATH_BASE + PATH_facetGetFacetsByDomainNameAndTopicNames,
+        {
+          params: {
+            domainName: domainName,
+            topicNames: topicNames
+          }
+        });
+      return response.data.data;
+    }
+  });
+
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.currentTopic.topicId);
-  // appState.facetStateList.map(state => {
-  //   console.log(state);
-  // });
+  console.log(appState.facetsList.get());
 });
 
 export default appState;
