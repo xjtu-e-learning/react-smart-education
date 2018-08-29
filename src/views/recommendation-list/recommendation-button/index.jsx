@@ -51,7 +51,11 @@ class RecommendationButton extends React.Component {
       '补全学习路径',
       '热度学习路径'
     ];
-
+    if (appState.recommendationList.get() !== undefined && appState.currentTopic.topicId === -1) {
+      console.log('test');
+      appState.setCurrentTopicId(appState.currentRecommendationList[0].topicId);
+      appState.setCurrentTopicName(appState.currentRecommendationList[0].topicName);
+    }
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
