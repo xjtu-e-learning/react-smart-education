@@ -15,7 +15,7 @@ const styles = theme => ({
     paddingBottom: 16,
     overflow: 'auto',
     // height: 896
-    height: document.body.clientHeight - 184
+    height: document.body.clientHeight - 224
     // position: 'absolute'
   },
   paper: {

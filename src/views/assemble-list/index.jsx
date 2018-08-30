@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AssemblePaper from './assemble-paper';
 import AssembleListTitlebar from './assemble-list-titlebar';
+import AssemblePagination from './assemble-pagination';
 
 const styles = theme => ({
   content: {
@@ -25,8 +26,9 @@ class AssembleList extends React.Component {
     return (
       <main className={classes.content}>
         <Paper>
-          <AssembleListTitlebar />
-          <AssemblePaper />
+          <AssembleListTitlebar/>
+          <AssemblePaper/>
+          <AssemblePagination/>
         </Paper>
       </main>
     );
