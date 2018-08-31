@@ -1,0 +1,36 @@
+.icon {
+    padding: 0 10px;
+    color: #0084ff;
+    background: rgba(0, 132, 255, .1);
+    border-color: transparent
+}
+
+.icon:not(:disabled):hover {
+    background-color: rgba(0, 132, 255, .15)
+}
+
+.icon.is-active {
+    color: #fff;
+    background: #0084ff
+}
+
+.icon.is-active:hover {
+    background-color: #0084ff
+}
+
+.button:focus {
+    outline: none
+}
+
+.button {
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px
+}

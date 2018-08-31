@@ -1,13 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import LinesEllipsis from 'react-lines-ellipsis';
-import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
 import { post_log_of_mouseclick_assemble } from '../../../../../log/post-log-SDK';
 import { updateState } from '../../../../../store/update-state';
-
-const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
+import AssembleContentFooter from '../assemble-content-footer';
+import Divider from '@material-ui/core/Divider/Divider';
+import Drawer from '@material-ui/core/Drawer/Drawer';
 
 const styles = theme => ({
   root: {
@@ -18,6 +17,10 @@ const styles = theme => ({
   },
   mouse: {
     cursor: 'pointer'
+  },
+  divider: {
+    marginTop: 16,
+    marginBottom: 16
   }
 });
 
@@ -57,7 +60,11 @@ class AssembleContentText extends React.Component {
               />
             </div>
           ) : (
-            <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
+            <div>
+              <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
+              <Divider className={this.props.classes.divider}/>
+              <AssembleContentFooter/>
+            </div>
           )}
         </Paper>
       </div>
