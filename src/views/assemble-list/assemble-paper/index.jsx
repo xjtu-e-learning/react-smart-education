@@ -41,7 +41,8 @@ class AssemblePaper extends React.Component {
         currentAssembles.content.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
-              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}
+                             evaluation={assemble.evaluation} positive={assemble.positive}/>
               <AssembleContentText assemble={assemble} studentCode={studentCode} courseId={courseId}
                                    domainName={domainName} domainId={domainId}/>
             </Paper>
@@ -52,7 +53,7 @@ class AssemblePaper extends React.Component {
         currentAssembles.content.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
-              <AssembleTitle assemblesource={assemble.sourceName}/>
+              <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}/>
               <AssembleContentVideo assemble={assemble}/>
             </Paper>
           </Grid>
