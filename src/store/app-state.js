@@ -19,6 +19,10 @@ const PATH_topicGetCompleteTopicByNameAndDomainNameWithHasFragment =
   '/topic/getCompleteTopicByNameAndDomainNameWithHasFragment';
 const PATH_facetStateGetByDomainIdAndTopicIdAndUserId =
   '/facetState/getByDomainIdAndTopicIdAndUserId';
+const PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting =
+  '/assemble/getAssemblesByFacetIdAndUserIdAndPagingAndSorting';
+const PATH_assembleGetAssemblesByTopicIdAndUserIdAndPagingAndSorting =
+  '/assemble/getAssemblesByTopicIdAndUserIdAndPagingAndSorting';
 
 class AppState {
   @observable
@@ -310,6 +314,11 @@ class AppState {
   @observable
   textOrVideo = 0;
 
+  @action
+  setTextOrVideo(value) {
+    this.textOrVideo = value;
+  }
+
   @observable
   knowledgeForestVisible = false;
 
@@ -431,12 +440,96 @@ class AppState {
     }
   });
 
+  @observable
+  currentPage = '0';
+
+  @action
+  setCurrentPage(value) {
+    this.currentPage = value;
+  }
+
+  @observable
+  currentPageSize = '10';
+
+  @action
+  setCurrentPageSize(value) {
+    this.currentPageSize = value;
+  }
+
+  @action
+  setCurrentPageAndPageSize(current, pageSize) {
+    this.currentPage = current;
+    this.currentPageSize = pageSize;
+  }
+
+  @observable
+  totalElements = '0';
+
+  @action
+  setTotalElements(value) {
+    this.totalElements = value;
+  }
+
+  currentAssembles = asyncComputed(undefined, 0, async () => {
+    if (this.studentCode !== -1) {
+      if (this.currentFacet.secondLayerId !== -1) {
+        const response = await axios.post(
+          PATH_BASE + PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting +
+          '?facetId=' +
+          this.currentFacet.secondLayerId +
+          '&userId=' +
+          this.studentCode +
+          '&requestType=' +
+          (this.textOrVideo === 0 ? 'text' : 'video') +
+          '&page=' +
+          this.currentPage +
+          '&size=' +
+          this.currentPageSize +
+          '&ascOrder=true');
+        this.setTotalElements(response.data.data.totalElements);
+        return response.data.data;
+      } else if (this.currentFacet.firstLayerId !== -1) {
+        const response = await axios.post(
+          PATH_BASE + PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting +
+          '?facetId=' +
+          this.currentFacet.firstLayerId +
+          '&userId=' +
+          this.studentCode +
+          '&requestType=' +
+          (this.textOrVideo === 0 ? 'text' : 'video') +
+          '&page=' +
+          this.currentPage +
+          '&size=' +
+          this.currentPageSize +
+          '&ascOrder=true');
+        this.setTotalElements(response.data.data.totalElements);
+        return response.data.data;
+      } else if (this.currentTopic.topicId !== -1) {
+        const response = await axios.post(
+          PATH_BASE + PATH_assembleGetAssemblesByTopicIdAndUserIdAndPagingAndSorting +
+          '?topicId=' +
+          this.currentTopic.topicId +
+          '&userId=' +
+          this.studentCode +
+          '&requestType=' +
+          (this.textOrVideo === 0 ? 'text' : 'video') +
+          '&page=' +
+          this.currentPage +
+          '&size=' +
+          this.currentPageSize +
+          '&ascOrder=true');
+        this.setTotalElements(response.data.data.totalElements);
+        return response.data.data;
+      }
+    }
+    return undefined;
+  });
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  // console.log(appState.facetsList.get());
+  console.log(appState.currentAssembles.get());
 });
 
 export default appState;

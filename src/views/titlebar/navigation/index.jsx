@@ -19,6 +19,7 @@ const styles = theme => ({
 @observer
 class Navigation extends React.Component {
   handleClickDelFacet = (studentCode, courseId, domainName, topicName, topicId) => {
+    this.props.appState.setCurrentPage(0);
     this.props.appState.setCurrentFacet('', '', -1, -1);
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined && topicName !== '' && topicId !== -1) {
       post_log_of_mouseover_topic('学习页面', topicName, topicId, studentCode, courseId, domainName);
@@ -26,6 +27,7 @@ class Navigation extends React.Component {
   };
 
   handleClickDelSecondFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName) => {
+    this.props.appState.setCurrentPage(0);
     this.props.appState.setCurrentSecondFacet('', -1);
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
       post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId

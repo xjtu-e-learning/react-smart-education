@@ -42,6 +42,7 @@ class FacetContent extends React.Component {
   handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
     // console.log(event.target.textContent);
     if (event.target.textContent !== '') {
+      this.props.appState.setCurrentPage(0);
       this.props.appState.setCurrentFacet(firstLayerFacetName, '', firstLayerFacetId, -1);
       if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
         post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
@@ -54,6 +55,7 @@ class FacetContent extends React.Component {
   };
 
   handleClick = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
+    this.props.appState.setCurrentPage(0);
     this.props.appState.setCurrentFacet(firstLayerFacetName, '', firstLayerFacetId, -1);
     if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
       post_log_of_mouseclick_facet('学习页面', '点击-1级分面', topicName, topicId
@@ -64,6 +66,7 @@ class FacetContent extends React.Component {
   handleClickSecondLayer = (
     firstLayerFacetName, topicName, topicId, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, studentCode, courseId, domainName
   ) => {
+    this.props.appState.setCurrentPage(0);
     this.props.appState.setCurrentFacet(
       firstLayerFacetName,
       secondLayerFacetName,

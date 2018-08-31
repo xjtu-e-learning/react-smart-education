@@ -52,7 +52,7 @@ class RecommendationButton extends React.Component {
       '热度学习路径'
     ];
     if (appState.recommendationList.get() !== undefined && appState.currentTopic.topicId === -1) {
-      console.log('test');
+      // console.log('test');
       appState.setCurrentTopicId(appState.currentRecommendationList[0].topicId);
       appState.setCurrentTopicName(appState.currentRecommendationList[0].topicName);
     }

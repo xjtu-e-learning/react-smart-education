@@ -15,7 +15,7 @@ const styles = theme => ({
     paddingBottom: 16,
     overflow: 'auto',
     // height: 896
-    height: document.body.clientHeight - 184
+    height: document.body.clientHeight - 224
     // position: 'absolute'
   },
   paper: {
@@ -30,15 +30,15 @@ class AssemblePaper extends React.Component {
 
   render() {
     const { classes, appState } = this.props;
-    const currentAssembleList = appState.currentAssembleList;
+    const currentAssembles = appState.currentAssembles.get();
     const studentCode = appState.studentCode;
     const courseId = appState.courseId;
     const domainName = appState.domainName.get();
     const domainId = appState.domainId.get();
     return (
       <Paper className={classes.grid}>
-        {currentAssembleList.text.length !== 0 && appState.textOrVideo === 0 &&
-        currentAssembleList.text.map(assemble => (
+        {currentAssembles !== undefined && appState.textOrVideo === 0 &&
+        currentAssembles.content.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>
@@ -46,9 +46,10 @@ class AssemblePaper extends React.Component {
                                    domainName={domainName} domainId={domainId}/>
             </Paper>
           </Grid>
-        ))}
-        {currentAssembleList.video.length !== 0 && appState.textOrVideo === 1 &&
-        currentAssembleList.video.map(assemble => (
+        ))
+        }
+        {currentAssembles !== undefined && appState.textOrVideo === 1 &&
+        currentAssembles.content.map(assemble => (
           <Grid item xs={12} key={assemble.assembleId}>
             <Paper className={classes.paper}>
               <AssembleTitle assemblesource={assemble.sourceName}/>
