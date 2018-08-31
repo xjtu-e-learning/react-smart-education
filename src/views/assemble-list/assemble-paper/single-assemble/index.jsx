@@ -16,8 +16,12 @@ const styles = theme => ({
 class SingleAssemble extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { evauation: props.assemble.evaluation };
+    this.state = { evauation: props.assemble.evaluation, replicate: true };
   }
+
+  setSet = (obj) => {
+    this.setState(obj);
+  };
 
   render() {
     const { classes, assemble, studentCode, courseId, domainName, domainId, textorvideo } = this.props;
@@ -30,7 +34,7 @@ class SingleAssemble extends React.Component {
                 <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}
                                evaluation={this.state.evauation} positive={assemble.positive}/>
                 <AssembleContentText assemble={assemble} studentCode={studentCode} courseId={courseId}
-                                     domainName={domainName} domainId={domainId}/>
+                                     domainName={domainName} domainId={domainId} setSet={this.setSet} replicate={this.state.replicate}/>
               </Paper>
             </Grid>
           ) : (

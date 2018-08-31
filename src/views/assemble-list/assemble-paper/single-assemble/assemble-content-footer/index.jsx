@@ -9,10 +9,14 @@ require('./footer.css');
 const styles = theme => ({});
 
 class AssembleContentFooter extends React.Component {
+  hancleClick = () => {
+    this.props.setSet({ replicate: !this.props.replicate });
+  };
+
   render() {
     return (
       <div>
-        <Button className={'button'}>
+        <Button className={'button'} onClick={this.hancleClick}>
           收起
         </Button>
         <Button className={'icon'}>

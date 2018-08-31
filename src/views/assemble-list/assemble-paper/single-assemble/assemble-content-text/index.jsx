@@ -25,13 +25,9 @@ const styles = theme => ({
 });
 
 class AssembleContentText extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { replicate: true };
-  }
 
   handleClick = (topicName, topicId, firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName, domainId) => {
-    this.setState({ replicate: !this.state.replicate });
+    this.props.setSet({ replicate: !this.props.replicate });
     updateState(domainId, studentCode);
     post_log_of_mouseclick_assemble('学习页面', topicName, topicId,
       firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName);
@@ -47,7 +43,7 @@ class AssembleContentText extends React.Component {
     return (
       <div>
         <Paper className={classes.root} elevation={2}>
-          {this.state.replicate === true ? (
+          {this.props.replicate === true ? (
             <div onClick={this.handleClick.bind(this, assemble.topicName, assemble.topicId,
               assemble.firstLayerFacetName, assemble.firstLayerFacetId, assemble.secondLayerFacetName, assemble.secondLayerFacetId, assemble.assembleId,
               studentCode, courseId, domainName, domainId
@@ -63,7 +59,7 @@ class AssembleContentText extends React.Component {
             <div>
               <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
               <Divider className={this.props.classes.divider}/>
-              <AssembleContentFooter/>
+              <AssembleContentFooter setSet={this.props.setSet} replicate={this.props.replicate}/>
             </div>
           )}
         </Paper>
