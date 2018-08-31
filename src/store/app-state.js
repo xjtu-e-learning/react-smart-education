@@ -23,6 +23,8 @@ const PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByFacetIdAndUserIdAndPagingAndSorting';
 const PATH_assembleGetAssemblesByTopicIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByTopicIdAndUserIdAndPagingAndSorting';
+export const PATH_evaluationSaveAssembleEvaluation =
+  '/evaluation/saveAssembleEvaluation';
 
 class AppState {
   @observable

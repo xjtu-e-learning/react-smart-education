@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ThumbUpRounded from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRounded from '@material-ui/icons/ThumbDownRounded';
+import axios from 'axios';
+import { PATH_BASE, PATH_evaluationSaveAssembleEvaluation } from '../../../../../store/app-state';
 
 require('./footer.css');
 
@@ -13,16 +15,37 @@ class AssembleContentFooter extends React.Component {
     this.props.setSet({ replicate: !this.props.replicate });
   };
 
+  saveAssembleEvaluation = (studentCode, assembleId, evaluation) => {
+    axios.get(
+      PATH_BASE + PATH_evaluationSaveAssembleEvaluation,
+      {
+        params: {
+          userId: studentCode,
+          assembleId: assembleId,
+          value: evaluation
+        }
+      }
+    )
+      .then(
+        function(response) {
+          console.log(response);
+        }
+      );
+  };
+
   handleClickUp = () => {
     switch (this.props.evaluation) {
       case 0:
         this.props.setSet({ evaluation: 1, positive: this.props.positive + 1 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 1);
         break;
       case 1:
         this.props.setSet({ evaluation: 0, positive: this.props.positive - 1 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 0);
         break;
       case -1:
         this.props.setSet({ evaluation: 1, positive: this.props.positive + 1 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 1);
         break;
     }
   };
@@ -31,12 +54,15 @@ class AssembleContentFooter extends React.Component {
     switch (this.props.evaluation) {
       case 0:
         this.props.setSet({ evaluation: -1 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, -1);
         break;
       case 1:
         this.props.setSet({ evaluation: -1, positive: this.props.positive - 1 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, -1);
         break;
       case -1:
         this.props.setSet({ evaluation: 0 });
+        this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 0);
         break;
     }
   };
