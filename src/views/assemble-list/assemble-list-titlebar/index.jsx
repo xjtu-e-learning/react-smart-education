@@ -21,7 +21,7 @@ class AssembleListTitlebar extends React.Component {
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography className={this.props.classes.assemblenum} variant="title" color="inherit">
-            碎片数量： {appState.textOrVideo == 0 ? appState.currentAssembleList.text.length : appState.currentAssembleList.video.length}
+            碎片数量： {appState.currentAssembles.get() !== undefined ? appState.currentAssembles.get().totalElements : 0}
           </Typography>
           <TextVideoTab/>
         </Toolbar>

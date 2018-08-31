@@ -11,7 +11,7 @@ const styles = theme => ({});
 class AssembleContentVideo extends React.Component {
   extractVideoUrl = (content) => {
     let pattern = new RegExp('http.*mp4');
-    return pattern.exec(content)[0];
+    return pattern.exec(content) !== null ? pattern.exec(content)[0] : null;
   };
 
   render() {
