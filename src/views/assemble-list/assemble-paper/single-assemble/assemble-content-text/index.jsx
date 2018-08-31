@@ -1,13 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import LinesEllipsis from 'react-lines-ellipsis';
-import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
-import { post_log_of_mouseclick_assemble } from '../../../../log/post-log-SDK';
-import { updateState } from '../../../../store/update-state';
-
-const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
+import { post_log_of_mouseclick_assemble } from '../../../../../log/post-log-SDK';
+import { updateState } from '../../../../../store/update-state';
+import AssembleContentFooter from '../assemble-content-footer';
+import Divider from '@material-ui/core/Divider/Divider';
 
 const styles = theme => ({
   root: {
@@ -18,17 +16,17 @@ const styles = theme => ({
   },
   mouse: {
     cursor: 'pointer'
+  },
+  divider: {
+    marginTop: 16,
+    marginBottom: 16
   }
 });
 
 class AssembleContentText extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { replicate: true };
-  }
 
   handleClick = (topicName, topicId, firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName, domainId) => {
-    this.setState({ replicate: !this.state.replicate });
+    this.props.setSet({ replicate: !this.props.replicate });
     updateState(domainId, studentCode);
     post_log_of_mouseclick_assemble('学习页面', topicName, topicId,
       firstLayerFacetName, firstLayerFacetId, secondLayerFacetName, secondLayerFacetId, assembleId, studentCode, courseId, domainName);
@@ -44,7 +42,7 @@ class AssembleContentText extends React.Component {
     return (
       <div>
         <Paper className={classes.root} elevation={2}>
-          {this.state.replicate === true ? (
+          {this.props.replicate === true ? (
             <div onClick={this.handleClick.bind(this, assemble.topicName, assemble.topicId,
               assemble.firstLayerFacetName, assemble.firstLayerFacetId, assemble.secondLayerFacetName, assemble.secondLayerFacetId, assemble.assembleId,
               studentCode, courseId, domainName, domainId
@@ -57,7 +55,14 @@ class AssembleContentText extends React.Component {
               />
             </div>
           ) : (
-            <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
+            <div>
+              <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
+              <Divider className={this.props.classes.divider}/>
+              <AssembleContentFooter setSet={this.props.setSet} replicate={this.props.replicate}
+                                     studentCode={studentCode} assembleId={assemble.assembleId}
+                                     evaluation={this.props.evaluation} positive={this.props.positive}
+              />
+            </div>
           )}
         </Paper>
       </div>

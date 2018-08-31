@@ -50,6 +50,7 @@ const styles = theme => ({
 class TextVideoTab extends React.Component {
 
   handleChange = (event, value) => {
+    this.props.appState.setCurrentPage(0);
     this.props.appState.setTextOrVideo(value);
   };
 

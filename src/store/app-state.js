@@ -23,6 +23,8 @@ const PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByFacetIdAndUserIdAndPagingAndSorting';
 const PATH_assembleGetAssemblesByTopicIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByTopicIdAndUserIdAndPagingAndSorting';
+export const PATH_evaluationSaveAssembleEvaluation =
+  '/evaluation/saveAssembleEvaluation';
 
 class AppState {
   @observable
@@ -390,6 +392,7 @@ class AppState {
   @action
   async updateFacetTopicStateList() {
     if (this.domainId !== undefined && this.currentTopic.topicId !== -1 && this.studentCode !== -1) {
+      this.setInitial();
       try {
         const response = await axios.get(PATH_BASE + PATH_facetStateGetByDomainIdAndTopicIdAndUserId,
           {
@@ -485,7 +488,7 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       } else if (this.currentFacet.firstLayerId !== -1) {
@@ -501,7 +504,7 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       } else if (this.currentTopic.topicId !== -1) {
@@ -517,19 +520,29 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       }
     }
     return undefined;
   });
+
+  @observable
+  initial = 0;
+
+  @action
+  setInitial() {
+    this.initial = 1;
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentAssembles.get());
+  if (appState.domainId !== undefined && appState.currentTopic.topicId !== -1 && appState.studentCode !== -1 && appState.initial === 0) {
+    appState.updateFacetTopicStateList();
+  }
 });
 
 export default appState;

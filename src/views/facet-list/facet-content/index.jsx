@@ -102,7 +102,7 @@ class FacetContent extends React.Component {
           {appState.facetList.get() !== undefined
             ? appState.facetList.get().map((facet, index) => {
               if (facet.secondLayerFacets.length === 0) {
-                // console.log(facet);
+                // console.log(appState.facetStateList[index]);
                 return (
                   <ListItem
                     button
