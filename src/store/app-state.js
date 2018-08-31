@@ -486,7 +486,7 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       } else if (this.currentFacet.firstLayerId !== -1) {
@@ -502,7 +502,7 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       } else if (this.currentTopic.topicId !== -1) {
@@ -518,7 +518,7 @@ class AppState {
           this.currentPage +
           '&size=' +
           this.currentPageSize +
-          '&ascOrder=true');
+          '&ascOrder=false');
         this.setTotalElements(response.data.data.totalElements);
         return response.data.data;
       }
