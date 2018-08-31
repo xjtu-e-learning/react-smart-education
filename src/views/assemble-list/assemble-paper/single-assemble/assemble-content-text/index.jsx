@@ -7,6 +7,7 @@ import { updateState } from '../../../../../store/update-state';
 import AssembleContentFooter from '../assemble-content-footer';
 import Divider from '@material-ui/core/Divider/Divider';
 import Drawer from '@material-ui/core/Drawer/Drawer';
+import AssembleTitle from '../assemble-title';
 
 const styles = theme => ({
   root: {
@@ -59,7 +60,9 @@ class AssembleContentText extends React.Component {
             <div>
               <div dangerouslySetInnerHTML={{ __html: assemblecontent }}/>
               <Divider className={this.props.classes.divider}/>
-              <AssembleContentFooter setSet={this.props.setSet} replicate={this.props.replicate}/>
+              <AssembleContentFooter setSet={this.props.setSet} replicate={this.props.replicate}
+                                     evaluation={this.props.evaluation} positive={this.props.positive}
+              />
             </div>
           )}
         </Paper>
