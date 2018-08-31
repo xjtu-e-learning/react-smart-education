@@ -4,8 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import LinesEllipsis from 'react-lines-ellipsis';
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
-import { post_log_of_mouseclick_assemble } from '../../../../log/post-log-SDK';
-import { updateState } from '../../../../store/update-state';
+import { post_log_of_mouseclick_assemble } from '../../../../../log/post-log-SDK';
+import { updateState } from '../../../../../store/update-state';
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 

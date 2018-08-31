@@ -1,11 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import AssembleTitle from './assemble-title';
-import AssembleContentText from './assemble-content-text';
-import AssembleContentVideo from './assemble-content-video';
 import { inject, observer } from 'mobx-react';
+import SingleAssemble from './single-assemble';
 
 const styles = theme => ({
   grid: {
@@ -17,11 +14,8 @@ const styles = theme => ({
     // height: 896
     height: document.body.clientHeight - 224
     // position: 'absolute'
-  },
-  paper: {
-    // padding: theme.spacing.unit * 2,
-    color: theme.palette.text.secondary
   }
+
 });
 
 @inject('appState')
@@ -37,27 +31,12 @@ class AssemblePaper extends React.Component {
     const domainId = appState.domainId.get();
     return (
       <Paper className={classes.grid}>
-        {currentAssembles !== undefined && appState.textOrVideo === 0 &&
+        {currentAssembles !== undefined &&
         currentAssembles.content.map(assemble => (
-          <Grid item xs={12} key={assemble.assembleId}>
-            <Paper className={classes.paper}>
-              <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}
-                             evaluation={assemble.evaluation} positive={assemble.positive}/>
-              <AssembleContentText assemble={assemble} studentCode={studentCode} courseId={courseId}
-                                   domainName={domainName} domainId={domainId}/>
-            </Paper>
-          </Grid>
+          <SingleAssemble assemble={assemble} studentCode={studentCode} courseId={courseId} domainName={domainName}
+                          domainId={domainId} textorvideo={appState.textOrVideo} key={assemble.assembleId}/>
         ))
         }
-        {currentAssembles !== undefined && appState.textOrVideo === 1 &&
-        currentAssembles.content.map(assemble => (
-          <Grid item xs={12} key={assemble.assembleId}>
-            <Paper className={classes.paper}>
-              <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}/>
-              <AssembleContentVideo assemble={assemble}/>
-            </Paper>
-          </Grid>
-        ))}
       </Paper>
     );
   }
