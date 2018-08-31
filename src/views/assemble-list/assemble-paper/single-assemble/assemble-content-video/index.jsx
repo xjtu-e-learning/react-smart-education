@@ -18,13 +18,14 @@ class AssembleContentVideo extends React.Component {
     return (
       <div>
         {
-          console.log(this.extractVideoUrl(this.props.assemble.assembleText))
+          this.extractVideoUrl(this.props.assemble.assembleText) !== null && (
+            <Player
+              playsInline
+              src={this.extractVideoUrl(this.props.assemble.assembleText)}
+            >
+            </Player>
+          )
         }
-        <Player
-          playsInline
-          src={this.extractVideoUrl(this.props.assemble.assembleText)}
-        >
-        </Player>
       </div>);
   }
 }

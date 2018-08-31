@@ -47,7 +47,7 @@ class AssembleTitle extends React.Component {
     const { classes, evaluation, positive } = this.props;
     const source = this.props.assemblesource;
     const facetname = this.props.assemblefacetname;
-    return (
+    return source !== null && (
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Toolbar className={classes.toolbar}>
