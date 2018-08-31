@@ -390,6 +390,7 @@ class AppState {
   @action
   async updateFacetTopicStateList() {
     if (this.domainId !== undefined && this.currentTopic.topicId !== -1 && this.studentCode !== -1) {
+      this.setInitial();
       try {
         const response = await axios.get(PATH_BASE + PATH_facetStateGetByDomainIdAndTopicIdAndUserId,
           {
@@ -524,12 +525,22 @@ class AppState {
     }
     return undefined;
   });
+
+  @observable
+  initial = 0;
+
+  @action
+  setInitial() {
+    this.initial = 1;
+  }
 }
 
 const appState = new AppState();
 
 autorun(() => {
-  console.log(appState.currentAssembles.get());
+  if (appState.domainId !== undefined && appState.currentTopic.topicId !== -1 && appState.studentCode !== -1 && appState.initial === 0) {
+    appState.updateFacetTopicStateList();
+  }
 });
 
 export default appState;

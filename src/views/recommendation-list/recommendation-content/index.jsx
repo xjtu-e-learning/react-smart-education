@@ -50,7 +50,7 @@ class RecommendationContent extends React.Component {
     }
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.props.appState.updateTopicStateList();
   }
 
