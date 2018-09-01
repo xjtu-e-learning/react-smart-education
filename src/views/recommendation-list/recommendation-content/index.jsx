@@ -32,6 +32,10 @@ const styles = theme => ({
   padding16: {
     paddingLeft: 16,
     paddingRight: 16
+  },
+  nav: {
+    maxHeight: document.body.clientHeight - 384,
+    overflow: 'auto'
   }
 });
 
@@ -65,7 +69,7 @@ class RecommendationContent extends React.Component {
     let courseId = appState.courseId;
     let domainName = appState.domainName.get();
     return (
-      <List component="nav">
+      <List component="nav" className={classes.nav}>
         {appState.currentRecommendationList !== undefined
           ? appState.currentRecommendationList.map(topic => {
             let topicId = topic.topicId;
