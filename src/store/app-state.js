@@ -2,7 +2,8 @@ import { observable, computed, action, autorun, runInAction } from 'mobx';
 import axios from 'axios';
 import { asyncComputed } from 'computed-async-mobx';
 
-export const PATH_BASE = 'http://202.117.54.42:8082';
+// export const PATH_BASE = 'http://202.117.54.42:8082';
+export const PATH_BASE = 'http://yotta.xjtushilei.com:8083';
 const PATH_getDomainByCourseId = '/wangyuan/getDomainByCourseId';
 const PATH_topicGetTopicsByDomainName = '/topic/getTopicsByDomainName';
 const PATH_recommendationGetByDomainIdAndUserId =
