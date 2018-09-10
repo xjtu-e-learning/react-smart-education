@@ -63,7 +63,7 @@ class AssembleTitle extends React.Component {
               数据源：
             </h5>
             <label className={classes.purple}>{source}</label>
-            <h6 className={classes.H6}>{positive}人认同了这条知识碎片(快点击碎片进行评价吧)</h6>
+            {/*<h6 className={classes.H6}>{positive}人认同了这条知识碎片(快点击碎片进行评价吧)</h6>*/}
           </Toolbar>
         </AppBar>
       </div>
