@@ -10,12 +10,14 @@
 }
 
 .icon.is-active {
-    color: #fff;
-    background: #0084ff
+    /*color: #fff;*/
+    /*background: #0084ff*/
+    color: #0084ff
 }
 
 .icon.is-active:hover {
-    background-color: #0084ff
+    background-color: #0084ff;
+    color: #fff
 }
 
 .button:focus {

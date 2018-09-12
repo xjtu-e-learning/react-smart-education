@@ -8,7 +8,11 @@ import { PATH_BASE, PATH_evaluationSaveAssembleEvaluation } from '../../../../..
 
 require('./footer.css');
 
-const styles = theme => ({});
+const styles = theme => ({
+  up: {
+    marginRight: 8
+  }
+});
 
 class AssembleContentFooter extends React.Component {
   hancleClick = () => {
@@ -68,14 +72,14 @@ class AssembleContentFooter extends React.Component {
   };
 
   render() {
-    const { positive } = this.props;
+    const { positive, classes } = this.props;
     return (
       <div>
         <Button className={'button'} onClick={this.hancleClick}>
           收起
         </Button>
         <Button className={'icon ' + (this.props.evaluation === 1 && 'is-active')} onClick={this.handleClickUp}>
-          <ThumbUpRounded/>
+          <ThumbUpRounded className={classes.up}/>
           {positive}
         </Button>
         <Button className={'icon ' + (this.props.evaluation === -1 && 'is-active')} onClick={this.handleClickDown}>
