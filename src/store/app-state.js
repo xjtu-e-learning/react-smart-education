@@ -759,6 +759,8 @@ autorun(() => {
     appState.updateTopicStateList();
     appState.setInitial();
   }
+  console.log(appState.currentAssembleList);
+  console.log(appState.currentTopicAssembleList.text.length)
 });
 
 export default appState;
