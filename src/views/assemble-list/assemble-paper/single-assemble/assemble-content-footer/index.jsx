@@ -68,6 +68,7 @@ class AssembleContentFooter extends React.Component {
   };
 
   render() {
+    const { positive } = this.props;
     return (
       <div>
         <Button className={'button'} onClick={this.hancleClick}>
@@ -75,6 +76,7 @@ class AssembleContentFooter extends React.Component {
         </Button>
         <Button className={'icon ' + (this.props.evaluation === 1 && 'is-active')} onClick={this.handleClickUp}>
           <ThumbUpRounded/>
+          {positive}
         </Button>
         <Button className={'icon ' + (this.props.evaluation === -1 && 'is-active')} onClick={this.handleClickDown}>
           <ThumbDownRounded/>
