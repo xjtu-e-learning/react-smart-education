@@ -4,6 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { inject, observer } from 'mobx-react';
+import Typography from "@material-ui/core/Typography/Typography";
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
   root: {
@@ -23,7 +26,7 @@ const styles = theme => ({
       'BlinkMacSystemFont',
       '"Segoe UI"',
       'Roboto',
-      '"Helvetica Neue"',
+      'Helvetica Neue',
       'Arial',
       'sans-serif',
       '"Apple Color Emoji"',
@@ -58,12 +61,16 @@ class TextVideoTab extends React.Component {
     const { classes } = this.props;
     const value = this.props.appState.textOrVideo;
 
+    const {appState} = this.props;
+    let labeltext = "富文本 （" + (appState.currentAssembleList.text !== undefined ? appState.currentAssembleList.text.length : 0).toString() + '）';
+    let labelvideo = "视频 （" + (appState.currentAssembleList !== undefined ? appState.currentAssembleList.video.length : 0).toString() + ')';
+
     return (
       <Tabs value={value} onChange={this.handleChange}
             classes={{ indicator: classes.tabsIndicator }}
       >
-        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="富文本"/>
-        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="视频"/>
+        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label={labeltext}/>
+        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label={labelvideo}/>
       </Tabs>
     );
   }
