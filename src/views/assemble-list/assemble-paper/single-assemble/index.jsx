@@ -31,8 +31,8 @@ class SingleAssemble extends React.Component {
           textorvideo === 0 ? (
             <Grid item xs={12} key={assemble.assembleId}>
               <Paper className={classes.paper}>
-                <AssembleTitle assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}
-                               evaluation={this.state.evaluation} positive={this.state.positive}/>
+                <AssembleTitle setSet={this.setSet} assemblesource={assemble.sourceName} assemblefacetname={assemble.firstLayerFacetName}
+                               replicate={this.state.replicate} evaluation={this.state.evaluation} positive={this.state.positive}/>
                 <AssembleContentText assemble={assemble} studentCode={studentCode} courseId={courseId}
                                      domainName={domainName} domainId={domainId} setSet={this.setSet}
                                      replicate={this.state.replicate}

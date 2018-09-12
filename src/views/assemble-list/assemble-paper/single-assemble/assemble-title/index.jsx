@@ -43,12 +43,17 @@ const styles = {
 };
 
 class AssembleTitle extends React.Component {
+
+  handleClick = () => {
+    this.props.setSet({ replicate: !this.props.replicate });
+  };
+
   render() {
     const { classes, evaluation, positive } = this.props;
     const source = this.props.assemblesource;
     const facetname = this.props.assemblefacetname;
     return source !== null && (
-      <div className={classes.root}>
+      <div className={classes.root} onClick={this.handleClick}>
         <AppBar position="static" color="default">
           <Toolbar className={classes.toolbar}>
             <div>
