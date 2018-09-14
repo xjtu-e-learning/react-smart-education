@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { inject, observer } from 'mobx-react';
 import FacetContent from './facet-content';
 import FacetTree from './facet-tree';
+import FacetStatus from './facet-status';
 
 const drawerWidth = 240;
 
@@ -48,6 +49,7 @@ class FacetList extends Component {
         </AppBar>
         <Divider className={this.props.classes.divider}/>
         <FacetContent/>
+        <FacetStatus/>
         <Divider className={this.props.classes.divider}/>
         <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
       </Drawer>

@@ -18,7 +18,8 @@ const styles = theme => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
-    overflow: 'auto'
+    overflow: 'auto',
+    height: document.body.clientHeight - 504
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4
