@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import RecommendationButton from './recommendation-button';
 import RecommendationContent from './recommendation-content';
 import KnowledgeForesst from './knowledge-forest';
+import RecommendationStatus from './recommendation-status';
 
 const drawerWidth = 240;
 
@@ -41,6 +42,7 @@ class RecommendationList extends Component {
         </List>
         <Divider className={this.props.classes.divider}/>
         <RecommendationContent/>
+        <RecommendationStatus/>
         <KnowledgeForesst/>
       </Drawer>
     );
