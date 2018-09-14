@@ -1,5 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { inject, observer } from 'mobx-react';
+import appState from '../../../store/app-state';
 
 const styles = theme => ({
   mark: {
@@ -31,14 +33,36 @@ const styles = theme => ({
   }
 });
 
+
+@inject('appState')
+@observer
 class RecommendationStatus extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, appState } = this.props;
+    let topicStateDic = {};
+    appState.topicStateList.map(topic => {
+      topicStateDic[topic.topicName] = topic.state;
+    });
+
+    let currRecommendationlist = appState.currentRecommendationList;
+
+    let successNum = 0, processNum = 0, defaultNum = 0;
+    if (currRecommendationlist !== undefined) {
+      for (var i = 0; i < currRecommendationlist.length; i++) {
+        if (topicStateDic[currRecommendationlist[i].topicName] === '2')
+          successNum++;
+        else if (topicStateDic[currRecommendationlist[i].topicName] === '1')
+          processNum++;
+        else
+          defaultNum++;
+      }
+    }
+
     return (
       <div className={classes.mark}>
-        <span>已学习:<label className={classes.bgGre}>5</label></span>
-        <span>正在学习:<label className={classes.bgBlu}>5</label></span>
-        <span>未学习:<label className={classes.bgGry}>5</label></span>
+        <span>已学习:<label className={classes.bgGre}>{successNum}</label></span>
+        <span>正在学习:<label className={classes.bgBlu}>{processNum}</label></span>
+        <span>未学习:<label className={classes.bgGry}>{defaultNum}</label></span>
       </div>
     );
   }
