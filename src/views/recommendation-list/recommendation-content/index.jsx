@@ -34,7 +34,7 @@ const styles = theme => ({
     paddingRight: 16
   },
   nav: {
-    maxHeight: document.body.clientHeight - 384,
+    height: document.body.clientHeight - 408,
     overflow: 'auto'
   }
 });
