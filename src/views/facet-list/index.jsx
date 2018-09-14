@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { inject, observer } from 'mobx-react';
 import FacetContent from './facet-content';
 import FacetTree from './facet-tree';
+import FacetStatus from './facet-status';
 
 const drawerWidth = 240;
 
@@ -19,7 +20,7 @@ const styles = theme => ({
     marginTop: 80,
     borderTop: '1px solid rgb(0,0,0,0.12)',
     borderBottom: '1px solid rgb(0,0,0,0.12)',
-    height: document.body.clientHeight - 480
+
   },
   topicName: {
     lineHeight: '43px',
@@ -48,6 +49,7 @@ class FacetList extends Component {
         </AppBar>
         <Divider className={this.props.classes.divider}/>
         <FacetContent/>
+        <FacetStatus/>
         <Divider className={this.props.classes.divider}/>
         <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
       </Drawer>
