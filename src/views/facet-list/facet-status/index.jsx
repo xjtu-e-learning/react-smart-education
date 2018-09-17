@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
   mark: {
@@ -22,13 +23,27 @@ const styles = theme => ({
   }
 });
 
+@inject('appState')
+@observer
 class FacetStatus extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { classes, appState } = this.props;
+
+    let studied = 0
+    let facetState = appState.facetStateList.slice();
+    let stateLength = facetState.length;
+    if (stateLength > 0) {
+      facetState.forEach(function(val) {
+        studied += parseInt(val, 10);
+      });
+
+    }
+    console.log(appState.facetStateList);
+
     return (
       <div className={classes.mark}>
-        <span>已学习:<label className={classes.bgGre}>5</label></span>
-        <span>未学习:<label className={classes.bgGry}>5</label></span>
+        <span>已学习:<label className={classes.bgGre}>{studied}</label></span>
+        <span>未学习:<label className={classes.bgGry}>{stateLength-studied}</label></span>
       </div>
     );
   }
