@@ -343,7 +343,7 @@ class AppState {
         '?domainName=' +
         this.domainName.get() +
         '&topicName=' +
-        this.currentTopic.topicName +
+        this.currentTopic.topicName.split('+').join('%2B') +
         '&hasFragment=emptyAssembleContent');
       const result = await response.data;
       return result.data;
@@ -369,7 +369,7 @@ class AppState {
         '?domainName=' +
         this.domainName.get() +
         '&topicNames=' +
-        this.currentTopic.topicName +
+        this.currentTopic.topicName.split('+').join('%2B') +
         '&userId=' +
         this.studentCode
       );
