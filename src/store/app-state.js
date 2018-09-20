@@ -760,6 +760,7 @@ autorun(() => {
     appState.updateTopicStateList();
     appState.setInitial();
   }
+  //
 });
 
 export default appState;
