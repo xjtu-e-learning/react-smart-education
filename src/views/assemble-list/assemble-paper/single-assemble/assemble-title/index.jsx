@@ -45,7 +45,8 @@ const styles = {
 class AssembleTitle extends React.Component {
 
   handleClick = () => {
-    this.props.setSet({ replicate: !this.props.replicate });
+    if (this.props.setSet != null)
+      this.props.setSet({ replicate: !this.props.replicate });
   };
 
   render() {
