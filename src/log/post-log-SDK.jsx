@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const log_server_url = 'http://yotta.xjtushilei.com:8090';
+const log_server_url = 'http://47.105.158.15:8090';
 
 /**
  * 记录访客日志
