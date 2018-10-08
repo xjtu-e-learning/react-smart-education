@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react';
 import FacetContent from './facet-content';
 import FacetTree from './facet-tree';
 import FacetStatus from './facet-status';
+import { Popover } from 'antd';
 
 const drawerWidth = 240;
 
@@ -52,9 +53,11 @@ class FacetList extends Component {
         >
           <AppBar position="static" color="default">
             <Toolbar>
+              <Popover content={this.props.appState.currentTopic.topicName} trigger={'hover'} key={this.props.appState.currentTopic.topicId} placement="rightTop">
               <Typography variant="title" color="inherit" className={classes.JavaFacet}>
                 {this.props.appState.currentTopic.topicName}
               </Typography>
+              </Popover>
             </Toolbar>
           </AppBar>
           <Divider className={this.props.classes.divider}/>
