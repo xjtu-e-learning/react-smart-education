@@ -17,6 +17,12 @@ const styles = theme => ({
   topic: {
     color: 'white'
   },
+  specialTopic: {
+    color: 'white',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: '136px'
+  },
   fontsize12: {
     fontSize: '12px',
     paddingRight: 0
@@ -58,6 +64,7 @@ class RecommendationContent extends React.Component {
     this.props.appState.updateTopicStateList();
   }
 
+
   render() {
     const { classes, appState } = this.props;
     let topicStateDic = {};
@@ -68,71 +75,109 @@ class RecommendationContent extends React.Component {
     let studentCode = appState.studentCode;
     let courseId = appState.courseId;
     let domainName = appState.domainName.get();
-    return (
-      <List component="nav" className={classes.nav}>
-        {appState.currentRecommendationList !== undefined
-          ? appState.currentRecommendationList.map(topic => {
-            let topicId = topic.topicId;
-            let topicName = topic.topicName;
-            let facet = appState.facetsList.get() !== undefined && appState.facetsList.get()[topicName];
-            facet = Array.from(facet);
-            const content = (facet !== undefined) &&
-              (
-                <div>
-                  <List style={{ width: 200 }}>
-                    {facet.map(firstLayer =>
-                      <div key={firstLayer.firstLayerFacetId}>
-                        <ListItem key={firstLayer.firstLayerFacetId} className={classes.padding16}>
-                          <ListItemText disableTypography
-                                        className={classes.fontsize14}
-                                        primary={firstLayer.firstLayerFacetName}/>
-                        </ListItem>
-                        {firstLayer.secondLayerFacets.length !== 0 &&
-                        (
-                          <Collapse in={true} timeout="auto" unmountOnExit>
-                            {firstLayer.secondLayerFacets.map(secondLayer =>
-                              <ListItem key={secondLayer.secondLayerFacetId} className={classes.nested}>
-                                <ListItemIcon>
-                                  <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
-                                </ListItemIcon>
-                                <ListItemText disableTypography className={classes.fontsize12}
-                                              primary={secondLayer.secondLayerFacetName}/>
-                              </ListItem>
-                            )}
-                          </Collapse>
-                        )
-                        }
-                      </div>
-                    )}
-                  </List>
-                </div>
-              );
-            return (
-              <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
-                <ListItem button>
-                  <div>
-                    <Badge
-                      status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
-                  </div>
 
-                  <ListItemIcon>
-                    <BookIcon className={classes.topic}/>
-                  </ListItemIcon>
-                  <ListItemText
-                    disableTypography
-                    className={classes.topic}
-                    primary={topic.topicName}
-                    id={topic.topicId}
-                    onClick={this.handleClick.bind(this, studentCode, courseId, domainName, topicName, topicId)}
-                  />
-                </ListItem>
-              </Popover>
-            );
-          })
-          : null}
-      </List>
-    );
+    const specialCourseId = ['5'];
+
+    // 如果当前的课程编号不是特殊课程
+    if (specialCourseId.indexOf(courseId) == -1) {
+      return (
+        <List component="nav" className={classes.nav}>
+          {appState.currentRecommendationList !== undefined
+            ? appState.currentRecommendationList.map(topic => {
+              let topicId = topic.topicId;
+              let topicName = topic.topicName;
+              let facet = appState.facetsList.get() !== undefined && appState.facetsList.get()[topicName];
+              facet = Array.from(facet);
+              const content = (facet !== undefined) &&
+                (
+                  <div>
+                    <List style={{ width: 200 }}>
+                      {facet.map(firstLayer =>
+                        <div key={firstLayer.firstLayerFacetId}>
+                          <ListItem key={firstLayer.firstLayerFacetId} className={classes.padding16}>
+                            <ListItemText disableTypography
+                                          className={classes.fontsize14}
+                                          primary={firstLayer.firstLayerFacetName}/>
+                          </ListItem>
+                          {firstLayer.secondLayerFacets.length !== 0 &&
+                          (
+                            <Collapse in={true} timeout="auto" unmountOnExit>
+                              {firstLayer.secondLayerFacets.map(secondLayer =>
+                                <ListItem key={secondLayer.secondLayerFacetId} className={classes.nested}>
+                                  <ListItemIcon>
+                                    <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
+                                  </ListItemIcon>
+                                  <ListItemText disableTypography className={classes.fontsize12}
+                                                primary={secondLayer.secondLayerFacetName}/>
+                                </ListItem>
+                              )}
+                            </Collapse>
+                          )
+                          }
+                        </div>
+                      )}
+                    </List>
+                  </div>
+                );
+              return (
+                <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
+                  <ListItem button>
+                    <div>
+                      <Badge
+                        status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
+                    </div>
+
+                    <ListItemIcon>
+                      <BookIcon className={classes.topic}/>
+                    </ListItemIcon>
+                    <ListItemText
+                      disableTypography
+                      className={classes.topic}
+                      primary={topic.topicName}
+                      id={topic.topicId}
+                      onClick={this.handleClick.bind(this, studentCode, courseId, domainName, topicName, topicId)}
+                    />
+                  </ListItem>
+                </Popover>
+              );
+            })
+            : null}
+        </List>
+      );
+    }
+    else {
+      // 针对特殊课程
+      return (
+        <List component="nav" className={classes.nav}>
+          {appState.currentRecommendationList !== undefined
+            ? appState.currentRecommendationList.map(topic => {
+              let topicId = topic.topicId;
+              let topicName = topic.topicName;
+              const content = topicName;
+              return (
+                <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
+                  <ListItem button>
+                    <div>
+                      <Badge
+                        status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
+                    </div>
+                    <ListItemText
+                      disableTypography
+                      className={classes.specialTopic}
+                      primary={topic.topicName}
+                      id={topic.topicId}
+                      onClick={this.handleClick.bind(this, studentCode, courseId, domainName, topicName, topicId)}
+                    />
+                  </ListItem>
+                </Popover>
+              );
+            })
+            : null}
+        </List>
+      );
+    }
   }
+
 }
 
 RecommendationContent.propTypes = {
