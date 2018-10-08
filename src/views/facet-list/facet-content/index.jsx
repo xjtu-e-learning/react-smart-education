@@ -10,7 +10,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import { inject, observer } from 'mobx-react';
-import { Badge } from 'antd';
+import { Badge, Popover } from 'antd';
 import { post_log_of_mouseclick_facet } from '../../../log/post-log-SDK';
 
 const styles = theme => ({
@@ -29,8 +29,16 @@ const styles = theme => ({
   },
   fontsize14: {
     fontSize: '14px'
-  }
+  },
+  JavaFacet: {
+    //color: 'white',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: '136px'
+  },
 });
+
+
 
 @inject('appState')
 @observer
@@ -97,63 +105,133 @@ class FacetContent extends React.Component {
       });
     }
 
-    return (
-      <div className={classes.root}>
-        <List component="nav">
-          {appState.facetList.get() !== undefined
-            ? appState.facetList.get().map((facet, index) => {
-              if (facet.secondLayerFacets.length === 0) {
-                // console.log(appState.facetStateList[index]);
-                return (
-                  <ListItem
-                    button
-                    key={facet.firstLayerFacetId}
-                    onClick={this.handleClick.bind(
-                      this,
-                      facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
-                    )}
-                  >
-                    <div>
-                      <Badge
-                        status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
+
+
+    //Java课程
+    if (courseId === '5'){
+      return (
+        <div className={classes.root}>
+          <List component="nav">
+            {appState.facetList.get() !== undefined
+              ? appState.facetList.get().map((facet, index) => {
+                if (facet.secondLayerFacets.length === 0) {
+                  // console.log(appState.facetStateList[index]);
+                  const content = facet.firstLayerFacetName;
+                  return (
+                    <Popover content={content} trigger={'hover'} key={facet.firstLayerFacetId} placement="rightTop">
+                      <ListItem
+                        button
+                        key={facet.firstLayerFacetId}
+                        onClick={this.handleClick.bind(
+                          this,
+                          facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
+                        )}
+                      >
+                        <div>
+                          <Badge
+                            status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
+                        </div>
+                        <ListItemText
+                          disableTypography
+                          className={classes.JavaFacet}
+                          inset
+                          primary={facet.firstLayerFacetName}
+                        />
+                      </ListItem>
+                    </Popover>
+                  );
+                } else {
+                  const secondLayer = facet.secondLayerFacets.map(
+                    secondFacet => (
+                      <Popover content={secondFacet.secondLayerFacetName} trigger={'hover'} key={secondFacet.secondLayerFacetId} placement="rightTop">
+                      <ListItem
+                        button
+                        className={classes.nested}
+                        key={secondFacet.secondLayerFacetId}
+                        onClick={this.handleClickSecondLayer.bind(
+                          this,
+                          facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
+                        )}
+                      >
+                        <ListItemIcon>
+                          <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
+                        </ListItemIcon>
+                        <ListItemText
+                          disableTypography
+                          className={classes.JavaFacet}
+                          inset
+                          primary={secondFacet.secondLayerFacetName}
+                        />
+                      </ListItem>
+                      </Popover>
+                    )
+                  );
+                  const content = facet.firstLayerFacetName;
+                  return (
+                    <div key={facet.firstLayerFacetId}>
+                      <Popover content={content} trigger={'hover'} key={facet.firstLayerId} placement="rightTop">
+                      <ListItem
+                          button
+                          onClick={this.handleClickWithFacet.bind(
+                            this,
+                            facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
+                          )}
+                        >
+                          <div>
+                            <Badge
+                              status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
+                          </div>
+                          <ListItemText
+                            disableTypography
+                            className={classes.JavaFacet}
+                            inset
+                            primary={facet.firstLayerFacetName}
+                          />
+                          {appState.facetCollapse[
+                            facet.firstLayerFacetName
+                            ] ? (
+                            <ExpandLess/>
+                          ) : (
+                            <ExpandMore/>
+                          )}
+                        </ListItem>
+                      </Popover>
+                      <Collapse
+                        in={
+                          !appState.facetCollapse[
+                            facet.firstLayerFacetName
+                            ]
+                        }
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <List component="div" disablePadding>
+                          {secondLayer}
+                        </List>
+                      </Collapse>
                     </div>
-                    <ListItemText
-                      disableTypography
-                      className={classes.fontsize14}
-                      inset
-                      primary={facet.firstLayerFacetName}
-                    />
-                  </ListItem>
-                );
-              } else {
-                const secondLayer = facet.secondLayerFacets.map(
-                  secondFacet => (
+                  );
+                }
+              })
+              : null}
+          </List>
+        </div>
+      );
+    }
+    //其他课程
+    else {
+      return (
+        <div className={classes.root}>
+          <List component="nav">
+            {appState.facetList.get() !== undefined
+              ? appState.facetList.get().map((facet, index) => {
+                if (facet.secondLayerFacets.length === 0) {
+                  // console.log(appState.facetStateList[index]);
+                  return (
                     <ListItem
                       button
-                      className={classes.nested}
-                      key={secondFacet.secondLayerFacetId}
-                      onClick={this.handleClickSecondLayer.bind(
-                        this,
-                        facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
-                      )}
-                    >
-                      <ListItemIcon>
-                        <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
-                      </ListItemIcon>
-                      <ListItemText
-                        disableTypography
-                        className={classes.fontsize12}
-                        inset
-                        primary={secondFacet.secondLayerFacetName}
-                      />
-                    </ListItem>
-                  )
-                );
-                return (
-                  <div key={facet.firstLayerFacetId}>
-                    <ListItem
-                      button
-                      onClick={this.handleClickWithFacet.bind(
+                      key={facet.firstLayerFacetId}
+                      onClick={this.handleClick.bind(
                         this,
                         facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
                       )}
@@ -168,36 +246,83 @@ class FacetContent extends React.Component {
                         inset
                         primary={facet.firstLayerFacetName}
                       />
-                      {appState.facetCollapse[
-                        facet.firstLayerFacetName
-                        ] ? (
-                        <ExpandLess/>
-                      ) : (
-                        <ExpandMore/>
-                      )}
                     </ListItem>
-                    <Collapse
-                      in={
-                        !appState.facetCollapse[
+                  );
+                } else {
+                  const secondLayer = facet.secondLayerFacets.map(
+                    secondFacet => (
+                      <ListItem
+                        button
+                        className={classes.nested}
+                        key={secondFacet.secondLayerFacetId}
+                        onClick={this.handleClickSecondLayer.bind(
+                          this,
+                          facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
+                        )}
+                      >
+                        <ListItemIcon>
+                          <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
+                        </ListItemIcon>
+                        <ListItemText
+                          disableTypography
+                          className={classes.JavaFacet}
+                          inset
+                          primary={secondFacet.secondLayerFacetName}
+                        />
+                      </ListItem>
+                    )
+                  );
+                  return (
+                    <div key={facet.firstLayerFacetId}>
+                      <ListItem
+                        button
+                        onClick={this.handleClickWithFacet.bind(
+                          this,
+                          facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, studentCode, courseId, domainName
+                        )}
+                      >
+                        <div>
+                          <Badge
+                            status={(appState.facetStateList[index] === '1' && 'success') || (appState.facetStateList[index] === '0' && 'default')}/>
+                        </div>
+                        <ListItemText
+                          disableTypography
+                          className={classes.JavaFacet}
+                          inset
+                          primary={facet.firstLayerFacetName}
+                        />
+                        {appState.facetCollapse[
                           facet.firstLayerFacetName
-                          ]
-                      }
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <List component="div" disablePadding>
-                        {secondLayer}
-                      </List>
-                    </Collapse>
-                  </div>
-                );
-              }
-            })
-            : null}
-        </List>
-      </div>
-    );
-  }
+                          ] ? (
+                          <ExpandLess/>
+                        ) : (
+                          <ExpandMore/>
+                        )}
+                      </ListItem>
+                      <Collapse
+                        in={
+                          !appState.facetCollapse[
+                            facet.firstLayerFacetName
+                            ]
+                        }
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <List component="div" disablePadding>
+                          {secondLayer}
+                        </List>
+                      </Collapse>
+                    </div>
+                  );
+                }
+              })
+              : null}
+          </List>
+        </div>
+      );
+    }
+
+      }
 }
 
 FacetContent.propTypes = {
