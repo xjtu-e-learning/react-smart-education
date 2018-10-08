@@ -22,6 +22,12 @@ const styles = theme => ({
     borderBottom: '1px solid rgb(0,0,0,0.12)',
     height: document.body.clientHeight - 480
   },
+  JavaFacet: {
+    //color: 'white',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: '136px'
+  },
   topicName: {
     lineHeight: '43px',
     textAlign: 'center'
@@ -33,27 +39,56 @@ const styles = theme => ({
 @observer
 class FacetList extends Component {
   render() {
-    return (
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: this.props.classes.drawerPaper
-        }}
-      >
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              {this.props.appState.currentTopic.topicName}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Divider className={this.props.classes.divider}/>
-        <FacetContent/>
-        <FacetStatus/>
-        <Divider className={this.props.classes.divider}/>
-        <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
-      </Drawer>
-    );
+    const {appState, classes} = this.props;
+    let courseId = appState.courseId;
+    //Java课程
+    if (courseId === '5'){
+      return(
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: this.props.classes.drawerPaper
+          }}
+        >
+          <AppBar position="static" color="default">
+            <Toolbar>
+              <Typography variant="title" color="inherit" className={classes.JavaFacet}>
+                {this.props.appState.currentTopic.topicName}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Divider className={this.props.classes.divider}/>
+          <FacetContent/>
+          <FacetStatus/>
+          <Divider className={this.props.classes.divider}/>
+          <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
+        </Drawer>
+      )
+    }
+    //其他课程
+    else {
+      return (
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: this.props.classes.drawerPaper
+          }}
+        >
+          <AppBar position="static" color="default">
+            <Toolbar>
+              <Typography variant="title" color="inherit">
+                {this.props.appState.currentTopic.topicName}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Divider className={this.props.classes.divider}/>
+          <FacetContent/>
+          <FacetStatus/>
+          <Divider className={this.props.classes.divider}/>
+          <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
+        </Drawer>
+      );
+    }
   }
 }
 
