@@ -23,6 +23,10 @@ const styles = theme => ({
     overflow: 'hidden',
     width: '136px'
   },
+  highlightStyle: {
+    backgroundColor: '#374d53 !important',
+    borderLeft: '1px solid #61d9fa'
+  },
   fontsize12: {
     fontSize: '12px',
     paddingRight: 0
@@ -62,7 +66,7 @@ class RecommendationContent extends React.Component {
 
   componentDidMount() {
     this.props.appState.updateTopicStateList();
-  }
+  };
 
 
   render() {
@@ -121,7 +125,10 @@ class RecommendationContent extends React.Component {
                 );
               return (
                 <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
-                  <ListItem button>
+                  <ListItem button
+                            classes={{ selected: classes.highlightStyle }}
+                            selected={Number(appState.currentTopic.topicId) === topicId}
+                  >
                     <div>
                       <Badge
                         status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
@@ -156,7 +163,10 @@ class RecommendationContent extends React.Component {
               const content = topicName;
               return (
                 <Popover content={content} trigger={'hover'} key={topic.topicId} placement="rightTop">
-                  <ListItem button>
+                  <ListItem button
+                            classes={{ selected: classes.highlightStyle }}
+                            selected={Number(appState.currentTopic.topicId) === topicId}
+                  >
                     <div>
                       <Badge
                         status={(topicStateDic[topic.topicName] === '2' && 'success') || (topicStateDic[topic.topicName] === '1' && 'processing') || (topicStateDic[topic.topicName] === '0' && 'default') || 'default'}/>
