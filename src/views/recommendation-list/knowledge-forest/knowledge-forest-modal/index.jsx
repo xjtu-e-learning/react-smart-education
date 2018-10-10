@@ -16,7 +16,6 @@ class KnowledgeForestModal extends React.Component {
   render() {
     let graph = dataTool.gexf.parse(this.props.appState.graphXml.get());
     let states = this.props.appState.topicStateList;
-
     let studied = 0;
     let studying = 0;
     let studysoon = 0;
@@ -49,7 +48,7 @@ class KnowledgeForestModal extends React.Component {
           return;
         } else {
           states.forEach(function(topic) {
-            if (topic.topicName === node.id) {
+            if (topic.topicName === node.name) {
               node.category = Number(topic.state);
             }
           });
@@ -90,7 +89,7 @@ class KnowledgeForestModal extends React.Component {
         animationDuration: 1500,
         animationEasingUpdate: 'quinticInOut',
         // 绿色、猩红色、黑色（红绿灯版本）
-        color: ['#848484', '#DC143C', '#008000'],
+        color: ['#848484', '#548FFB', '#008000'],
         // 绿色、金色、深灰色 （地铁版本）
         // color:['#008000','#FFD700','#A9A9A9'],
         series: [{
@@ -123,7 +122,7 @@ class KnowledgeForestModal extends React.Component {
             { name: '正在学习', value: studying },
             { name: '未学习', value: studysoon }
           ],
-          color: ['#008000', '#DC143C', '#848484'],
+          color: ['#008000', '#548FFB', '#848484'],
           name: '学习进度',
           type: 'pie',
           center: ['15%', '80%'],
