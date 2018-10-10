@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { inject, observer } from 'mobx-react';
-import Typography from "@material-ui/core/Typography/Typography";
+import Typography from '@material-ui/core/Typography/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 
@@ -61,9 +61,9 @@ class TextVideoTab extends React.Component {
     const { classes } = this.props;
     const value = this.props.appState.textOrVideo;
 
-    const {appState} = this.props;
-    let labeltext = "富文本 （" + (appState.currentAssembleList.text !== undefined ? appState.currentAssembleList.text.length : 0).toString() + '）';
-    let labelvideo = "视频 （" + (appState.currentAssembleList !== undefined ? appState.currentAssembleList.video.length : 0).toString() + ')';
+    const { appState } = this.props;
+    let labeltext = '富文本 （' + (appState.currentAssembleList.text !== undefined ? appState.currentAssembleList.text.length : 0).toString() + '）';
+    let labelvideo = '视频 （' + (appState.currentAssembleList !== undefined ? appState.currentAssembleList.video.length : 0).toString() + '）';
 
     return (
       <Tabs value={value} onChange={this.handleChange}
