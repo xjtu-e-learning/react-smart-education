@@ -25,6 +25,15 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = { height: document.body.clientHeight};
+  }
+
+  resize = () => {
+    this.setState({height: document.body.clientHeight});
+  }
+
   componentDidMount() {
     // 解析课程id
     if (queryString.parse(this.props.location.search).courseId !== undefined) {
@@ -42,11 +51,16 @@ class App extends Component {
       );
     }
     post_log_of_visit();
+    window.addEventListener("resize",this.resize);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize",this.resize);
   }
 
   render() {
     return (
-      <div className={this.props.classes.root}>
+      <div className={this.props.classes.root} style={{ height: this.state.height }}>
         <TitleBar/>
         <RecommendationList/>
         <FacetList/>
