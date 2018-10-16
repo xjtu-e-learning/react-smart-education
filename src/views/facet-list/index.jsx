@@ -73,7 +73,7 @@ class FacetList extends Component {
             <Toolbar>
               <Popover content={this.props.appState.currentTopic.topicName} trigger={'hover'}
                        key={this.props.appState.currentTopic.topicId} placement="rightTop">
-                <Typography variant="title" color="inherit" className={classes.JavaFacet}>
+                <Typography variant="h6" color="inherit" className={classes.JavaFacet}>
                   {this.props.appState.currentTopic.topicName}
                 </Typography>
               </Popover>
@@ -99,7 +99,7 @@ class FacetList extends Component {
         >
           <AppBar position="static" color="default">
             <Toolbar>
-              <Typography variant="title" color="inherit">
+              <Typography variant="h6" color="inherit">
                 {this.props.appState.currentTopic.topicName}
               </Typography>
             </Toolbar>

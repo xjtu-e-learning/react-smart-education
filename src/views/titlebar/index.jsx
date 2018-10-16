@@ -37,7 +37,7 @@ class TitleBar extends Component {
         <ToolBar className={classes.toolBar}>
           <div className={classes.toolBarTitle}>
             <Typography
-              variant="title"
+              variant="h6"
               color="inherit"
               align="center"
               className={classes.toolBarTitleContent}
