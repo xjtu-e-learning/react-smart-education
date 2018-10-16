@@ -25,14 +25,14 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { height: document.body.clientHeight};
+    this.state = { height: document.body.clientHeight };
   }
 
   resize = () => {
-    this.setState({height: document.body.clientHeight});
-  }
+    this.setState({ height: document.body.clientHeight });
+  };
 
   componentDidMount() {
     // 解析课程id
@@ -51,11 +51,11 @@ class App extends Component {
       );
     }
     post_log_of_visit();
-    window.addEventListener("resize",this.resize);
+    window.addEventListener('resize', this.resize);
   }
 
-  componentWillUnmount(){
-    window.removeEventListener("resize",this.resize);
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
   }
 
   render() {
