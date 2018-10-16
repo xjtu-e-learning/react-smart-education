@@ -21,10 +21,29 @@ const styles = theme => ({
 });
 
 class AssembleList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      height: document.body.clientHeight
+    };
+  }
+
+  resize = () => {
+    this.setState({ height: document.body.clientHeight });
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
   render() {
     const { classes } = this.props;
     return (
-      <main className={classes.content}>
+      <main className={classes.content} style={{ height: this.state.height }}>
         <Paper>
           <AssembleListTitlebar/>
           <AssemblePaper/>
