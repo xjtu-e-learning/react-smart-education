@@ -30,6 +30,18 @@ export const PATH_evaluationSaveAssembleEvaluation =
 /** AppState类，存储应用中的状态 */
 class AppState {
   /**
+   * window height
+   * @type {number}
+   */
+  @observable
+  clientHeight = document.body.clientHeight;
+
+  @action
+  setClientHeight() {
+    this.clientHeight = document.body.clientHeight;
+  }
+
+  /**
    * 网院课程Id
    * @type {number}
    */

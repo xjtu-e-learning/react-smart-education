@@ -54,12 +54,7 @@ const styles = theme => ({
 class RecommendationContent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { height: document.body.clientHeight - 408 };
   }
-
-  resize = () => {
-    this.setState({ height: document.body.clientHeight - 408 });
-  };
 
   handleClick = (studentCode, courseId, domainName, topicName, topicId, event) => {
     this.props.appState.setCurrentTopicName(event.target.innerText);
@@ -72,15 +67,6 @@ class RecommendationContent extends React.Component {
       post_log_of_mouseover_topic('学习页面', topicName, topicId, studentCode, courseId, domainName);
     }
   };
-
-  componentDidMount() {
-    this.props.appState.updateTopicStateList();
-    window.addEventListener('resize', this.resize);
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
 
   render() {
     const { classes, appState } = this.props;
@@ -98,7 +84,7 @@ class RecommendationContent extends React.Component {
     // 如果当前的课程编号不是特殊课程
     if (specialCourseId.indexOf(courseId) == -1) {
       return (
-        <List component="nav" className={classes.nav} style={{ height: this.state.height }}>
+        <List component="nav" className={classes.nav} style={{ height: this.props.appState.clientHeight - 408 }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
@@ -168,7 +154,7 @@ class RecommendationContent extends React.Component {
     else {
       // 针对特殊课程
       return (
-        <List component="nav" className={classes.nav} style={{ height: this.state.height }}>
+        <List component="nav" className={classes.nav} style={{ height: this.props.appState.clientHeight - 408 }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;

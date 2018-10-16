@@ -43,19 +43,6 @@ const styles = theme => ({
 class FacetContent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { height: document.body.clientHeight - 504 };
-  }
-
-  resize = () => {
-    this.setState({ height: document.body.clientHeight - 504 });
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
   }
 
   handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
@@ -119,7 +106,7 @@ class FacetContent extends React.Component {
     //Java课程
     if (courseId === '5') {
       return (
-        <div className={classes.root} style={{ height: this.state.height }}>
+        <div className={classes.root} style={{ height: this.props.appState.clientHeight - 504 }}>
           <List component="nav">
             {appState.facetList.get() !== undefined
               ? appState.facetList.get().map((facet, index) => {
@@ -231,7 +218,7 @@ class FacetContent extends React.Component {
     //其他课程
     else {
       return (
-        <div className={classes.root} style={{ height: this.state.height }}>
+        <div className={classes.root} style={{ height: this.props.appState.clientHeight - 504 }}>
           <List component="nav">
             {appState.facetList.get() !== undefined
               ? appState.facetList.get().map((facet, index) => {

@@ -24,19 +24,6 @@ class AssemblePaper extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { height: document.body.clientHeight - 224 };
-  }
-
-  resize = () => {
-    this.setState({ height: document.body.clientHeight - 224 });
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
   }
 
   render() {
@@ -47,7 +34,7 @@ class AssemblePaper extends React.Component {
     const domainName = appState.domainName.get();
     const domainId = appState.domainId.get();
     return (
-      <Paper className={classes.grid} style={{ height: this.state.height }}>
+      <Paper className={classes.grid} style={{ height: this.props.appState.clientHeight - 224 }}>
         {currentAssembles !== undefined &&
         currentAssembles.content.map(assemble => (
           <SingleAssemble assemble={assemble} studentCode={studentCode} courseId={courseId} domainName={domainName}

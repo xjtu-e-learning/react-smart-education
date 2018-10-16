@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AssemblePaper from './assemble-paper';
 import AssembleListTitlebar from './assemble-list-titlebar';
 import AssemblePagination from './assemble-pagination';
+import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
   content: {
@@ -20,30 +21,17 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
+@inject('appState')
+@observer
 class AssembleList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      height: document.body.clientHeight
-    };
-  }
-
-  resize = () => {
-    this.setState({ height: document.body.clientHeight });
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
   }
 
   render() {
     const { classes } = this.props;
     return (
-      <main className={classes.content} style={{ height: this.state.height }}>
+      <main className={classes.content} style={{ height: this.props.appState.clientHeight }}>
         <Paper>
           <AssembleListTitlebar/>
           <AssemblePaper/>

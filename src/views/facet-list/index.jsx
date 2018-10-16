@@ -41,19 +41,6 @@ const styles = theme => ({
 class FacetList extends Component {
   constructor(props) {
     super(props);
-    this.state = { height: document.body.clientHeight - 480 };
-  }
-
-  resize = () => {
-    this.setState({ height: document.body.clientHeight - 480 });
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
   }
 
   render() {
@@ -67,7 +54,7 @@ class FacetList extends Component {
           classes={{
             paper: this.props.classes.drawerPaper
           }}
-          PaperProps={{ style: { height: this.state.height } }}
+          PaperProps={{ style: { height: this.props.appState.clientHeight - 480 } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>
@@ -95,7 +82,7 @@ class FacetList extends Component {
           classes={{
             paper: this.props.classes.drawerPaper
           }}
-          PaperProps={{ style: { height: this.state.height } }}
+          PaperProps={{ style: { height: this.props.appState.clientHeight - 480 } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>
