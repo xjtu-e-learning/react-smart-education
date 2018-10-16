@@ -52,6 +52,15 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class RecommendationContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { height: document.body.clientHeight - 408 };
+  }
+
+  resize = () => {
+    this.setState({ height: document.body.clientHeight - 408 });
+  };
+
   handleClick = (studentCode, courseId, domainName, topicName, topicId, event) => {
     this.props.appState.setCurrentTopicName(event.target.innerText);
     this.props.appState.setCurrentTopicId(event.target.id);
@@ -66,8 +75,12 @@ class RecommendationContent extends React.Component {
 
   componentDidMount() {
     this.props.appState.updateTopicStateList();
+    window.addEventListener('resize', this.resize);
   };
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
 
   render() {
     const { classes, appState } = this.props;
@@ -85,7 +98,7 @@ class RecommendationContent extends React.Component {
     // 如果当前的课程编号不是特殊课程
     if (specialCourseId.indexOf(courseId) == -1) {
       return (
-        <List component="nav" className={classes.nav}>
+        <List component="nav" className={classes.nav} style={{ height: this.state.height }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
@@ -155,7 +168,7 @@ class RecommendationContent extends React.Component {
     else {
       // 针对特殊课程
       return (
-        <List component="nav" className={classes.nav}>
+        <List component="nav" className={classes.nav} style={{ height: this.state.height }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
