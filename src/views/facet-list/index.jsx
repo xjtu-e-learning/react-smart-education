@@ -20,7 +20,7 @@ const styles = theme => ({
     backgroundColor: 'white',
     marginTop: 80,
     borderTop: '1px solid rgb(0,0,0,0.12)',
-    borderBottom: '1px solid rgb(0,0,0,0.12)',
+    // borderBottom: '1px solid rgb(0,0,0,0.12)',
     height: document.body.clientHeight - 480
   },
   JavaFacet: {
@@ -39,24 +39,43 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class FacetList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { height: document.body.clientHeight - 480 };
+  }
+
+  resize = () => {
+    this.setState({ height: document.body.clientHeight - 480 });
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
   render() {
-    const {appState, classes} = this.props;
+    const { appState, classes } = this.props;
     let courseId = appState.courseId;
     //Java课程
-    if (courseId === '5'){
-      return(
+    if (courseId === '5') {
+      return (
         <Drawer
           variant="permanent"
           classes={{
             paper: this.props.classes.drawerPaper
           }}
+          PaperProps={{ style: { height: this.state.height } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>
-              <Popover content={this.props.appState.currentTopic.topicName} trigger={'hover'} key={this.props.appState.currentTopic.topicId} placement="rightTop">
-              <Typography variant="title" color="inherit" className={classes.JavaFacet}>
-                {this.props.appState.currentTopic.topicName}
-              </Typography>
+              <Popover content={this.props.appState.currentTopic.topicName} trigger={'hover'}
+                       key={this.props.appState.currentTopic.topicId} placement="rightTop">
+                <Typography variant="title" color="inherit" className={classes.JavaFacet}>
+                  {this.props.appState.currentTopic.topicName}
+                </Typography>
               </Popover>
             </Toolbar>
           </AppBar>
@@ -66,7 +85,7 @@ class FacetList extends Component {
           <Divider className={this.props.classes.divider}/>
           <FacetTree currentFacetTree={this.props.appState.currentFacetTree.get()}/>
         </Drawer>
-      )
+      );
     }
     //其他课程
     else {
@@ -76,6 +95,7 @@ class FacetList extends Component {
           classes={{
             paper: this.props.classes.drawerPaper
           }}
+          PaperProps={{ style: { height: this.state.height } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>

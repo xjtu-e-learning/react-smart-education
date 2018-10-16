@@ -35,17 +35,27 @@ const styles = theme => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     width: '136px'
-  },
+  }
 });
-
-
 
 @inject('appState')
 @observer
 class FacetContent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { height: document.body.clientHeight - 504 };
+  }
+
+  resize = () => {
+    this.setState({ height: document.body.clientHeight - 504 });
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
   }
 
   handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
@@ -106,11 +116,10 @@ class FacetContent extends React.Component {
     }
 
 
-
     //Java课程
-    if (courseId === '5'){
+    if (courseId === '5') {
       return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{ height: this.state.height }}>
           <List component="nav">
             {appState.facetList.get() !== undefined
               ? appState.facetList.get().map((facet, index) => {
@@ -143,26 +152,27 @@ class FacetContent extends React.Component {
                 } else {
                   const secondLayer = facet.secondLayerFacets.map(
                     secondFacet => (
-                      <Popover content={secondFacet.secondLayerFacetName} trigger={'hover'} key={secondFacet.secondLayerFacetId} placement="rightTop">
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        key={secondFacet.secondLayerFacetId}
-                        onClick={this.handleClickSecondLayer.bind(
-                          this,
-                          facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
-                        )}
-                      >
-                        <ListItemIcon>
-                          <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
-                        </ListItemIcon>
-                        <ListItemText
-                          disableTypography
-                          className={classes.JavaFacet}
-                          inset
-                          primary={secondFacet.secondLayerFacetName}
-                        />
-                      </ListItem>
+                      <Popover content={secondFacet.secondLayerFacetName} trigger={'hover'}
+                               key={secondFacet.secondLayerFacetId} placement="rightTop">
+                        <ListItem
+                          button
+                          className={classes.nested}
+                          key={secondFacet.secondLayerFacetId}
+                          onClick={this.handleClickSecondLayer.bind(
+                            this,
+                            facet.firstLayerFacetName, facet.topicName, facet.topicId, facet.firstLayerFacetId, secondFacet.secondLayerFacetName, secondFacet.secondLayerFacetId, studentCode, courseId, domainName
+                          )}
+                        >
+                          <ListItemIcon>
+                            <StarBorder style={{ fontSize: 16, marginRight: 0 }}/>
+                          </ListItemIcon>
+                          <ListItemText
+                            disableTypography
+                            className={classes.JavaFacet}
+                            inset
+                            primary={secondFacet.secondLayerFacetName}
+                          />
+                        </ListItem>
                       </Popover>
                     )
                   );
@@ -170,7 +180,7 @@ class FacetContent extends React.Component {
                   return (
                     <div key={facet.firstLayerFacetId}>
                       <Popover content={content} trigger={'hover'} key={facet.firstLayerId} placement="rightTop">
-                      <ListItem
+                        <ListItem
                           button
                           onClick={this.handleClickWithFacet.bind(
                             this,
@@ -221,7 +231,7 @@ class FacetContent extends React.Component {
     //其他课程
     else {
       return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{ height: this.state.height }}>
           <List component="nav">
             {appState.facetList.get() !== undefined
               ? appState.facetList.get().map((facet, index) => {
@@ -322,7 +332,7 @@ class FacetContent extends React.Component {
       );
     }
 
-      }
+  }
 }
 
 FacetContent.propTypes = {
