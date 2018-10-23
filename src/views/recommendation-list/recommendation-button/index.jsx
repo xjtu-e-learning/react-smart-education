@@ -118,6 +118,7 @@ class RecommendationButton extends React.Component {
             }
             className={classes.white}
             classes={{ icon: classes.white }}
+            style={{ height: 38 }}
           >
             {recnames.map(recname => (
               <MenuItem value={recname} key={recname}>{recname}</MenuItem>
