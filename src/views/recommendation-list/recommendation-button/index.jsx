@@ -128,7 +128,8 @@ class RecommendationButton extends React.Component {
         <Button variant="outlined" className={classes.button} style={{ width: 86 }}>
           确认
         </Button>
-        <Button variant="outlined" className={classes.button} style={{ width: '100%' }}>
+        <Button variant="outlined" className={classes.button}
+                style={{ width: '100%', color: 'white', display: (this.state.name === '零基础' && 'none') || 'inherit' }}>
           选择知识主题
         </Button>
       </form>
