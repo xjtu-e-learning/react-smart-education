@@ -7,9 +7,10 @@ import { post_log_of_mouseclick_Global_Graph } from '../../../log/post-log-SDK';
 
 const styles = theme => ({
   image: {
-    height: 240,
-    width: 240,
-    bottom: 0,
+    height: 160,
+    width: 160,
+    left: 40,
+    bottom: 10,
     position: 'fixed',
     cursor: 'pointer'
   }
