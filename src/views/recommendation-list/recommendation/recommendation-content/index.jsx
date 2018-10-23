@@ -8,8 +8,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import BookIcon from '@material-ui/icons/Book';
 import { inject, observer } from 'mobx-react';
 import { Badge, Popover } from 'antd';
-import { post_log_of_mouseover_topic } from '../../../log/post-log-SDK';
-import appState from '../../../store/app-state';
+import { post_log_of_mouseover_topic } from '../../../../log/post-log-SDK';
+import appState from '../../../../store/app-state';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 
@@ -82,9 +82,10 @@ class RecommendationContent extends React.Component {
     const specialCourseId = ['5'];
 
     // 如果当前的课程编号不是特殊课程
-    if (specialCourseId.indexOf(courseId) == -1) {
+    if (specialCourseId.indexOf(courseId) === -1) {
       return (
-        <List component="nav" className={classes.nav} style={{ height: this.props.appState.clientHeight - 408 }}>
+        <List component="nav" className={classes.nav}
+              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 131px' }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
@@ -154,7 +155,8 @@ class RecommendationContent extends React.Component {
     else {
       // 针对特殊课程
       return (
-        <List component="nav" className={classes.nav} style={{ height: this.props.appState.clientHeight - 408 }}>
+        <List component="nav" className={classes.nav}
+              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 131px' }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
@@ -183,7 +185,8 @@ class RecommendationContent extends React.Component {
             })
             : null}
         </List>
-      );
+      )
+        ;
     }
   }
 

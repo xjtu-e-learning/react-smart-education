@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { inject, observer } from 'mobx-react';
-import { post_log_of_mouseclick_recommendation } from '../../../log/post-log-SDK';
+import { post_log_of_mouseclick_recommendation } from '../../../../log/post-log-SDK';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
 
@@ -78,22 +78,6 @@ class RecommendationButton extends React.Component {
     }
     return (
       <form className={classes.root} autoComplete="off">
-        {/*<FormControl className={classes.formControl}>*/}
-        {/*<InputLabel className={classes.white} htmlFor="name-simple">*/}
-        {/*主题推荐方式*/}
-        {/*</InputLabel>*/}
-        {/*<Select*/}
-        {/*value={this.state.name}*/}
-        {/*onChange={this.handleChange.bind(this, studentCode, courseId, domainName)}*/}
-        {/*className={classes.white}*/}
-        {/*>*/}
-        {/*{recnames.map(recname => (*/}
-        {/*<MenuItem value={recname} key={recname}>*/}
-        {/*{recname}*/}
-        {/*</MenuItem>*/}
-        {/*))}*/}
-        {/*</Select>*/}
-        {/*</FormControl>*/}
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {

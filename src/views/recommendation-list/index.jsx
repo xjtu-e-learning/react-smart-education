@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import List from '@material-ui/core/List/List';
-import Divider from '@material-ui/core/Divider/Divider';
 import Drawer from '@material-ui/core/Drawer/Drawer';
 import { withStyles } from '@material-ui/core/styles';
 
-import RecommendationButton from './recommendation-button';
-import RecommendationContent from './recommendation-content';
-import KnowledgeForesst from './knowledge-forest';
-import RecommendationStatus from './recommendation-status';
+import KnowledgeForest from './knowledge-forest';
+import Recommendation from './recommendation';
 
 const drawerWidth = 240;
 
@@ -37,13 +33,8 @@ class RecommendationList extends Component {
         }}
       >
         <div className={this.props.classes.toolbar}/>
-        <List>
-          <RecommendationButton/>
-        </List>
-        <Divider className={this.props.classes.divider}/>
-        <RecommendationContent/>
-        <RecommendationStatus/>
-        <KnowledgeForesst/>
+        <Recommendation/>
+        <KnowledgeForest/>
       </Drawer>
     );
   }

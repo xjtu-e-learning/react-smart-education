@@ -206,7 +206,7 @@ class AppState {
    * @type {string}
    */
   @observable
-  currentRecommendation = '主题推荐方式';
+  currentRecommendation = '零基础';
 
   /**
    * 设置当前主题推荐方式
