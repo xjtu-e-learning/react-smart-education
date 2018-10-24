@@ -10,6 +10,7 @@ import { inject, observer } from 'mobx-react';
 import { post_log_of_mouseclick_recommendation } from '../../../../log/post-log-SDK';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Button from '@material-ui/core/Button';
+import TopicsModal from './topics-modal';
 
 const styles = theme => ({
   root: {
@@ -43,7 +44,6 @@ const styles = theme => ({
 @observer
 class RecommendationButton extends React.Component {
   state = {
-    name: '零基础',
     labelWidth: 0
   };
 
@@ -53,12 +53,35 @@ class RecommendationButton extends React.Component {
     });
   }
 
-  handleChange = (studentCode, courseId, domainName, event) => {
-    this.setState({ name: event.target.value });
-    this.props.appState.setCurrentRecommendation(event.target.value);
-    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
-      post_log_of_mouseclick_recommendation('学习页面', event.target.value, studentCode, courseId, domainName);
+  handleChange = (event) => {
+    this.props.setSet({ name: event.target.value });
+    // this.props.appState.chooseTopic('选择知识主题', -1);
+  };
+
+  handleConfirm = (studentCode, courseId, domainName, event) => {
+    if (this.props.recname !== this.props.appState.currentRecommendation) {
+      if (this.props.recname === '零基础') {
+        this.props.appState.setCurrentRecommendation(this.props.recname);
+        if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+          post_log_of_mouseclick_recommendation('学习页面', this.props.recname, studentCode, courseId, domainName);
+        }
+      }
+      else if (this.props.appState.chosenTopic.topicName === '选择知识主题') {
+        alert('请选择知识主题');
+      } else {
+        this.props.appState.setCurrentRecommendation(this.props.recname);
+        if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+          post_log_of_mouseclick_recommendation('学习页面', this.props.recname, studentCode, courseId, domainName);
+        }
+      }
     }
+  };
+
+  showModal = () => {
+    this.props.appState.setTopicListVisible(true);
+    // if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+    //   post_log_of_mouseclick_Global_Graph('学习页面', studentCode, courseId, domainName);
+    // }
   };
 
   render() {
@@ -71,7 +94,7 @@ class RecommendationButton extends React.Component {
       '自定义学习',
       '速成学习'
     ];
-    if (appState.recommendationList.get() !== undefined && appState.currentTopic.topicId === -1) {
+    if (appState.allLearningPath.get() !== undefined && appState.currentTopic.topicId === -1) {
       // console.log('test');
       appState.setCurrentTopicId(appState.currentRecommendationList[0].topicId);
       appState.setCurrentTopicName(appState.currentRecommendationList[0].topicName);
@@ -90,8 +113,8 @@ class RecommendationButton extends React.Component {
             学习方式
           </InputLabel>
           <Select
-            value={this.state.name}
-            onChange={this.handleChange.bind(this, studentCode, courseId, domainName)}
+            value={this.props.recname}
+            onChange={this.handleChange}
             input={
               <OutlinedInput
                 name="recname"
@@ -109,13 +132,21 @@ class RecommendationButton extends React.Component {
             ))}
           </Select>
         </FormControl>
-        <Button variant="outlined" className={classes.button} style={{ width: 86 }}>
+        <Button variant="outlined" className={classes.button} style={{ width: 86 }}
+                onClick={this.handleConfirm.bind(this, studentCode, courseId, domainName)}>
           确认
         </Button>
         <Button variant="outlined" className={classes.button}
-                style={{ width: '100%', color: 'white', display: (this.state.name === '零基础' && 'none') || 'inherit' }}>
-          选择知识主题
+                style={{
+                  width: '100%',
+                  color: 'white',
+                  display: (this.props.recname === '零基础' && 'none') || 'inherit'
+                }}
+                onClick={this.showModal}
+        >
+          {appState.chosenTopic.topicName}
         </Button>
+        <TopicsModal/>
       </form>
     );
   }

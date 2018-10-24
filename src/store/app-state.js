@@ -94,6 +94,80 @@ class AppState {
   });
 
   /**
+   * 全覆盖路径
+   */
+  allLearningPath = asyncComputed(undefined, 0, async () => {
+    let topicList = this.topicList.get();
+    if (this.domainId.get() !== undefined && this.studentCode !== -1 && this.topicList.get()) {
+      const response = await axios.get('http://yotta.xjtushilei.com:9218/LearningPathWeb/Path/LearningPath/allLearningPath',
+        {
+          params: {
+            domainId: this.domainId.get(),
+            userId: this.studentCode
+          }
+        });
+      const result = await response.data;
+      if (result == null) return undefined;
+      let recarray = [];
+      result.split(',').forEach(element1 => {
+        topicList.forEach(topic => {
+          if (topic.topicId === Number(element1)) {
+            recarray.push({
+              topicId: topic.topicId,
+              topicName: topic.topicName
+            });
+          }
+        });
+      });
+      return recarray;
+    }
+  });
+
+  /**
+   * 自定义路径
+   */
+  defineLearningPath = asyncComputed(undefined, 0, async () => {
+    let test = this.topicList.get();
+    if (
+      this.domainId.get() !== undefined &&
+      this.studentCode !== -1 &&
+      this.topicList.get() !== undefined &&
+      this.chosenTopic.topicId !== -1 &&
+      this.currentRecommendation !== '零基础'
+    ) {
+      const response = await axios.get(
+        'http://yotta.xjtushilei.com:9218/LearningPathWeb/Path/LearningPath/defineLearningPath',
+        {
+          params: {
+            domainId: this.domainId.get(),
+            userId: this.studentCode,
+            termId: this.chosenTopic.topicId
+          }
+        }
+      );
+      const result = await response.data;
+      if (result == null) return undefined;
+      let recarrays = [];
+      result.split(';').forEach(element => {
+        let recarray = [];
+        element.split(',').forEach(element1 => {
+          test.forEach(topic => {
+            if (topic.topicId === Number(element1)) {
+              recarray.push({
+                topicId: topic.topicId,
+                topicName: topic.topicName
+              });
+            }
+          });
+        });
+        recarrays.push(recarray);
+      });
+      console.log(recarrays);
+      return recarrays;
+    }
+  });
+
+  /**
    * 根据领域Id和用户Id以及该领域下的topicList拼接出推荐列表
    * @param {number} domainId
    * @param {number} studentCode
@@ -282,21 +356,36 @@ class AppState {
    */
   @computed
   get currentRecommendationList() {
-    if (this.recommendationList.get() === undefined) return undefined;
+    if (this.allLearningPath.get() === undefined) return undefined;
     switch (this.currentRecommendation) {
-      case '主题推荐方式':
-        return this.recommendationList.get()[0];
-      case '最短学习路径':
-        return this.recommendationList.get()[0];
-      case '有效学习路径':
-        return this.recommendationList.get()[1];
-      case '补全学习路径':
-        return this.recommendationList.get()[2];
-      case '热度学习路径':
-        return this.recommendationList.get()[3];
+      case '零基础':
+        return this.allLearningPath.get();
+      case '自定义学习':
+        return (this.defineLearningPath.get() !== undefined && this.defineLearningPath.get()[0]) || this.allLearningPath.get();
+      case '速成学习':
+        return (this.defineLearningPath.get() !== undefined && this.defineLearningPath.get()[1]) || this.allLearningPath.get();
       default:
-        return this.recommendationList.get()[0];
+        return this.allLearningPath.get();
     }
+  }
+
+  /**
+   * 当前选中主题
+   */
+  @observable chosenTopic = { topicName: '选择知识主题', topicId: -1 };
+
+  @action chooseTopic(topicname, topicid) {
+    this.chosenTopic = { topicName: topicname, topicId: topicid };
+    console.log(this.chosenTopic.topicId);
+  }
+
+  /**
+   * topicList Modal
+   */
+  @observable topicListVisible = false;
+
+  @action setTopicListVisible(param) {
+    this.topicListVisible = param;
   }
 
   /**
@@ -596,18 +685,17 @@ class AppState {
    */
   facetsList = asyncComputed(undefined, 0, async () => {
     let domainName = this.domainName.get();
+    let allLearningPath = this.allLearningPath.get();
     let recommendationList = this.recommendationList.get();
     let topics = [];
-    if (recommendationList !== undefined) {
-      recommendationList.map(recarray => {
-        recarray.map(topic => {
-          for (let i = 0; i < topics.length; i++) {
-            if (topics[i] === topic.topicName) {
-              return;
-            }
+    if (allLearningPath !== undefined) {
+      allLearningPath.map(topic => {
+        for (let i = 0; i < topics.length; i++) {
+          if (topics[i] === topic.topicName) {
+            return;
           }
-          topics.push(topic.topicName);
-        });
+        }
+        topics.push(topic.topicName);
       });
       let topicNames = '';
       topics.map(topic => {
@@ -772,7 +860,6 @@ autorun(() => {
     appState.updateTopicStateList();
     appState.setInitial();
   }
-  //
   //
 });
 
