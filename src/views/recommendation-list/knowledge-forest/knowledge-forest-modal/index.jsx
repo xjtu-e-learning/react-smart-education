@@ -22,6 +22,7 @@ class KnowledgeForestModal extends React.Component {
     let showNodeSymbolSize = 0;
     let categories = [];
     let option = {};
+    let recommendationList = this.props.appState.currentRecommendationList;
     // 获取社团数量
     if (graph === null || states.length === 0) {
       console.log('没有认知路径');
@@ -54,6 +55,34 @@ class KnowledgeForestModal extends React.Component {
           });
         }
 
+        recommendationList.forEach(topic => {
+          // console.log(topic.topicName);
+          // console.log(node.name);
+          if (node.name === topic.topicName) {
+            node.itemStyle = {
+              normal: {
+                color: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0.5,
+                    // 灰色0、蓝色1、绿色2
+                    //color: ['#848484', '#548FFB', '#008000'],
+                    color: (node.category === 0 && '#848484') || (node.category === 1 && '#548FFB') || (node.category === 2 && '#008000') // 0% 处的颜色
+                  }, {
+                    offset: 1,
+                    color: 'red' // 100% 处的颜色
+                  }],
+                  globalCoord: false // 缺省为 false
+                }
+              }
+            };
+          }
+        });
+
         //console.log(node.category);
         // node.category = states[getTopicIdByTopicName(topics,node.id)];
         // console.log(topics);
@@ -70,8 +99,25 @@ class KnowledgeForestModal extends React.Component {
         }
         // console.log(node);
       });
-      graph.links.forEach(function(link) {
 
+      // for (let i = 0; i < recommendationList.length - 1; i++) {
+      //   graph.links.push({
+      //       id: 'rec' + i,
+      //       name: null,
+      //       source: recommendationList[i].topicName,
+      //       target: recommendationList[i + 1].topicName,
+      //       lineStyle: {
+      //         normal: {
+      //           curveness: 0.1,
+      //           color: 'black',
+      //           width: 6
+      //         }
+      //       }
+      //     }
+      //   );
+      // }
+
+      graph.links.forEach(function(link) {
       });
       option = {
         title: {
@@ -88,7 +134,7 @@ class KnowledgeForestModal extends React.Component {
         }],
         animationDuration: 1500,
         animationEasingUpdate: 'quinticInOut',
-        // 绿色、猩红色、黑色（红绿灯版本）
+        // 灰色、蓝色、绿色
         color: ['#848484', '#548FFB', '#008000'],
         // 绿色、金色、深灰色 （地铁版本）
         // color:['#008000','#FFD700','#A9A9A9'],
@@ -133,7 +179,7 @@ class KnowledgeForestModal extends React.Component {
     }
 
     return (
-      <ReactEcharts option={option} style={{ height: '750px', width: '1000px', margin: 'auto' }}/>
+      <ReactEcharts option={option} style={{ height: '600px', width: '800px', margin: 'auto' }}/>
     );
   }
 }

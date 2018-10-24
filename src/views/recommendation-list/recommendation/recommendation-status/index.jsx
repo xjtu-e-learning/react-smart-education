@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { inject, observer } from 'mobx-react';
-import appState from '../../../store/app-state';
+import appState from '../../../../store/app-state';
 
 const styles = theme => ({
   mark: {
