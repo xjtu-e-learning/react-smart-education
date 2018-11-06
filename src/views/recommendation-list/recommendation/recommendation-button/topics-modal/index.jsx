@@ -4,8 +4,8 @@ import { Modal } from 'antd';
 import { inject, observer } from 'mobx-react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import Button from '@material-ui/core/Button';
+import WhatshotIcon from '@material-ui/icons/WhatshotRounded';
 
 const styles = theme => ({
   gridList: {
@@ -50,6 +50,8 @@ class TopicsModal extends React.Component {
             <GridListTile key={topic.topicId}>
               <Button variant="outlined" style={{ width: '100%' }}
                       onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}>
+                {appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
+                <WhatshotIcon style={{ color: 'red' }}/>}
                 {topic.topicName}
               </Button>
             </GridListTile>
