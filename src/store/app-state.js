@@ -24,6 +24,8 @@ const PATH_assembleGetAssemblesByFacetIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByFacetIdAndUserIdAndPagingAndSorting';
 const PATH_assembleGetAssemblesByTopicIdAndUserIdAndPagingAndSorting =
   '/assemble/getAssemblesByTopicIdAndUserIdAndPagingAndSorting';
+const PATH_hotTopicGetHotTopicsByDomainId =
+  '/hotTopic/getHotTopicsByDomainId';
 export const PATH_evaluationSaveAssembleEvaluation =
   '/evaluation/saveAssembleEvaluation';
 
@@ -90,6 +92,22 @@ class AppState {
       const result = await response.data.data.wiki;
       if (result == null) return undefined;
       return result.domainName;
+    }
+  });
+
+  /**
+   * Top主题
+   */
+  hotTopics = asyncComputed(undefined, 0, async () => {
+    if (this.domainId.get() !== undefined) {
+      const response = await axios.get(PATH_BASE + PATH_hotTopicGetHotTopicsByDomainId, {
+        params: {
+          domainId: this.domainId.get()
+        }
+      });
+      const result = await response.data.data.hotTopics;
+      if (result == null) return undefined;
+      return result.split(',');
     }
   });
 
@@ -162,7 +180,6 @@ class AppState {
         });
         recarrays.push(recarray);
       });
-      console.log(recarrays);
       return recarrays;
     }
   });
@@ -376,7 +393,6 @@ class AppState {
 
   @action chooseTopic(topicname, topicid) {
     this.chosenTopic = { topicName: topicname, topicId: topicid };
-    console.log(this.chosenTopic.topicId);
   }
 
   /**
@@ -860,7 +876,7 @@ autorun(() => {
     appState.updateTopicStateList();
     appState.setInitial();
   }
-  //
+  console.log(appState.hotTopics.get());
 });
 
 export default appState;

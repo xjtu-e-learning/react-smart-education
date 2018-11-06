@@ -29,7 +29,7 @@ class FacetStatus extends React.Component {
   render() {
     const { classes, appState } = this.props;
 
-    let studied = 0
+    let studied = 0;
     let facetState = appState.facetStateList.slice();
     let stateLength = facetState.length;
     if (stateLength > 0) {
@@ -38,7 +38,6 @@ class FacetStatus extends React.Component {
       });
 
     }
-    console.log(appState.facetStateList);
 
     return (
       <div className={classes.mark}>
