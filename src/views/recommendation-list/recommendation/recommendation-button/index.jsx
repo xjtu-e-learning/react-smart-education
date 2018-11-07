@@ -37,6 +37,11 @@ const styles = theme => ({
   },
   focused: {
     '&$focused': { color: 'white' }
+  },
+  label: {
+    display: 'block',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   }
 });
 
@@ -140,8 +145,9 @@ class RecommendationButton extends React.Component {
                 style={{
                   width: '100%',
                   color: 'white',
-                  display: (this.props.recname === '零基础' && 'none') || 'inherit'
+                  display: (this.props.recname === '零基础' && 'none') || 'block'
                 }}
+                classes={{ label: classes.label }}
                 onClick={this.showModal}
         >
           {appState.chosenTopic.topicName}
