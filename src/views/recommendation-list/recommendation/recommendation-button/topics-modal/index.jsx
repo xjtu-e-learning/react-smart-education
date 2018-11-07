@@ -59,7 +59,7 @@ class TopicsModal extends React.Component {
                         onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}
                         classes={{ label: classes.label }}
                 >
-                  {appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
+                  {appState.hotTopics.get() !== undefined && appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
                   <WhatshotIcon style={{ color: 'red' }}/>}
                   {topic.topicName}
                 </Button>

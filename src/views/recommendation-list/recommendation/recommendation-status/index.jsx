@@ -6,7 +6,8 @@ import appState from '../../../../store/app-state';
 const styles = theme => ({
   mark: {
     color: '#d7daed',
-    paddingLeft: 8
+    paddingLeft: 0,
+    textAlign: 'center'
   },
   bgGre: {
     background: '#7FC236',
@@ -14,7 +15,7 @@ const styles = theme => ({
     padding: '1px 5px',
     borderRadius: '10px',
     lineHeight: '18px',
-    marginRight: 6
+    marginRight: 0
   },
   bgBlu: {
     background: '#548FFB',
@@ -22,7 +23,7 @@ const styles = theme => ({
     padding: '1px 5px',
     borderRadius: '10px',
     lineHeight: '18px',
-    marginRight: 6
+    marginRight: 0
   },
   bgGry: {
     background: '#D8D8D8',
