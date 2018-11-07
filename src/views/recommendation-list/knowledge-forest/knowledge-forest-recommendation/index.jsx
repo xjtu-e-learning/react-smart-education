@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 const styles = themes => ({});
 
 @inject('appState') @observer
-class KnowledgeForestModal extends React.Component {
+class KnowledgeForestRecommendation extends React.Component {
 
   UNSAFE_componentWillMount() {
     this.props.appState.updateTopicStateList();
@@ -27,9 +27,8 @@ class KnowledgeForestModal extends React.Component {
     if (graph === null || states.length === 0) {
       console.log('没有认知路径');
     } else {
-      categories[2] = { name: '已学习' };
-      categories[1] = { name: '正在学习' };
-      categories[0] = { name: '未学习' };
+      categories[1] = { name: '推荐知识主题' };
+      categories[0] = { name: '未推荐知识主题' };
       // 设置节点格式
       graph.nodes.forEach(function(node) {
         node.itemStyle = null;
@@ -41,81 +40,87 @@ class KnowledgeForestModal extends React.Component {
             show: node.symbolSize > showNodeSymbolSize
           }
         };
+        node.itemStyle = {
+          normal: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [{
+                offset: 0,
+                color: 'green' // 0% 处的颜色
+              }, {
+                offset: 1,
+                color: 'brown' // 100% 处的颜色
+              }],
+              globalCoord: false // 缺省为 false
+            }
+          }
+        };
         // console.log(index);
         // node.category = Number(states[index]);
         //console.log(states);
-        if (node.id === '(Start)数据结构') {
-          node.category = 2;
-          return;
-        } else {
-          states.forEach(function(topic) {
-            if (topic.topicName === node.name) {
-              node.category = Number(topic.state);
-            }
-          });
-        }
-        // 推荐主题着色
-        // recommendationList.forEach(topic => {
-        //   // console.log(topic.topicName);
-        //   // console.log(node.name);
-        //   if (node.name === topic.topicName) {
-        //     node.itemStyle = {
-        //       normal: {
-        //         color: {
-        //           type: 'linear',
-        //           x: 0,
-        //           y: 0,
-        //           x2: 0,
-        //           y2: 1,
-        //           colorStops: [{
-        //             offset: 0.5,
-        //             // 灰色0、蓝色1、绿色2
-        //             //color: ['#848484', '#548FFB', '#008000'],
-        //             color: (node.category === 0 && '#848484') || (node.category === 1 && '#548FFB') || (node.category === 2 && '#008000') // 0% 处的颜色
-        //           }, {
-        //             offset: 1,
-        //             color: 'red' // 100% 处的颜色
-        //           }],
-        //           globalCoord: false // 缺省为 false
-        //         }
-        //       }
-        //     };
-        //   }
-        // });
+        // 主题学习状态着色
+        // if (node.id === '(Start)数据结构') {
+        //   node.category = 2;
+        //   return;
+        // } else {
+        //   states.forEach(function(topic) {
+        //     if (topic.topicName === node.name) {
+        //       node.category = Number(topic.state);
+        //     }
+        //   });
+        // }
+        node.category = 0;
+        recommendationList.forEach(topic => {
+          // console.log(topic.topicName);
+          // console.log(node.name);
+          if (node.name === topic.topicName) {
+            node.itemStyle = {
+              normal: {
+                color: '#548FFB'
+              }
+            };
+            node.symbolSize = 40;
+            node.category = 1;
+          }
+        });
 
         //console.log(node.category);
         // node.category = states[getTopicIdByTopicName(topics,node.id)];
         // console.log(topics);
-        switch (node.category) {
-          case 2:
-            studied++;
-            break;
-          case 1:
-            studying++;
-            break;
-          case 0:
-            studysoon++;
-            break;
-        }
+        // switch (node.category) {
+        //   case 2:
+        //     studied++;
+        //     break;
+        //   case 1:
+        //     studying++;
+        //     break;
+        //   case 0:
+        //     studysoon++;
+        //     break;
+        // }
         // console.log(node);
       });
-
-      // for (let i = 0; i < recommendationList.length - 1; i++) {
-      //   graph.links.push({
-      //       id: 'rec' + i,
-      //       name: null,
-      //       source: recommendationList[i].topicName,
-      //       target: recommendationList[i + 1].topicName,
-      //       lineStyle: {
-      //         normal: {
-      //           curveness: 0.1,
-      //           color: 'black',
-      //           width: 6
-      //         }
-      //       }
-      //     }
-      //   );
-      // }
+      graph.links = [];
+      for (let i = 0; i < recommendationList.length - 1; i++) {
+        graph.links.push({
+            id: 'rec' + i,
+            name: null,
+            source: recommendationList[i].topicName,
+            target: recommendationList[i + 1].topicName,
+            lineStyle: {
+              normal: {
+                curveness: 0.25,
+                color: '#548FFB',
+                width: 5
+              }
+            }
+          }
+        );
+      }
 
       graph.links.forEach(function(link) {
       });
@@ -162,18 +167,6 @@ class KnowledgeForestModal extends React.Component {
               width: 3
             }
           }
-        }, {
-          data: [
-            { name: '已学习', value: studied },
-            { name: '正在学习', value: studying },
-            { name: '未学习', value: studysoon }
-          ],
-          color: ['#008000', '#548FFB', '#848484'],
-          name: '学习进度',
-          type: 'pie',
-          center: ['15%', '80%'],
-          radius: '25%',
-          z: 100
         }]
       };
     }
@@ -184,4 +177,4 @@ class KnowledgeForestModal extends React.Component {
   }
 }
 
-export default withStyles(styles)(KnowledgeForestModal);
+export default withStyles(styles)(KnowledgeForestRecommendation);

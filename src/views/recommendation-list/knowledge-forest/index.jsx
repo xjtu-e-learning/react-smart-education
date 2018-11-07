@@ -4,6 +4,7 @@ import { Modal } from 'antd';
 import { inject, observer } from 'mobx-react';
 import KnowledgeForestModal from './knowledge-forest-modal';
 import { post_log_of_mouseclick_Global_Graph } from '../../../log/post-log-SDK';
+import ModalTabs from './modal-tabs';
 
 const styles = theme => ({
   image: {
@@ -50,9 +51,10 @@ class KnowledgeForesst extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCanel}
           centered
-          width={1200}
+          closable={false}
+          width={1000}
         >
-          <KnowledgeForestModal/>
+          <ModalTabs/>
         </Modal>
       </div>
     );
