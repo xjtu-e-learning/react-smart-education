@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Modal } from 'antd';
+import { Modal, Popover } from 'antd';
 import { inject, observer } from 'mobx-react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -54,14 +54,16 @@ class TopicsModal extends React.Component {
         <GridList className={classes.gridList} cols={4} cellHeight='auto'>
           {topicList !== undefined && topicList.map(topic => (
             <GridListTile key={topic.topicId}>
-              <Button variant="outlined" style={{ width: '100%' }}
-                      onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}
-                      classes={{ label: classes.label }}
-              >
-                {appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
-                <WhatshotIcon style={{ color: 'red' }}/>}
-                {topic.topicName}
-              </Button>
+              <Popover content={<div><p>{topic.topicName}</p></div>}>
+                <Button variant="outlined" style={{ width: '100%' }}
+                        onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}
+                        classes={{ label: classes.label }}
+                >
+                  {appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
+                  <WhatshotIcon style={{ color: 'red' }}/>}
+                  {topic.topicName}
+                </Button>
+              </Popover>
             </GridListTile>
           ))}
         </GridList>
