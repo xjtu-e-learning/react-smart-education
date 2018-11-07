@@ -11,6 +11,12 @@ const styles = theme => ({
   gridList: {
     width: '100%',
     height: 600
+  },
+  label: {
+    display: 'block',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: ' nowrap'
   }
 });
 
@@ -49,7 +55,9 @@ class TopicsModal extends React.Component {
           {topicList !== undefined && topicList.map(topic => (
             <GridListTile key={topic.topicId}>
               <Button variant="outlined" style={{ width: '100%' }}
-                      onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}>
+                      onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}
+                      classes={{ label: classes.label }}
+              >
                 {appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
                 <WhatshotIcon style={{ color: 'red' }}/>}
                 {topic.topicName}
