@@ -25,6 +25,12 @@ const styles = theme => ({
     lineHeight: '64px',
     height: '64px',
     fontSize: '24px'
+  },
+  linkto: {
+    color: '#fff',
+    '&:hover': {
+      color: '#fff'
+    }
   }
 });
 
@@ -43,7 +49,7 @@ class TitleBar extends Component {
               className={classes.toolBarTitleContent}
               noWrap
             >
-              智慧教育示范应用
+              <a className={classes.linkto} target='_self' href='http://yotta.xjtushilei.com:888/homepage/'>智慧教育示范应用</a>
             </Typography>
           </div>
           <Navigation/>
