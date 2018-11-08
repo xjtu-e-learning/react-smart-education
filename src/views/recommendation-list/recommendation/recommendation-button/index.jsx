@@ -19,7 +19,8 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120
+    minWidth: 120,
+    width: '100%'
   },
   white: {
     color: 'white'
@@ -33,7 +34,8 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     color: 'white',
-    borderColor: 'white'
+    borderColor: 'white',
+    marginTop: 0
   },
   focused: {
     '&$focused': { color: 'white' }
@@ -59,26 +61,13 @@ class RecommendationButton extends React.Component {
   }
 
   handleChange = (event) => {
-    this.props.setSet({ name: event.target.value });
     // this.props.appState.chooseTopic('选择知识主题', -1);
   };
 
   handleConfirm = (studentCode, courseId, domainName, event) => {
-    if (this.props.recname !== this.props.appState.currentRecommendation) {
-      if (this.props.recname === '零基础') {
-        this.props.appState.setCurrentRecommendation(this.props.recname);
-        if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
-          post_log_of_mouseclick_recommendation('学习页面', this.props.recname, studentCode, courseId, domainName);
-        }
-      }
-      else if (this.props.appState.chosenTopic.topicName === '选择知识主题') {
-        alert('请选择知识主题');
-      } else {
-        this.props.appState.setCurrentRecommendation(this.props.recname);
-        if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
-          post_log_of_mouseclick_recommendation('学习页面', this.props.recname, studentCode, courseId, domainName);
-        }
-      }
+    this.props.appState.setCurrentRecommendation(event.target.value);
+    if (studentCode !== -1 && courseId !== -1 && domainName !== undefined) {
+      post_log_of_mouseclick_recommendation('学习页面', event.target.value, studentCode, courseId, domainName);
     }
   };
 
@@ -96,8 +85,8 @@ class RecommendationButton extends React.Component {
     let domainName = appState.domainName.get();
     const recnames = [
       '零基础',
-      '自定义学习',
-      '速成学习'
+      '自定义学习'
+      // '速成学习'
     ];
     if (appState.allLearningPath.get() !== undefined && appState.currentTopic.topicId === -1) {
       // console.log('test');
@@ -118,8 +107,8 @@ class RecommendationButton extends React.Component {
             学习方式
           </InputLabel>
           <Select
-            value={this.props.recname}
-            onChange={this.handleChange}
+            value={this.props.appState.currentRecommendation}
+            onChange={this.handleConfirm.bind(this, studentCode, courseId, domainName)}
             input={
               <OutlinedInput
                 name="recname"
@@ -137,15 +126,11 @@ class RecommendationButton extends React.Component {
             ))}
           </Select>
         </FormControl>
-        <Button variant="outlined" className={classes.button} style={{ width: 86 }}
-                onClick={this.handleConfirm.bind(this, studentCode, courseId, domainName)}>
-          确认
-        </Button>
         <Button variant="outlined" className={classes.button}
                 style={{
                   width: '100%',
                   color: 'white',
-                  display: (this.props.recname === '零基础' && 'none') || 'block'
+                  display: (this.props.appState.currentRecommendation === '零基础' && 'none') || 'block'
                 }}
                 classes={{ label: classes.label }}
                 onClick={this.showModal}

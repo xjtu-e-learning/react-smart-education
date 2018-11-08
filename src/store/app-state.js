@@ -396,6 +396,15 @@ class AppState {
   }
 
   /**
+   * 待选中主题
+   */
+  @observable choosingTopic = { topicName: '选择知识主题', topicId: -1 };
+
+  @action setChoosingTopic(topicname, topicid) {
+    this.choosingTopic = { topicName: topicname, topicId: topicid };
+  }
+
+  /**
    * topicList Modal
    */
   @observable topicListVisible = false;
@@ -876,7 +885,7 @@ autorun(() => {
     appState.updateTopicStateList();
     appState.setInitial();
   }
-  console.log(appState.hotTopics.get());
+  // console.log(appState.currentRecommendation);
 });
 
 export default appState;

@@ -83,6 +83,7 @@ class KnowledgeForestRecommendation extends React.Component {
                 color: '#548FFB'
               }
             };
+            node.id = topic.topicId;
             node.symbolSize = 40;
             node.category = 1;
           }
@@ -109,8 +110,8 @@ class KnowledgeForestRecommendation extends React.Component {
         graph.links.push({
             id: 'rec' + i,
             name: null,
-            source: recommendationList[i].topicName,
-            target: recommendationList[i + 1].topicName,
+            source: recommendationList[i].topicId.toString(),
+            target: recommendationList[i + 1].topicId.toString(),
             lineStyle: {
               normal: {
                 curveness: 0.25,

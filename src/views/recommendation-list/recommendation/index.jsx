@@ -15,20 +15,13 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class Recommendation extends React.Component {
-  state = {
-    name: '零基础',
-  };
-
-  setSet = (obj) => {
-    this.setState(obj);
-  };
 
   render() {
     return (
       <div style={{ height: this.props.appState.clientHeight - 244 }}>
-        <RecommendationButton recname={this.state.name} setSet={this.setSet}/>
+        <RecommendationButton />
         <Divider className={this.props.classes.divider}/>
-        <RecommendationContent recname={this.state.name}/>
+        <RecommendationContent />
         <RecommendationStatus/>
       </div>
     );
