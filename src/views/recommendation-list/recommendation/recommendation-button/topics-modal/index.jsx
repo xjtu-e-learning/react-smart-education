@@ -6,6 +6,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Button from '@material-ui/core/Button';
 import WhatshotIcon from '@material-ui/icons/WhatshotRounded';
+import appState from '../../../../../store/app-state';
 
 const styles = theme => ({
   gridList: {
@@ -17,6 +18,14 @@ const styles = theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: ' nowrap'
+  },
+  selected: {
+    backgroundColor: '#5facfe',
+    color: '#fff',
+    borderColor: '#5facfe',
+    '&:hover': {
+      color: '#000'
+    }
   }
 });
 
@@ -26,6 +35,7 @@ class TopicsModal extends React.Component {
 
 
   handleOk = () => {
+    this.props.appState.chooseTopic(this.props.appState.choosingTopic.topicName, this.props.appState.choosingTopic.topicId);
     this.props.appState.setTopicListVisible(false);
   };
 
@@ -34,7 +44,7 @@ class TopicsModal extends React.Component {
   };
 
   handleClick = (topicId, topicName) => {
-    this.props.appState.chooseTopic(topicName, topicId);
+    this.props.appState.setChoosingTopic(topicName, topicId);
   };
 
   render() {
@@ -57,7 +67,10 @@ class TopicsModal extends React.Component {
               <Popover content={<div><p>{topic.topicName}</p></div>}>
                 <Button variant="outlined" style={{ width: '100%' }}
                         onClick={this.handleClick.bind(this, topic.topicId, topic.topicName)}
-                        classes={{ label: classes.label }}
+                        classes={{
+                          label: classes.label,
+                          root: topic.topicId === appState.choosingTopic.topicId && classes.selected
+                        }}
                 >
                   {appState.hotTopics.get() !== undefined && appState.hotTopics.get().indexOf(topic.topicId.toString()) !== -1 &&
                   <WhatshotIcon style={{ color: 'red' }}/>}
