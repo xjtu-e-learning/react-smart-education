@@ -85,7 +85,7 @@ class RecommendationContent extends React.Component {
     if (specialCourseId.indexOf(courseId) === -1) {
       return (
         <List component="nav" className={classes.nav}
-              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 131px' }}>
+              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 123px' }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
@@ -156,7 +156,7 @@ class RecommendationContent extends React.Component {
       // 针对特殊课程
       return (
         <List component="nav" className={classes.nav}
-              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 131px' }}>
+              style={{ height: (appState.currentRecommendation === '零基础' && 'calc(100% - 76px)') || 'calc(100% - 123px' }}>
           {appState.currentRecommendationList !== undefined
             ? appState.currentRecommendationList.map(topic => {
               let topicId = topic.topicId;
