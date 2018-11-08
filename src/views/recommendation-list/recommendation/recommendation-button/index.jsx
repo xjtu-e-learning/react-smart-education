@@ -19,7 +19,8 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120
+    minWidth: 120,
+    width: '100%'
   },
   white: {
     color: 'white'
@@ -33,7 +34,8 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     color: 'white',
-    borderColor: 'white'
+    borderColor: 'white',
+    marginTop: 0
   },
   focused: {
     '&$focused': { color: 'white' }
