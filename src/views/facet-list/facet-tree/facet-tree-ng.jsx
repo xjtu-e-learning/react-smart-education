@@ -1,4 +1,5 @@
 import { select, selectAll } from 'd3-selection';
+import appState from '../../../store/app-state.js';
 
 let angles = [];
 let xs = [];
@@ -190,11 +191,17 @@ export function drawTree(data, canvas, multiple) {
       return xs[i] + firstLayerWidth / 2 + Math.cos(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
     })
     .attr('cy', function(d, i) {
+      console.log(d);
       return ys[i] - Math.sin(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
     })
     .attr('r', 16)
     .attr('fill', function(d, i) {
       return color[i];
+    })
+    .on('click', function(d) {
+      if (d.facetId === -1) return;
+      appState.setCurrentPage(0);
+      appState.setCurrentFacet(d.facetName, '', d.facetId, -1);
     });
 
 }
