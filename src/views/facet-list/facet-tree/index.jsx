@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { draw_tree, buildTree } from './buildsimpletree';
 import { select } from 'd3-selection';
+import { drawTree } from './facet-tree-ng';
 
 const styles = themes => ({
   canvas: {
@@ -17,28 +18,28 @@ class FacetTree extends React.Component {
   constructor(props) {
     super(props);
     this.update = this.update.bind(this);
+    this.state = { k: 0 };
+    this.lastdata = null;
   }
+
+  setSet = (obj) => {
+    this.setState(obj);
+  };
 
   update(data) {
-    select('div#canvas').selectAll('svg').remove();
-    const canvas = select('div#canvas')
-      .append('svg')
-      .attr('width', '100%')
-      .attr('height', '100%');
-    let seed = {
-      x: 110,
-      y: 380,
-      name: data.topicName !== undefined ? data.topicName : ''
-    };
-    let tree = buildTree(data, seed, 0.8);
-    draw_tree(tree, seed, canvas, 0.8);
-  }
-
-  componentDidMount() {
-    const { currentFacetTree } = this.props;
-    if (currentFacetTree !== undefined) {
-      this.update(currentFacetTree);
+    if (data !== this.lastdata) {
+      this.lastdata = data;
+      const canvas = select('div#canvas').select('svg');
+      let seed = {
+        x: 110,
+        y: 380,
+        name: data.topicName !== undefined ? data.topicName : ''
+      };
+      let tree = buildTree(data, seed, 0.8);
+      // draw_tree(tree, seed, canvas, 0.8);
+      drawTree(data, canvas, seed, this.state.k, this.setSet);
     }
+
   }
 
   UNSAFE_componentWillReceiveProps({ currentFacetTree }) {
@@ -55,7 +56,9 @@ class FacetTree extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div id='canvas' className={classes.canvas}></div>
+      <div id='canvas' className={classes.canvas}>
+        <svg style={{ width: '100%', height: '100%' }}/>
+      </div>
     );
   }
 }
