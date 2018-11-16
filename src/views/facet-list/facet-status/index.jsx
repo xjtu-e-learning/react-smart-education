@@ -4,7 +4,8 @@ import { inject, observer } from 'mobx-react';
 
 const styles = theme => ({
   mark: {
-    paddingLeft: 32
+    paddingLeft: 0,
+    textAlign: 'center'
   },
   bgGre: {
     background: '#7FC236',
@@ -42,7 +43,7 @@ class FacetStatus extends React.Component {
     return (
       <div className={classes.mark}>
         <span>已学习:<label className={classes.bgGre}>{studied}</label></span>
-        <span>未学习:<label className={classes.bgGry}>{stateLength-studied}</label></span>
+        <span>未学习:<label className={classes.bgGry}>{stateLength - studied}</label></span>
       </div>
     );
   }

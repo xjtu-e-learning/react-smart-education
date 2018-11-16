@@ -1,22 +1,21 @@
 import { select, selectAll } from 'd3-selection';
 
-let data;
 let angles = [];
 let xs = [];
 let ys = [];
 let minHeight = 0;
-let height = [400, 390, 380, 365, 350, 335, 320, 300, 280, 260, 240, 220, 200, 160];
+let Height = [400, 390, 380, 365, 350, 335, 320, 300, 280, 260, 240, 220, 200, 160];
 let foldLength = [];
 let branchLimits = 7;
 
 // 画布长宽
 let canvasWidth = 240;
-let canvasHeight = 400;
+let canvasHeight = 350;
 // 一级分面宽度
-let firstLayerWidth = 20;
+let firstLayerWidth = 16;
 
 // 一级分面间隔
-let firstLayerInterval = 8;
+let firstLayerInterval = 4;
 
 // 一级分面弯曲的初始角度
 let initialAngle = 125;
@@ -30,9 +29,12 @@ let color = ['#B50010', '#E3A407', '#618FE3', '#E14773', '#547400', '#7C21FF', '
 // 一级分面数量
 let FirstLayerNum = 0;
 
-export function drawTree(data, canvas, seed, k, setSet) {
+export function drawTree(data, canvas, multiple) {
+  // multiple
+  let height = Height.map(h => h * multiple);
+
   canvas.selectAll('g').remove();
-  data = processData(data);
+  data = processData(data, height);
   FirstLayerNum = data.length;
   if (data.length > 7) {
     minHeight = height[height.length - 2];
@@ -116,8 +118,8 @@ export function drawTree(data, canvas, seed, k, setSet) {
       // if(FirstLayerNum%2 && i === (FirstLayerNum-1)/2){
       //     return d.h/4;
       // }
-      foldLength.push(d.h / 3);
-      return d.h / 3;
+      foldLength.push(d.h / 4);
+      return d.h / 4;
     })
     .attr('width', firstLayerWidth)
     .attr('fill', function(d, i) {
@@ -185,19 +187,19 @@ export function drawTree(data, canvas, seed, k, setSet) {
     .enter()
     .append('circle')
     .attr('cx', function(d, i) {
-      return xs[i] + firstLayerWidth / 2 + Math.cos(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.8;
+      return xs[i] + firstLayerWidth / 2 + Math.cos(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
     })
     .attr('cy', function(d, i) {
-      return ys[i] - Math.sin(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.8;
+      return ys[i] - Math.sin(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
     })
-    .attr('r', 20)
+    .attr('r', 16)
     .attr('fill', function(d, i) {
       return color[i];
     });
 
 }
 
-function processData(arr) {
+function processData(arr, height) {
 
   let branchWithSecondLayer = [];
   let branchWithoutSecondLayer = [];

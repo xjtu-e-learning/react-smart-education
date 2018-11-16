@@ -54,7 +54,7 @@ class FacetList extends Component {
           classes={{
             paper: this.props.classes.drawerPaper
           }}
-          PaperProps={{ style: { height: this.props.appState.clientHeight - 480 } }}
+          PaperProps={{ style: { height: this.props.appState.clientHeight - 430 } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>
@@ -82,7 +82,7 @@ class FacetList extends Component {
           classes={{
             paper: this.props.classes.drawerPaper
           }}
-          PaperProps={{ style: { height: this.props.appState.clientHeight - 480 } }}
+          PaperProps={{ style: { height: this.props.appState.clientHeight - 430 } }}
         >
           <AppBar position="static" color="default">
             <Toolbar>
