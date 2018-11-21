@@ -5,7 +5,7 @@ let angles = [];
 let xs = [];
 let ys = [];
 let minHeight = 0;
-let Height = [400, 390, 380, 365, 350, 335, 320, 300, 280, 260, 240, 220, 200, 160];
+let Height = [400, 390, 380, 365, 350, 335, 320, 300, 280, 260, 240, 220, 200, 180];
 let foldLength = [];
 let branchLimits = 7;
 
@@ -116,9 +116,10 @@ export function drawTree(data, canvas, multiple) {
       }
     })
     .attr('height', function(d, i) {
-      // if(FirstLayerNum%2 && i === (FirstLayerNum-1)/2){
-      //     return d.h/4;
-      // }
+      if (FirstLayerNum === 1) {
+        foldLength.push(d.h / 3);
+        return d.h / 4;
+      }
       foldLength.push(d.h / 4);
       return d.h / 4;
     })
