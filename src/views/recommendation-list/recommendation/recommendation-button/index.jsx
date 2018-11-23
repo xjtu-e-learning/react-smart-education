@@ -85,7 +85,7 @@ class RecommendationButton extends React.Component {
     let domainName = appState.domainName.get();
     const recnames = [
       '零基础',
-      '自定义学习'
+      '场景驱动学习'
       // '速成学习'
     ];
     if (appState.allLearningPath.get() !== undefined && appState.currentTopic.topicId === -1) {

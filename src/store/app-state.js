@@ -377,7 +377,7 @@ class AppState {
     switch (this.currentRecommendation) {
       case '零基础':
         return this.allLearningPath.get();
-      case '自定义学习':
+      case '场景驱动学习':
         return (this.defineLearningPath.get() !== undefined && this.defineLearningPath.get()[0]) || this.allLearningPath.get();
       case '速成学习':
         return (this.defineLearningPath.get() !== undefined && this.defineLearningPath.get()[1]) || this.allLearningPath.get();
