@@ -1,5 +1,6 @@
-import { select, selectAll } from 'd3-selection';
+import { select, selectAll, event } from 'd3-selection';
 import appState from '../../../store/app-state.js';
+import * as d3 from 'd3';
 
 let angles = [];
 let xs = [];
@@ -8,7 +9,7 @@ let minHeight = 0;
 let Height = [400, 390, 380, 365, 350, 335, 320, 300, 280, 260, 240, 220, 200, 180];
 let foldLength = [];
 let branchLimits = 7;
-
+let masks = [];
 // 画布长宽
 let canvasWidth = 240;
 let canvasHeight = 350;
@@ -47,6 +48,14 @@ export function drawTree(data, canvas, multiple) {
   xs = [];
   ys = [];
   foldLength = [];
+  masks = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].children.length !== 0 && data[i].children[0].type === 'branch') {
+      masks.push(1);
+    } else {
+      masks.push(0);
+    }
+  }
 
   let g = canvas.append('g')
     .selectAll('rect')
@@ -116,12 +125,21 @@ export function drawTree(data, canvas, multiple) {
       }
     })
     .attr('height', function(d, i) {
-      if (FirstLayerNum === 1) {
-        foldLength.push(d.h / 3);
+      if (masks[i] === 0) {
+        if (FirstLayerNum === 1) {
+          foldLength.push(d.h / 3);
+          return d.h / 4;
+        }
+        foldLength.push(d.h / 4);
+        return d.h / 4;
+      } else {
+        if (FirstLayerNum === 1) {
+          foldLength.push(d.h / 3 + 10);
+          return d.h / 4;
+        }
+        foldLength.push(d.h / 4 + 10);
         return d.h / 4;
       }
-      foldLength.push(d.h / 4);
-      return d.h / 4;
     })
     .attr('width', firstLayerWidth)
     .attr('fill', function(d, i) {
@@ -189,11 +207,12 @@ export function drawTree(data, canvas, multiple) {
     .enter()
     .append('circle')
     .attr('cx', function(d, i) {
-      return xs[i] + firstLayerWidth / 2 + Math.cos(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
+      data[i].cx = xs[i] + firstLayerWidth / 2 + Math.cos(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
+      return data[i].cx;
     })
     .attr('cy', function(d, i) {
-      console.log(d);
-      return ys[i] - Math.sin(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
+      data[i].cy = ys[i] - Math.sin(Math.PI * (270 - angles[i]) / 180) * foldLength[i] * 1.5;
+      return data[i].cy;
     })
     .attr('r', 16)
     .attr('fill', function(d, i) {
@@ -205,6 +224,116 @@ export function drawTree(data, canvas, multiple) {
       appState.setCurrentFacet(d.facetName, '', d.facetId, -1);
     });
 
+  masks.forEach((element, i) => {
+    if (element === 1 && data[i].children.length < 6) {
+      select(circles._groups[0][i]).remove();
+      let d = data[i];
+      let nodes = [];
+      let links = [];
+      d.children.forEach(element => {
+        element.id = element.facetName;
+        element.parentFacetName = data[i].facetName;
+        nodes.push(element);
+      });
+      for (let n = 0; n < nodes.length - 1; n++) {
+        links.push({
+          'source': nodes[n].id,
+          'target': nodes[n + 1].id,
+          value: 10
+        });
+      }
+      links.push({
+        'source': nodes[nodes.length - 1].id,
+        'target': nodes[0].id,
+        value: 10
+      });
+
+      let fcy = d.cy;
+      let index = i;
+      let simulation = forceSimulation(nodes, links, d.cx, d.cy);
+
+      let secondTexts = canvas.append('g')
+        .selectAll('text')
+        .data(nodes)
+        .enter()
+        .append('text')
+        .attr('fill', color[index])
+        .text(function(d) {
+          return d.facetName;
+        });
+
+
+      let link = canvas.append('g').attr('id', 'links')
+        .attr('stroke', '#999')
+        .attr('stroke-opacity', 0.6)
+        .selectAll('line')
+        .data(links)
+        .enter().append('line')
+        .attr('stroke-width', d => Math.sqrt(d.value));
+
+      let node = canvas.append('g').attr('id', 'nodes')
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1.5)
+        .selectAll('circle')
+        .data(nodes)
+        .enter().append('circle')
+        .attr('r', 9)
+        .attr('fill', color[i])
+        .on('click', (d) => {
+          if (d.parentFacetId === null) {
+            appState.setCurrentPage(0);
+            appState.setCurrentFacet(d.facetName, '', d.facetId, -1);
+          } else {
+            appState.setCurrentPage(0);
+            appState.setCurrentFacet(
+              d.parentFacetName,
+              d.facetName,
+              d.parentFacetId,
+              d.facetId
+            );
+          }
+
+        })
+        .call(d3.drag()
+          .on('start', (d) => {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          })
+          .on('drag', (d) => {
+            d.fx = event.x;
+            d.fy = event.y;
+          })
+          .on('end', (d) => {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+          }));
+
+      simulation.on('tick', () => {
+        link
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+
+        node
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y);
+
+
+        secondTexts
+          .attr('x', d => d.x + 15)
+          .attr('y', d => {
+            if (d.y > fcy) {
+              return d.y + 15;
+            } else {
+              return d.y - 15;
+            }
+          });
+      });
+    }
+  });
 }
 
 function processData(arr, height) {
@@ -285,3 +414,30 @@ function processData(arr, height) {
 function sortBranch(a, b) {
   return b.children.length - a.children.length;
 }
+
+function dragstarted(d, simulation) {
+  console.log(event);
+  if (!event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = event.x;
+  d.fy = event.y;
+}
+
+function dragended(d, simulation) {
+  if (!event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+function forceSimulation(nodes, links, cx, cy) {
+  return d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id))
+    .force('link', d3.forceLink(links).distance(30))
+    .force('charge', d3.forceManyBody())
+    .force('center', d3.forceCenter(cx, cy));
+}
+
