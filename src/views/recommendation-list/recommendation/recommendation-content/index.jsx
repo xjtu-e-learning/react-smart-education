@@ -9,7 +9,6 @@ import BookIcon from '@material-ui/icons/Book';
 import { inject, observer } from 'mobx-react';
 import { Badge, Popover } from 'antd';
 import { post_log_of_mouseover_topic } from '../../../../log/post-log-SDK';
-import appState from '../../../../store/app-state';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 
@@ -52,9 +51,6 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class RecommendationContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleClick = (studentCode, courseId, domainName, topicName, topicId, event) => {
     this.props.appState.setCurrentTopicName(event.target.innerText);
@@ -71,8 +67,9 @@ class RecommendationContent extends React.Component {
   render() {
     const { classes, appState } = this.props;
     let topicStateDic = {};
-    appState.topicStateList.map(topic => {
+    appState.topicStateList.forEach(topic => {
       topicStateDic[topic.topicName] = topic.state;
+      return;
     });
 
     let studentCode = appState.studentCode;

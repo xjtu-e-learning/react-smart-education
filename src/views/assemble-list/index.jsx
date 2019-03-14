@@ -1,5 +1,5 @@
 import Paper from '@material-ui/core/Paper';
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AssemblePaper from './assemble-paper';
 import AssembleListTitlebar from './assemble-list-titlebar';
@@ -24,9 +24,6 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class AssembleList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { classes } = this.props;

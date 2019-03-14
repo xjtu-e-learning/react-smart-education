@@ -39,9 +39,6 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class FacetList extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { appState, classes } = this.props;

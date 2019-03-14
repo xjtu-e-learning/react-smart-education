@@ -1,4 +1,4 @@
-import { select, selectAll, event } from 'd3-selection';
+import { select, event } from 'd3-selection';
 import appState from '../../../store/app-state.js';
 import * as d3 from 'd3';
 

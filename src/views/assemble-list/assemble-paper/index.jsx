@@ -22,10 +22,6 @@ const styles = theme => ({
 @observer
 class AssemblePaper extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes, appState } = this.props;
     const currentAssembles = appState.currentAssembles.get();

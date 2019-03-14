@@ -6,7 +6,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Button from '@material-ui/core/Button';
 import WhatshotIcon from '@material-ui/icons/WhatshotRounded';
-import appState from '../../../../../store/app-state';
 
 const styles = theme => ({
   gridList: {

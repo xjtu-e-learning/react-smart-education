@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Modal } from 'antd';
 import { inject, observer } from 'mobx-react';
-import KnowledgeForestModal from './knowledge-forest-modal';
 import { post_log_of_mouseclick_Global_Graph } from '../../../log/post-log-SDK';
 import ModalTabs from './modal-tabs';
 
@@ -43,7 +42,7 @@ class KnowledgeForesst extends React.Component {
     let domainName = appState.domainName.get();
     return (
       <div>
-        <img src='./forest_256.png' className={classes.image}
+        <img src='./forest_256.png' alt={'森林图标'} className={classes.image}
              onClick={this.showModal.bind(this, studentCode, courseId, domainName)}/>
         <Modal
           title='知识森林'

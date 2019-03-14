@@ -16,9 +16,9 @@ class KnowledgeForestRecommendation extends React.Component {
   render() {
     let graph = dataTool.gexf.parse(this.props.appState.graphXml.get());
     let states = this.props.appState.topicStateList;
-    let studied = 0;
-    let studying = 0;
-    let studysoon = 0;
+    // let studied = 0;
+    // let studying = 0;
+    // let studysoon = 0;
     let showNodeSymbolSize = 0;
     let categories = [];
     let option = {};

@@ -22,7 +22,7 @@ class KnowledgeForestModal extends React.Component {
     let showNodeSymbolSize = 0;
     let categories = [];
     let option = {};
-    let recommendationList = this.props.appState.currentRecommendationList;
+    // let recommendationList = this.props.appState.currentRecommendationList;
     // 获取社团数量
     if (graph === null || states.length === 0) {
       console.log('没有认知路径');
@@ -95,6 +95,8 @@ class KnowledgeForestModal extends React.Component {
             break;
           case 0:
             studysoon++;
+            break;
+          default:
             break;
         }
         // console.log(node);

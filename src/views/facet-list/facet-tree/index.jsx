@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { draw_tree, buildTree } from './buildsimpletree';
 import { select } from 'd3-selection';
 import { drawTree } from './facet-tree-ng';
 

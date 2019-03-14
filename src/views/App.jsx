@@ -25,15 +25,12 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   resize = () => {
     this.props.appState.setClientHeight();
   };
 
-  componentDidMount() {
+  componentWillMount() {
     // 解析课程id
     if (queryString.parse(this.props.location.search).courseId !== undefined) {
       this.props.appState.setCourseId(

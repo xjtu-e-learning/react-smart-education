@@ -25,18 +25,18 @@ const leafLength = 12;
 //树叶间距
 const leaf_space = 12;
 const space_time_leaf = 2;
-const space_time_twig = 2;
-const length_text_line = 15;//碎片知识每行的字数
+// const space_time_twig = 2;
+// const length_text_line = 15;//碎片知识每行的字数
 const trunk_text_size = '16px';
 const trunk_text_width = '2px';
 const text_seed_x = 13;
 const text_seed_y = 18;
 const color_trunk = '#330000';
-const color_branch = '#330000';
+// const color_branch = '#330000';
 const color_twig = '#330000';
-const color_hilight_twig = 'brown';
+// const color_hilight_twig = 'brown';
 const color_leaf = 'green';
-const color_hilight_leaf = 'yellow';
+// const color_hilight_leaf = 'yellow';
 //树干宽度
 const width_trunk = 7;
 //枝干宽度
@@ -44,16 +44,16 @@ const width_branch = 7;
 //树枝宽度
 const width_twig = 7;
 //高亮树枝宽度
-const width_hilight_twig = 8;
+// const width_hilight_twig = 8;
 //树叶宽度
 const width_leaf = 5;
 //高亮树叶宽度
-const width_hilight_leaf = 6;
+// const width_hilight_leaf = 6;
 const width_qtip = 350;
 const length_start_leaf_x_level_0 = 55;
 const length_start_leaf_x_level_1 = 25;
 //Width and height
-const multiple = 1;
+// const multiple = 1;
 
 // Functions
 export function buildTree(data, root, multiple) {

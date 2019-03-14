@@ -373,7 +373,7 @@ class AppState {
    */
   @computed
   get currentRecommendationList() {
-    if (this.allLearningPath.get() === undefined) return undefined;
+    if (this.allLearningPath === undefined || this.allLearningPath.get() === undefined) return undefined;
     switch (this.currentRecommendation) {
       case '零基础':
         return this.allLearningPath.get();
@@ -439,22 +439,25 @@ class AppState {
    * @param {topicNames} topicNames
    * @type {PromisedComputedValue<any>}
    */
-  facetList = asyncComputed(undefined, 0, async () => {
-    if (this.currentTopic.topicName !== '' && this.domainName.get() !== undefined) {
-      const response = await axios.get(
-        PATH_BASE + PATH_facetGetFacetsByDomainNameAndTopicNames,
-        {
-          params: {
-            domainName: this.domainName.get(),
-            topicNames: this.currentTopic.topicName
-          }
-        }
-      );
-      const result = await response.data;
-      return result.data[this.currentTopic.topicName];
-    }
-  });
+  // facetList = asyncComputed(undefined, 0, async () => {
+  //   if (this.currentTopic.topicName !== '' && this.domainName.get() !== undefined) {
+  //     const response = await axios.get(
+  //       PATH_BASE + PATH_facetGetFacetsByDomainNameAndTopicNames,
+  //       {
+  //         params: {
+  //           domainName: this.domainName.get(),
+  //           topicNames: this.currentTopic.topicName
+  //         }
+  //       }
+  //     );
+  //     const result = await response.data;
+  //     return result.data[this.currentTopic.topicName];
+  //   }
+  // });
 
+  @computed get facetList() {
+    return (this.currentTopic.topicName !== '' && this.facetsList.get() !== undefined) ? this.facetsList.get()[this.currentTopic.topicName] : undefined;
+  }
   /**
    * 获取当前主题分面树数据
    * @param {string} domainName
@@ -711,20 +714,21 @@ class AppState {
   facetsList = asyncComputed(undefined, 0, async () => {
     let domainName = this.domainName.get();
     let allLearningPath = this.allLearningPath.get();
-    let recommendationList = this.recommendationList.get();
     let topics = [];
     if (allLearningPath !== undefined) {
-      allLearningPath.map(topic => {
+      allLearningPath.forEach(topic => {
         for (let i = 0; i < topics.length; i++) {
           if (topics[i] === topic.topicName) {
             return;
           }
         }
         topics.push(topic.topicName);
+        return;
       });
       let topicNames = '';
-      topics.map(topic => {
+      topics.forEach(topic => {
         topicNames += topic + ',';
+        return;
       });
       const response = await axios.get(
         PATH_BASE + PATH_facetGetFacetsByDomainNameAndTopicNames,

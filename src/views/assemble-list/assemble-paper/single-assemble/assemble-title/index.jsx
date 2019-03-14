@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Badge } from 'antd';
-import ListItem from '@material-ui/core/ListItem/ListItem';
 
 const styles = {
   root: {
@@ -50,7 +49,7 @@ class AssembleTitle extends React.Component {
   };
 
   render() {
-    const { classes, evaluation, positive } = this.props;
+    const { classes, evaluation} = this.props;
     const source = this.props.assemblesource;
     const facetname = this.props.assemblefacetname;
     return source !== null && (

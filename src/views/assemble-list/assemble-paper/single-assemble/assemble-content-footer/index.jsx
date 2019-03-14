@@ -51,6 +51,8 @@ class AssembleContentFooter extends React.Component {
         this.props.setSet({ evaluation: 1, positive: this.props.positive + 1 });
         this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 1);
         break;
+      default:
+        break;
     }
   };
 
@@ -67,6 +69,8 @@ class AssembleContentFooter extends React.Component {
       case -1:
         this.props.setSet({ evaluation: 0 });
         this.saveAssembleEvaluation(this.props.studentCode, this.props.assembleId, 0);
+        break;
+      default:
         break;
     }
   };

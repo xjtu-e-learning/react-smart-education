@@ -2,7 +2,6 @@ import React from 'react';
 import { Breadcrumb } from 'antd';
 import { inject, observer } from 'mobx-react';
 import { withStyles } from '@material-ui/core/styles';
-import appState from '../../../store/app-state';
 import { post_log_of_mouseclick_facet, post_log_of_mouseover_topic } from '../../../log/post-log-SDK';
 
 const styles = theme => ({

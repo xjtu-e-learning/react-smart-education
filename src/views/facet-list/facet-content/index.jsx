@@ -41,9 +41,6 @@ const styles = theme => ({
 @inject('appState')
 @observer
 class FacetContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleClickWithFacet = (firstLayerFacetName, topicName, topicId, firstLayerFacetId, studentCode, courseId, domainName, event) => {
     // console.log(event.target.textContent);
@@ -90,8 +87,8 @@ class FacetContent extends React.Component {
     let studentCode = appState.studentCode;
     let courseId = appState.courseId;
     let domainName = appState.domainName.get();
-    if (appState.facetList.get() !== undefined) {
-      appState.facetList.get().map(facet => {
+    if (appState.facetList !== undefined) {
+      appState.facetList.forEach(facet => {
         if (
           facet.secondLayerFacets.length !== 0 &&
           appState.facetCollapse[facet.firstLayerFacetName] ===
@@ -99,6 +96,7 @@ class FacetContent extends React.Component {
         ) {
           appState.setFacetCollapse(facet.firstLayerFacetName);
         }
+        return;
       });
     }
 
@@ -108,8 +106,8 @@ class FacetContent extends React.Component {
       return (
         <div className={classes.root} style={{ height: this.props.appState.clientHeight - 504 }}>
           <List component="nav">
-            {appState.facetList.get() !== undefined
-              ? appState.facetList.get().map((facet, index) => {
+            {appState.facetList !== undefined
+              ? appState.facetList.map((facet, index) => {
                 if (facet.secondLayerFacets.length === 0) {
                   // console.log(appState.facetStateList[index]);
                   const content = facet.firstLayerFacetName;
@@ -220,8 +218,8 @@ class FacetContent extends React.Component {
       return (
         <div className={classes.root} style={{ height: this.props.appState.clientHeight - 504 }}>
           <List component="nav">
-            {appState.facetList.get() !== undefined
-              ? appState.facetList.get().map((facet, index) => {
+            {appState.facetList !== undefined
+              ? appState.facetList.map((facet, index) => {
                 if (facet.secondLayerFacets.length === 0) {
                   // console.log(appState.facetStateList[index]);
                   return (
