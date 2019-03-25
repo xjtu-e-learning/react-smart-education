@@ -1,4 +1,4 @@
-# 智慧教育示范应用 Smart Education
+# [智慧教育示范应用 Smart Education](http://yotta.xjtushilei.com:888/react-smart-education/?studentCode=3117033016&courseId=201)
 
 ## Table of Contents
 - [应用背景](#应用背景)
