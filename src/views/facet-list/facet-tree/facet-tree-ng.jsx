@@ -1,6 +1,8 @@
 import { select, event } from 'd3-selection';
 import appState from '../../../store/app-state.js';
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
+import * as d3_force from 'd3-force';
+import * as d3_drag from 'd3-drag';
 
 let angles = [];
 let xs = [];
@@ -294,7 +296,7 @@ export function drawTree(data, canvas, multiple) {
           }
 
         })
-        .call(d3.drag()
+        .call(d3_drag.drag()
           .on('start', (d) => {
             if (!event.active) simulation.alphaTarget(0.3).restart();
             d.fx = d.x;
@@ -434,10 +436,10 @@ function dragended(d, simulation) {
 }
 
 function forceSimulation(nodes, links, cx, cy) {
-  return d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d => d.id))
-    .force('link', d3.forceLink(links).distance(30))
-    .force('charge', d3.forceManyBody())
-    .force('center', d3.forceCenter(cx, cy));
+  return d3_force.forceSimulation(nodes)
+    .force('link', d3_force.forceLink(links).id(d => d.id))
+    .force('link', d3_force.forceLink(links).distance(30))
+    .force('charge', d3_force.forceManyBody())
+    .force('center', d3_force.forceCenter(cx, cy));
 }
 
