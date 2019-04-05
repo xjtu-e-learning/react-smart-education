@@ -1,9 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ReactEcharts from 'echarts-for-react';
-import dataTool from 'echarts/dist/extension/dataTool';
+import ReactEchartsCore from 'echarts-for-react/lib/core';
+import dataTool from '../../../../lib/dataTool';
 import { inject, observer } from 'mobx-react';
-
+import echarts from 'echarts/lib/echarts';
+import 'echarts/lib/chart/graph';
+import 'echarts/lib/chart/pie';
 const styles = themes => ({});
 
 @inject('appState') @observer
@@ -173,7 +175,7 @@ class KnowledgeForestRecommendation extends React.Component {
     }
 
     return (
-      <ReactEcharts option={option} style={{ height: '600px', width: '800px', margin: 'auto' }}/>
+      <ReactEchartsCore echarts={echarts} option={option} style={{ height: '600px', width: '800px', margin: 'auto' }}/>
     );
   }
 }
