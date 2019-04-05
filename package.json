@@ -59,6 +59,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "resolve": "1.6.0",
+    "source-map-explorer": "^1.8.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -69,6 +70,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
