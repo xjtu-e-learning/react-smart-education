@@ -154,7 +154,7 @@ class AppState {
       this.currentRecommendation !== '零基础'
     ) {
       const response = await axios.get(
-        'http://yotta.xjtushilei.com:8083/LearningPathWeb/defineLearningPath',
+        'http://yotta.xjtushilei.com:8083/dependency/LearningPath/defineLearningPath',
         {
           params: {
             domainId: this.domainId.get(),
