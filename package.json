@@ -53,7 +53,7 @@
     "query-string": "5.1.1",
     "raf": "3.4.0",
     "react": "^16.4.2",
-    "react-dev-utils": "^5.0.1",
+    "react-dev-utils": "^5.0.2",
     "react-dom": "^16.4.2",
     "react-lines-ellipsis": "^0.13.2",
     "react-router": "^4.3.1",
