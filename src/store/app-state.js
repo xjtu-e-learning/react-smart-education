@@ -117,14 +117,14 @@ class AppState {
   allLearningPath = asyncComputed(undefined, 0, async () => {
     let topicList = this.topicList.get();
     if (this.domainId.get() !== undefined && this.studentCode !== -1 && this.topicList.get()) {
-      const response = await axios.get('http://yotta.xjtushilei.com:9218/LearningPathWeb/Path/LearningPath/allLearningPath',
+      const response = await axios.get('http://yotta.xjtushilei.com:8083/dependency/LearningPathWeb',
         {
           params: {
             domainId: this.domainId.get(),
             userId: this.studentCode
           }
         });
-      const result = await response.data;
+      const result = await response.data.data;
       if (result == null) return undefined;
       let recarray = [];
       result.split(',').forEach(element1 => {
@@ -154,7 +154,7 @@ class AppState {
       this.currentRecommendation !== '零基础'
     ) {
       const response = await axios.get(
-        'http://yotta.xjtushilei.com:9218/LearningPathWeb/Path/LearningPath/defineLearningPath',
+        'http://yotta.xjtushilei.com:8083/LearningPathWeb/defineLearningPath',
         {
           params: {
             domainId: this.domainId.get(),
@@ -163,7 +163,7 @@ class AppState {
           }
         }
       );
-      const result = await response.data;
+      const result = await response.data.data;
       if (result == null) return undefined;
       let recarrays = [];
       result.split(';').forEach(element => {
